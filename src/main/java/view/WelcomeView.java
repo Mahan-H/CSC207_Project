@@ -17,15 +17,15 @@ import interface_adapter.welcome.WelcomeViewModel;
 public class WelcomeView extends JPanel implements ActionListener {
     private final String viewName = "welcome";
 
-    private final WelcomeViewModel welcomeupViewModel;
+    private final WelcomeViewModel welcomeViewModel;
     private WelcomeController welcomeController;
 
     private final JButton toLogin;
     private final JButton createAccount;
     private final JButton emptyButton;
 
-    public WelcomeView(WelcomeViewModel welcomeupViewModel) {
-        this.welcomeupViewModel = welcomeupViewModel;
+    public WelcomeView(WelcomeViewModel welcomeViewModel) {
+        this.welcomeViewModel = welcomeViewModel;
 
         final JLabel title = new JLabel(WelcomeViewModel.TITLE_LABEL);
         title.setFont(new Font("Times New Roman", Font.BOLD, 60));
@@ -41,9 +41,9 @@ public class WelcomeView extends JPanel implements ActionListener {
 
         final JPanel buttons = new JPanel();
 
-        toLogin = new JButton(welcomeupViewModel.LOGIN_BUTTON_LABEL);
+        toLogin = new JButton(welcomeViewModel.LOGIN_BUTTON_LABEL);
         toLogin.setForeground(Color.BLACK);
-        toLogin.setBackground(new Color(234, 210, 137));
+        toLogin.setBackground(new Color(239, 221, 206));
         toLogin.setFont(new Font("Times New Roman", Font.BOLD, 20));
         toLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
         toLogin.setPreferredSize(new Dimension(200, 40));
@@ -54,9 +54,9 @@ public class WelcomeView extends JPanel implements ActionListener {
         emptyButton.setBorderPainted(false);
         emptyButton.setFocusPainted(false);
 
-        createAccount = new JButton(welcomeupViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
+        createAccount = new JButton(welcomeViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
         createAccount.setForeground(Color.BLACK);
-        createAccount.setBackground(new Color(234, 210, 137));
+        createAccount.setBackground(new Color(239, 221, 206));
         createAccount.setFont(new Font("Times New Roman", Font.BOLD, 20));
         createAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
         createAccount.setPreferredSize(new Dimension(200, 40));

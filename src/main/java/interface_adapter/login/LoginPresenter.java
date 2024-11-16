@@ -3,6 +3,8 @@ package interface_adapter.login;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.verify.VerifyState;
+import interface_adapter.verify.VerifyViewModel;
 import interface_adapter.welcome.WelcomeViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
@@ -13,15 +15,15 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final VerifyViewModel verifyViewModel;
     private final ViewManagerModel viewManagerModel;
     private final WelcomeViewModel welcomeViewModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
-                          LoginViewModel loginViewModel, WelcomeViewModel welcomeViewModel) {
+                          LoginViewModel loginViewModel, WelcomeViewModel welcomeViewModel,
+                          VerifyViewModel verifyViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.verifyViewModel = verifyViewModel;
         this.loginViewModel = loginViewModel;
         this.welcomeViewModel = welcomeViewModel;
     }
@@ -29,13 +31,11 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
-
-        final LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setEmail(response.getEmail());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setState(loggedInViewModel.getViewName());
+        final VerifyState verifyState = verifyViewModel.getState();
+        verifyState.setUsername(response.getEmail());
+        this.verifyViewModel.setState(verifyState);
+        this.verifyViewModel.firePropertyChanged();
+        this.viewManagerModel.setState(verifyViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
