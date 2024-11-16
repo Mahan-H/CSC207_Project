@@ -3,6 +3,9 @@ package interface_adapter.signup;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.verify.VerifyState;
+import interface_adapter.verify.VerifyViewModel;
+
 import interface_adapter.welcome.WelcomeViewModel;
 import use_case.signup.SignupOutputBoundary;
 import use_case.signup.SignupOutputData;
@@ -13,28 +16,28 @@ import use_case.signup.SignupOutputData;
 public class SignupPresenter implements SignupOutputBoundary {
 
     private final SignupViewModel signupViewModel;
-    private final LoginViewModel loginViewModel;
+    private final VerifyViewModel verifyViewModel;
     private final ViewManagerModel viewManagerModel;
     private final WelcomeViewModel welcomeViewModel;
 
     public SignupPresenter(ViewManagerModel viewManagerModel,
                            SignupViewModel signupViewModel,
-                           LoginViewModel loginViewModel, WelcomeViewModel welcomeViewModel) {
+                           VerifyViewModel verifyViewModel, WelcomeViewModel welcomeViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.signupViewModel = signupViewModel;
-        this.loginViewModel = loginViewModel;
+        this.verifyViewModel = verifyViewModel;
         this.welcomeViewModel = welcomeViewModel;
     }
 
     @Override
     public void prepareSuccessView(SignupOutputData response) {
         // On success, switch to the login view.
-        final LoginState loginState = loginViewModel.getState();
-        loginState.setEmail(response.getEmail());
-        this.loginViewModel.setState(loginState);
-        loginViewModel.firePropertyChanged();
+        final VerifyState verifyState = verifyViewModel.getState();
+        verifyState.setUsername(response.getEmail());
+        this.verifyViewModel.setState(verifyState);
+        verifyViewModel.firePropertyChanged();
 
-        viewManagerModel.setState(loginViewModel.getViewName());
+        viewManagerModel.setState(verifyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
@@ -46,8 +49,8 @@ public class SignupPresenter implements SignupOutputBoundary {
     }
 
     @Override
-    public void switchToLoginView() {
-        viewManagerModel.setState(loginViewModel.getViewName());
+    public void switchToVerifyView() {
+        viewManagerModel.setState(verifyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
