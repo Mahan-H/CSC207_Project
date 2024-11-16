@@ -22,20 +22,20 @@ public interface LoginUserDataAccessInterface {
 
     /**
      * Returns the user with the given username.
-     * @param username the username to look up
+     * @param email the username to look up
      * @return the user with the given username
      */
-    User get(String username);
+    User get(String email);
 
     /**
      * Returns the username of the curren user of the application.
      * @return the username of the current user; null indicates that no one is logged into the application.
      */
-    String getCurrentUsername();
+    String getCurrentEmail();
 
     /**
      * Sets the username indicating who is the current user of the application.
-     * @param username the new current username; null to indicate that no one is currently logged into the application.
+     * @param email the new current username; null to indicate that no one is currently logged into the application.
      */
-    void setCurrentUsername(String username);
+    void setCurrentEmail(String email);
 }

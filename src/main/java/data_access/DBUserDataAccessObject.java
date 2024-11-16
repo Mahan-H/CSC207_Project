@@ -68,7 +68,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void setCurrentUsername(String name) {
+    public void setCurrentEmail(String name) {
         // this isn't implemented for the lab
     }
 
@@ -159,7 +159,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public String getCurrentUsername() {
+    public String getCurrentEmail() {
         return null;
     }
 }

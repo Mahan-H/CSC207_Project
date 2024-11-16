@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 import interface_adapter.welcome.WelcomeController;
-import interface_adapter.welcome.WelcomeState;
 import interface_adapter.welcome.WelcomeViewModel;
 
 /**

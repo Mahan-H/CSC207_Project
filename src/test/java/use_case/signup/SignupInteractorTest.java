@@ -19,7 +19,7 @@ class SignupInteractorTest {
             @Override
             public void prepareSuccessView(SignupOutputData user) {
                 // 2 things to check: the output data is correct, and the user has been created in the DAO.
-                assertEquals("Paul", user.getUsername());
+                assertEquals("Paul", user.getEmail());
                 assertTrue(userRepository.existsByName("Paul"));
             }
 

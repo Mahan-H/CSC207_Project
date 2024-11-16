@@ -25,7 +25,7 @@ class LogoutInteractorTest {
             @Override
             public void prepareSuccessView(LogoutOutputData user) {
                 // check that the output data contains the username of who logged out
-                assertEquals("Paul", user.getUsername());
+                assertEquals("Paul", user.getEmail());
             }
 
             @Override

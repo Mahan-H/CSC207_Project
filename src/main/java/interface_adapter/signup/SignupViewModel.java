@@ -8,7 +8,7 @@ import interface_adapter.ViewModel;
 public class SignupViewModel extends ViewModel<SignupState> {
 
     public static final String TITLE_LABEL = "Create Your Account";
-    public static final String USERNAME_LABEL = "Type Your Email";
+    public static final String EMAIL_LABEL = "Type Your Email";
     public static final String PASSWORD_LABEL = "Choose password";
     public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
 
