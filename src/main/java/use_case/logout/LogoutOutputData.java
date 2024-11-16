@@ -5,16 +5,16 @@ package use_case.logout;
  */
 public class LogoutOutputData {
 
-    private String username;
+    private String email;
     private boolean useCaseFailed;
 
-    public LogoutOutputData(String username, boolean useCaseFailed) {
-        this.username = username;
+    public LogoutOutputData(String email, boolean useCaseFailed) {
+        this.email = email;
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public boolean isUseCaseFailed() {

@@ -27,14 +27,14 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final String viewName = "log in";
     private final LoginViewModel loginViewModel;
 
-    private final JTextField usernameInputField = new JTextField(15);
-    private final JLabel usernameErrorField = new JLabel();
+    private final JTextField emailInputField = new JTextField(15);
+    private final JLabel emailErrorField = new JLabel();
 
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JLabel passwordErrorField = new JLabel();
 
     private final JButton logIn;
-    private final JButton cancel;
+    private final JButton goBack;
     private LoginController loginController;
 
     public LoginView(LoginViewModel loginViewModel) {
@@ -45,16 +45,16 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         final JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        final LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), usernameInputField);
+        final LabelTextPanel emailInfo = new LabelTextPanel(
+                new JLabel("Email"), emailInputField);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), passwordInputField);
 
         final JPanel buttons = new JPanel();
         logIn = new JButton("log in");
         buttons.add(logIn);
-        cancel = new JButton("cancel");
-        buttons.add(cancel);
+        goBack = new JButton("Go back");
+        buttons.add(goBack);
 
         logIn.addActionListener(
                 new ActionListener() {
@@ -63,7 +63,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                             final LoginState currentState = loginViewModel.getState();
 
                             loginController.execute(
-                                    currentState.getUsername(),
+                                    currentState.getEmail(),
                                     currentState.getPassword()
                             );
                         }
@@ -71,13 +71,19 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        cancel.addActionListener(this);
+        goBack.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        loginController.switchToWelcomeView();
+                    }
+                }
+        );
 
-        usernameInputField.getDocument().addDocumentListener(new DocumentListener() {
+        emailInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
                 final LoginState currentState = loginViewModel.getState();
-                currentState.setUsername(usernameInputField.getText());
+                currentState.setEmail(emailInputField.getText());
                 loginViewModel.setState(currentState);
             }
 
@@ -124,8 +130,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         });
 
         this.add(title);
-        this.add(usernameInfo);
-        this.add(usernameErrorField);
+        this.add(emailInfo);
+        this.add(emailErrorField);
         this.add(passwordInfo);
         this.add(buttons);
     }
@@ -142,11 +148,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void propertyChange(PropertyChangeEvent evt) {
         final LoginState state = (LoginState) evt.getNewValue();
         setFields(state);
-        usernameErrorField.setText(state.getLoginError());
+        emailErrorField.setText(state.getLoginError());
     }
 
     private void setFields(LoginState state) {
-        usernameInputField.setText(state.getUsername());
+        emailInputField.setText(state.getEmail());
         passwordInputField.setText(state.getPassword());
     }
 

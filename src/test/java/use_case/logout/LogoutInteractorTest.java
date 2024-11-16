@@ -1,6 +1,5 @@
 package use_case.logout;
 
-import data_access.InMemoryUserDataAccessObject;
 import entity.CommonUserFactory;
 import entity.User;
 import entity.UserFactory;
@@ -26,7 +25,7 @@ class LogoutInteractorTest {
             @Override
             public void prepareSuccessView(LogoutOutputData user) {
                 // check that the output data contains the username of who logged out
-                assertEquals("Paul", user.getUsername());
+                assertEquals("Paul", user.getEmail());
             }
 
             @Override
