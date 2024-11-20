@@ -32,4 +32,13 @@ public class VerifyController {
         verifyUseCaseInteractor.switchToSignUpView();
     }
 
+    /**
+     * Resends the verification email to the user.
+     * @param username the user requesting a new verification email
+     */
+    public void resendVerificationEmail(String username) {
+        final VerifyInputData inputData = new VerifyInputData(username);
+        verifyUseCaseInteractor.resendVerificationEmail(inputData);
+    }
+
 }
