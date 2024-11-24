@@ -23,7 +23,7 @@ public class EmailVerificationInteractor {
         // Send the verification email
         String subject = "Your Verification Code";
         String message = "Your verification code is: " + verificationCode;
-        emailService.sendEmail(email, subject, message);
+        emailService.sendVerificationEmail(email, subject, message);
     }
 
     public boolean verifyCode(String email, String code) {

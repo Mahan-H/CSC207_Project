@@ -58,7 +58,20 @@ public class VerifyView extends JPanel implements PropertyChangeListener {
         verifyButton.addActionListener(evt -> {
             if (evt.getSource().equals(verifyButton)) {
                 VerifyState currentState = verifyViewModel.getState();
-                this.verifyController.execute(currentState.getUsername());
+                String username = currentState.getUsername();
+                String verifyCode = verifyCodeField.getText().trim();
+
+                if (username == null || username.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Username is not available. Please go back and sign up again.");
+                    return;
+                }
+
+                if (verifyCode.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please enter the verification code.");
+                    return;
+                }
+
+                verifyController.execute(username, verifyCode);
             }
         });
 

@@ -1,9 +1,9 @@
 package use_case.verify;
 
-import entity.User;
-import interface_adapter.EmailService;
-
 import java.security.SecureRandom;
+
+import data_access.DBUserDataAccessObject;
+import interface_adapter.EmailService;
 
 /**
  * The Verify Email Interactor.
@@ -12,16 +12,28 @@ import java.security.SecureRandom;
 public class VerifyInteractor implements VerifyInputBoundary {
     private final VerifyOutputBoundary userPresenter;
     private final EmailService emailService;
+    private final DBUserDataAccessObject dataAccessObject;
 
-    public VerifyInteractor(VerifyOutputBoundary verifyOutputBoundary, EmailService emailService) {
+    public VerifyInteractor(VerifyOutputBoundary verifyOutputBoundary, EmailService emailService, DBUserDataAccessObject dataAccessObject) {
         this.userPresenter = verifyOutputBoundary;
         this.emailService = emailService;
+        this.dataAccessObject = dataAccessObject;
     }
 
     @Override
     public void execute(VerifyInputData verifyInputData) {
-        final VerifyOutputData verifyOutputData = new VerifyOutputData(verifyInputData.getVerifyCode(), false);
-        userPresenter.prepareSuccessView(verifyOutputData);
+        String email = verifyInputData.getEmail();
+        String inputCode = verifyInputData.getVerifyCode();
+        String storedCode = dataAccessObject.getVerificationCode(email);
+
+        if (storedCode != null && storedCode.equals(inputCode)) {
+            // Verification successful
+            userPresenter.prepareSuccessView(new VerifyOutputData(email, false));
+        }
+        else {
+            // Verification failed
+            userPresenter.prepareFailView("Invalid verification code.");
+        }
     }
 
     @Override
@@ -31,9 +43,12 @@ public class VerifyInteractor implements VerifyInputBoundary {
 
     @Override
     public void resendVerificationEmail(VerifyInputData inputData) {
-        String email = inputData.getUsername();
+        String email = inputData.getEmail();
         String newVerificationCode = generateVerificationCode(6);
-        emailService.sendEmail(email, "Resend Email Verification", "Your new verification code is: " + newVerificationCode);
+
+        dataAccessObject.saveVerificationCode(email, newVerificationCode);
+
+        emailService.sendVerificationEmail(email, "Resend Email Verification", "Your new verification code is: " + newVerificationCode);
     }
 
     private String generateVerificationCode(int length) {

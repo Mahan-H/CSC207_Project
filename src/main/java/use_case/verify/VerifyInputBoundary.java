@@ -13,5 +13,6 @@ public interface VerifyInputBoundary {
 
     void switchToSignUpView();
 
-    void resendVerificationEmail(VerifyInputData inputData);
+    void resendVerificationEmail(VerifyInputData verifyInputData);
+
 }
