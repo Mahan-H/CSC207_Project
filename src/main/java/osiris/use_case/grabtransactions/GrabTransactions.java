@@ -15,14 +15,17 @@ import java.util.ArrayList;
 public class GrabTransactions implements GrabTransactionsInputBoundary {
     private final GrabTransactionUserDataAccessInterface userDataAccessObject;
     private final PlaidApi api;
+    private final GrabTransactionsOutputBoundary outputBoundary;
 
-    public GrabTransactions(GrabTransactionUserDataAccessInterface userDataAccessObject, PlaidApi api) {
+
+    public GrabTransactions(GrabTransactionUserDataAccessInterface userDataAccessObject, PlaidApi api, GrabTransactionsOutputBoundary outputBoundary) {
         this.userDataAccessObject = userDataAccessObject;
         this.api = api;
+        this.outputBoundary = outputBoundary;
     }
 
     @Override
-    public void execute(GrabTransactionsInputData grabTransactionsInputData) throws IOException {
+    public List<Transaction> execute(GrabTransactionsInputData grabTransactionsInputData) throws IOException {
         User user = userDataAccessObject.get(grabTransactionsInputData.getUsername());
         String token = user.getAccessCode();
 
@@ -57,6 +60,8 @@ public class GrabTransactions implements GrabTransactionsInputBoundary {
             assert response.body() != null;
             transactions.addAll(response.body().getTransactions());
         }
+        outputBoundary.handleTransactions(transactions);
+        return transactions;
     }
 
 }
