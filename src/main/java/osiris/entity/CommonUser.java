@@ -30,4 +30,9 @@ public class CommonUser implements User {
         return access_code;
     }
 
+    @Override
+    public String getItemID() {
+        return "";
+    }
+
 }

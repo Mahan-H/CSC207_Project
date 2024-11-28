@@ -28,11 +28,18 @@
         <relativePath/>
     </parent>
 
+    <repositories>
+        <repository>
+            <id>plaid-repo</id>
+            <url>https://plaid.com/maven</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.plaid</groupId>
             <artifactId>plaid-java</artifactId>
-            <version>15.3.0</version>
+            <version>29.0.0</version> <!-- You can use the latest stable version -->
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
