@@ -5,6 +5,9 @@ import osiris.interface_adapter.login.LoginViewModel;
 import osiris.interface_adapter.signup.SignupViewModel;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
 
+/**
+ * Presenter for the Welcome Use Case.
+ */
 public class WelcomePresenter implements WelcomeOutputBoundary {
 
     private final ViewManagerModel viewManagerModel;

@@ -1,4 +1,4 @@
-package osiris.interface_adapter;
+package osiris.use_case.verify;
 
 public interface EmailService {
 

@@ -1,16 +1,21 @@
-package osiris.use_case.plaid;
+package osiris.data_access;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import osiris.view.PlaidException;
-import okhttp3.*;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import osiris.utility.exceptions.PlaidException;
 
 import java.io.IOException;
 
-@Service
-public class PlaidService {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PlaidDataAccessObject {
 
     private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
@@ -26,7 +31,7 @@ public class PlaidService {
     @Value("${plaid.environment}")
     private String environment;
 
-    public PlaidService() {
+    public PlaidDataAccessObject() {
         this.client = new OkHttpClient();
         this.gson = new Gson();
     }
@@ -50,6 +55,35 @@ public class PlaidService {
     }
 
     /**
+     * Sends a POST request to the specified Plaid endpoint with the given JSON body.
+     *
+     * @param endpoint   The specific Plaid API endpoint.
+     * @param jsonBody   The JSON body to send in the request.
+     * @return The JSON response from Plaid as a string.
+     * @throws IOException If an I/O error occurs during the API call.
+     * @throws PlaidException If the Plaid API returns an unsuccessful response.
+     */
+    private String postToPlaid(String endpoint, JsonObject jsonBody) throws IOException {
+        String url = getPlaidUrl(endpoint);
+
+        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(jsonBody));
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+            }
+
+            return response.body().string();
+        }
+    }
+
+    /**
      * Creates a Link Token by communicating with Plaid's API.
      *
      * @param clientName   Name of your application.
@@ -62,9 +96,6 @@ public class PlaidService {
      */
     public LinkTokenResponse createLinkToken(String clientName, String[] countryCodes, String language,
                                              String userClientId, String[] products) throws IOException {
-        String url = getPlaidUrl("link/token/create");
-
-        // Build JSON payload
         JsonObject requestBody = new JsonObject();
         requestBody.addProperty("client_id", clientId);
         requestBody.addProperty("secret", secret);
@@ -78,27 +109,9 @@ public class PlaidService {
 
         requestBody.add("products", gson.toJsonTree(products));
 
-        // Create RequestBody
-        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
-
-        // Build the HTTP request
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        // Execute the request
-        try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) {
-                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
-            }
-
-            String responseBody = response.body().string();
-            return gson.fromJson(responseBody, LinkTokenResponse.class);
-        } catch (IOException e) {
-            throw new PlaidException("Failed to create Link Token", e);
-        }
+        String responseBody = postToPlaid("link/token/create", requestBody);
+        System.out.println(gson.fromJson(responseBody, LinkTokenResponse.class));
+        return gson.fromJson(responseBody, LinkTokenResponse.class);
     }
 
     /**
@@ -109,35 +122,13 @@ public class PlaidService {
      * @throws IOException If an I/O error occurs during the API call.
      */
     public ExchangeTokenResponse exchangePublicToken(String publicToken) throws IOException {
-        String url = getPlaidUrl("item/public_token/exchange");
-
-        // Build JSON payload
         JsonObject requestBody = new JsonObject();
         requestBody.addProperty("client_id", clientId);
         requestBody.addProperty("secret", secret);
         requestBody.addProperty("public_token", publicToken);
 
-        // Create RequestBody
-        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
-
-        // Build the HTTP request
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        // Execute the request
-        try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) {
-                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
-            }
-
-            String responseBody = response.body().string();
-            return gson.fromJson(responseBody, ExchangeTokenResponse.class);
-        } catch (IOException e) {
-            throw new PlaidException("Failed to exchange Public Token", e);
-        }
+        String responseBody = postToPlaid("item/public_token/exchange", requestBody);
+        return gson.fromJson(responseBody, ExchangeTokenResponse.class);
     }
 
     /**
@@ -146,7 +137,6 @@ public class PlaidService {
     public static class LinkTokenResponse {
         public String link_token;
         public String request_id;
-        // Add other fields as necessary
     }
 
     /**
@@ -156,6 +146,5 @@ public class PlaidService {
         public String access_token;
         public String item_id;
         public String request_id;
-        // Add other fields as necessary
     }
 }

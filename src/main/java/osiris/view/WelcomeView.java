@@ -1,10 +1,17 @@
 package osiris.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
@@ -13,6 +20,12 @@ import osiris.interface_adapter.welcome.WelcomeViewModel;
  * The View for the Signup Use Case.
  */
 public class WelcomeView extends JPanel implements ActionListener {
+    public static final String TIMES_NEW_ROMAN = "Times New Roman";
+    public static final int TITTLE_SIZE = 60;
+    public static final int SLOGAN_SIZE = 30;
+    public static final Color COLOR = new Color(239, 221, 206);
+    public static final int LOGIN_BUTTON_FONT_SIZE = 20;
+    public static final Dimension PREFERRED_SIZE_LOGIN_BUTTON = new Dimension(200, 40);
     private final String viewName = "welcome";
 
     private final WelcomeViewModel welcomeViewModel;
@@ -26,11 +39,11 @@ public class WelcomeView extends JPanel implements ActionListener {
         this.welcomeViewModel = welcomeViewModel;
 
         final JLabel title = new JLabel(WelcomeViewModel.TITLE_LABEL);
-        title.setFont(new Font("Times New Roman", Font.BOLD, 60));
+        title.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, TITTLE_SIZE));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JLabel slogan = new JLabel(WelcomeViewModel.SLOGAN_LABEL);
-        slogan.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        slogan.setFont(new Font(TIMES_NEW_ROMAN, Font.PLAIN, SLOGAN_SIZE));
         slogan.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JPanel titles = new JPanel();
@@ -41,10 +54,10 @@ public class WelcomeView extends JPanel implements ActionListener {
 
         toLogin = new JButton(welcomeViewModel.LOGIN_BUTTON_LABEL);
         toLogin.setForeground(Color.BLACK);
-        toLogin.setBackground(new Color(239, 221, 206));
-        toLogin.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        toLogin.setBackground(COLOR);
+        toLogin.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, LOGIN_BUTTON_FONT_SIZE));
         toLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
-        toLogin.setPreferredSize(new Dimension(200, 40));
+        toLogin.setPreferredSize(PREFERRED_SIZE_LOGIN_BUTTON);
 
         emptyButton = new JButton(" ");
         emptyButton.setOpaque(false);
@@ -54,10 +67,10 @@ public class WelcomeView extends JPanel implements ActionListener {
 
         createAccount = new JButton(welcomeViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
         createAccount.setForeground(Color.BLACK);
-        createAccount.setBackground(new Color(239, 221, 206));
-        createAccount.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        createAccount.setBackground(COLOR);
+        createAccount.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, LOGIN_BUTTON_FONT_SIZE));
         createAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
-        createAccount.setPreferredSize(new Dimension(200, 40));
+        createAccount.setPreferredSize(PREFERRED_SIZE_LOGIN_BUTTON);
 
         buttons.add(emptyButton);
         buttons.add(toLogin);

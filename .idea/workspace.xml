@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="" />
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/PlaidDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/PlaidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/app.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,7 +201,7 @@
       <workItem from="1732622029302" duration="15170000" />
       <workItem from="1732664391116" duration="4703000" />
       <workItem from="1732716541896" duration="12536000" />
-      <workItem from="1732749621524" duration="13510000" />
+      <workItem from="1732749621524" duration="13057000" />
     </task>
     <servers />
   </component>

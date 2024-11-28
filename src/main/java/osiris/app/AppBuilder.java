@@ -11,7 +11,7 @@ import java.awt.Dimension;
 import osiris.data_access.DBUserDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
-import osiris.interface_adapter.EmailServiceImpl;
+import osiris.data_access.EmailServiceImpl;
 import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
