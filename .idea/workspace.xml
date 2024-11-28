@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,8 +13,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="UML Use Case" />
+        <option value="editable-svg" />
+        <option value="UML Class" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -25,27 +24,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;Mahan-H&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Mahan-H/lab-5.git&quot;,
     &quot;accountId&quot;: &quot;f299831e-feab-4c4c-af6c-b49f8c84d731&quot;
-  }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
+    }
+    }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
+    &quot;associatedIndex&quot;: 0
+    }</component>
   <component name="ProjectId" id="2pO0l6VvuXnd5zAlplnZqPFiiTB" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -60,6 +52,7 @@
     "Application.Unnamed (1).executor": "Run",
     "Application.Unnamed.executor": "Run",
     "Batch.mvnw.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Class",
     "JavaScript Debug.index.html.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -70,14 +63,16 @@
     "Spring Boot.PlaidIntegrationApplication (1).executor": "Run",
     "Spring Boot.PlaidIntegrationApplication.executor": "Run",
     "app.teamhub.selectedTeam": "github.com/Mahan-H/lab-5",
-    "git-widget-placeholder": "divnoor.chatha",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "mahan.hooshmandkhayat",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mahan/IdeaProjects/lab-5/.env",
+    "last_opened_file_path": "C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -90,10 +85,16 @@
       <recent name="C:\Users\mahan\IdeaProjects\lab-5\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mahan\IdeaProjects\lab-5\src\main\resources" />
       <recent name="C:\Users\mahan\IdeaProjects\lab-5" />
+    </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="osiris.data_access.DBUserDataAccessObject" />
+      <recent name="osiris.view.WelcomeView" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="osiris.interface_adapter.plaid" />
+      <recent name="osiris.use_case.plaid" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -138,7 +139,7 @@
     </configuration>
     <configuration name="PlaidIntegrationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="plaid-integration" />
+      <module name="homework-5" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -176,7 +177,10 @@
       <option name="presentableId" value="Default" />
       <updated>1732621971505</updated>
       <workItem from="1732621979938" duration="33000" />
-      <workItem from="1732622029302" duration="12901000" />
+      <workItem from="1732622029302" duration="15170000" />
+      <workItem from="1732664391116" duration="4703000" />
+      <workItem from="1732716541896" duration="12536000" />
+      <workItem from="1732749621524" duration="13510000" />
     </task>
     <servers />
   </component>
