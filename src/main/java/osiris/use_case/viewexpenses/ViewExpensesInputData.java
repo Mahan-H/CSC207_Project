@@ -10,9 +10,10 @@ public class ViewExpensesInputData {
         this.email = email;
     }
 
-//    String getAccessCode() {
-//        return access_code;
-//    }
+    String getAccessCode() {
+        return access_code;
+    }
 
     String getEmail() {return email; }
+
 }
