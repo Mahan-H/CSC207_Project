@@ -1,5 +1,8 @@
 package osiris.use_case.welcome;
 
+/**
+ * Output boundary for the Welcome Use Case.
+ */
 public interface WelcomeOutputBoundary {
 
     /**

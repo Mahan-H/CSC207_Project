@@ -4,8 +4,6 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
-import osiris.interface_adapter.EmailService;
-
 public class EmailVerificationInteractor {
     private final EmailService emailService;
     private final Map<String, String> verificationCodes = new HashMap<>();

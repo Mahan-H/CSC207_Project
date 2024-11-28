@@ -3,7 +3,6 @@ package osiris.use_case.verify;
 import java.security.SecureRandom;
 
 import osiris.data_access.DBUserDataAccessObject;
-import osiris.interface_adapter.EmailService;
 
 /**
  * The Verify Email Interactor.

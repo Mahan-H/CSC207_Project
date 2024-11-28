@@ -1,4 +1,4 @@
-package osiris.view;
+package osiris.utility.exceptions;
 
 public class PlaidException extends RuntimeException {
     public PlaidException(String message) {

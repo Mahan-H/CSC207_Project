@@ -1,4 +1,6 @@
-package osiris.interface_adapter;
+package osiris.data_access;
+
+import osiris.use_case.verify.EmailService;
 
 import java.util.Properties;
 

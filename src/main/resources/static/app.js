@@ -1,22 +1,19 @@
-// src/main/resources/static/app.js
-
 document.getElementById('link-button').addEventListener('click', function() {
     const statusDiv = document.getElementById('status');
     statusDiv.textContent = 'Fetching Link Token...';
     console.log('Initiating Link Token request.');
 
-    // Step 1: Fetch Link Token from backend
     fetch('/api/plaid/create-link-token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            clientName: "My Awesome App",
-            countryCodes: ["US", "CA"], // Added Canada
+            clientName: "Osiris",
+            countryCodes: ["US", "CA"],
             language: "en",
             userClientId: "user_12345",
-            products: ["auth", "transactions"] // Added transactions
+            products: ["transactions"]
         })
     })
         .then(response => {
@@ -28,9 +25,9 @@ document.getElementById('link-button').addEventListener('click', function() {
         })
         .then(data => {
             console.log('Link Token Data:', data);
-            const linkToken = data.link_token;
+            const linkToken = data.linkToken;
             statusDiv.textContent = 'Initializing Plaid Link...';
-            initializePlaidLink(linkToken);
+            initializePlaidLink(linkToken)
         })
         .catch(error => {
             console.error('Error fetching Link Token:', error);
@@ -74,14 +71,14 @@ function initializePlaidLink(linkToken) {
 function exchangePublicToken(publicToken) {
     const statusDiv = document.getElementById('status');
 
-    fetch('/api/plaid/exchange-public-token', { // Relative path
+    fetch('/api/plaid/exchange-public-token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             publicToken: publicToken,
-            userClientId: "user_12345" // Must match the userClientId used when creating the Link Token
+            userClientId: "user_12345"
         })
     })
         .then(response => {
@@ -98,7 +95,6 @@ function exchangePublicToken(publicToken) {
             console.log('Access Token:', accessToken);
             console.log('Item ID:', itemId);
             statusDiv.textContent = 'Bank account linked successfully!';
-            // Store accessToken and itemId if needed for future API calls
         })
         .catch(error => {
             console.error('Error exchanging Public Token:', error);
