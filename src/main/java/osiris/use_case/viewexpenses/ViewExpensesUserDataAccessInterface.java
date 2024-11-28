@@ -1,15 +1,17 @@
 package osiris.use_case.viewexpenses;
 
 
+import osiris.entity.User;
+
 public interface ViewExpensesUserDataAccessInterface {
 
     /**
-     * get accesscode for username.
-     * @param email the username to look for
+     * get method for username.
+     * @param username the username to look for
      * @return the code
      */
-    String getAccessCode(String email);
 
-    String getItemID(String email);
+    User get(String username);
+
 
 }
