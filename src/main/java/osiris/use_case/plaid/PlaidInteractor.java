@@ -3,7 +3,6 @@ package osiris.use_case.plaid;
 import osiris.data_access.PlaidDataAccessObject;
 import osiris.data_access.PlaidDataAccessObject.ExchangeTokenResponse;
 import osiris.data_access.PlaidDataAccessObject.LinkTokenResponse;
-import osiris.entity.BankAccount;
 import osiris.utility.exceptions.PlaidException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +47,6 @@ public class PlaidInteractor implements PlaidInputBoundary {
     public ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData) throws PlaidUseCaseException {
         try {
             ExchangeTokenResponse response = plaidDao.exchangePublicToken(inputData.getPublicToken());
-
-            BankAccount bankAccount = new BankAccount(
-                    inputData.getUserClientId(),
-                    response.access_token,
-                    response.item_id
-            );
-
 
             return new ExchangePublicTokenOutputData(response.access_token, response.item_id, response.request_id);
         } catch (PlaidException e) {

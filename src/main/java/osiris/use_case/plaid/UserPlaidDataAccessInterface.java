@@ -1,31 +1,34 @@
 package osiris.use_case.plaid;
 
-import osiris.entity.BankAccount;
+import osiris.data_access.PlaidDataAccessObject;
+
+import java.io.IOException;
 
 /**
  * Interface for BankAccount data access operations.
  */
 public interface UserPlaidDataAccessInterface {
-    /**
-     * Retrieves a BankAccount by userClientId.
-     *
-     * @param userClientId The unique identifier for the user.
-     * @return The BankAccount object.
-     */
-    BankAccount getUserByClientId(String userClientId);
 
     /**
-     * Saves a new BankAccount.
+     * Creates a link token for the Plaid API.
      *
-     * @param bankAccount The BankAccount object to save.
+     * @param clientName The name of the client.
+     * @param countryCodes The country codes for the client.
+     * @param language The language for the client.
+     * @param userClientId The user client ID.
+     * @param products The products for the client.
+     * @return A response containing the link token.
+     * @throws Exception If an error occurs while creating the link token.
      */
-    void saveUser(BankAccount bankAccount);
+    PlaidDataAccessObject.LinkTokenResponse createLinkToken(String clientName, String[] countryCodes, String language,
+                                                            String userClientId, String[] products) throws Exception;
 
     /**
-     * Checks if a BankAccount exists by userClientId.
+     * Exchanges a public token for an access token.
      *
-     * @param userClientId The unique identifier for the user.
-     * @return True if exists, else false.
+     * @param publicToken The public token to exchange.
+     * @return A response containing the access token.
+     * @throws IOException If an error occurs while exchanging the public token.
      */
-    boolean existsByClientId(String userClientId);
+    PlaidDataAccessObject.ExchangeTokenResponse exchangePublicToken(String publicToken) throws IOException;
 }

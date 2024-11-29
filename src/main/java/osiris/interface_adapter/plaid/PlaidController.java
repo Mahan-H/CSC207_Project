@@ -1,6 +1,5 @@
 package osiris.interface_adapter.plaid;
 
-import osiris.entity.BankAccount;
 import osiris.use_case.plaid.PlaidInputBoundary;
 import osiris.use_case.plaid.CreateLinkTokenInputData;
 import osiris.use_case.plaid.ExchangePublicTokenInputData;
