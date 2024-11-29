@@ -27,7 +27,7 @@ public class GrabTransactions implements GrabTransactionsInputBoundary {
         try {
             User user = userDataAccessObject.get(grabTransactionsInputData.getUsername());
             String token = user.getAccessCode();
-            List<Transaction> transactions = plaidDao.fetchTransactions("access-sandbox-08fb2375-6eb7-4063-b008-66e5fb66da8b");
+            List<Transaction> transactions = plaidDao.fetchTransactions(token);
 
 
             return new GrabTransactionOutputData(transactions);
