@@ -62,7 +62,6 @@ public class PlaidController {
         );
 
         ExchangePublicTokenOutputData outputData = plaidInteractor.exchangePublicToken(inputData);
-        System.out.println(outputData);
         return ResponseEntity.ok(outputData);
     }
 

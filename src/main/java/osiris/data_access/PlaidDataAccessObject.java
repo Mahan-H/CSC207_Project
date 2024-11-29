@@ -110,7 +110,6 @@ public class PlaidDataAccessObject {
         requestBody.add("products", gson.toJsonTree(products));
 
         String responseBody = postToPlaid("link/token/create", requestBody);
-        System.out.println(gson.fromJson(responseBody, LinkTokenResponse.class));
         return gson.fromJson(responseBody, LinkTokenResponse.class);
     }
 
