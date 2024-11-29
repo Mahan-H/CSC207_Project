@@ -1,67 +1,42 @@
 package osiris.use_case.grabtransactions;
 
 import com.plaid.client.model.*;
-import com.plaid.client.request.PlaidApi;
+import osiris.data_access.PlaidDataAccessObject;
 import osiris.entity.User;
 
-import retrofit2.Response;
+import osiris.utility.exceptions.PlaidException;
+import osiris.utility.exceptions.PlaidUseCaseException;
 
 // Java Standard Imports
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.ArrayList;
 
+//@Service
 public class GrabTransactions implements GrabTransactionsInputBoundary {
     private final GrabTransactionUserDataAccessInterface userDataAccessObject;
-    private final PlaidApi api;
-    private final GrabTransactionsOutputBoundary outputBoundary;
+    private final PlaidDataAccessObject plaidDao;
 
-
-    public GrabTransactions(GrabTransactionUserDataAccessInterface userDataAccessObject, PlaidApi api, GrabTransactionsOutputBoundary outputBoundary) {
+//    @Autowired
+    public GrabTransactions(GrabTransactionUserDataAccessInterface userDataAccessObject, PlaidDataAccessObject plaidDao) {
         this.userDataAccessObject = userDataAccessObject;
-        this.api = api;
-        this.outputBoundary = outputBoundary;
+        this.plaidDao = plaidDao;
     }
 
     @Override
-    public List<Transaction> execute(GrabTransactionsInputData grabTransactionsInputData) throws IOException {
-        User user = userDataAccessObject.get(grabTransactionsInputData.getUsername());
-        String token = user.getAccessCode();
+    public GrabTransactionOutputData fetchTransactions(GrabTransactionsInputData grabTransactionsInputData) throws IOException, PlaidUseCaseException {
+        try {
+            User user = userDataAccessObject.get(grabTransactionsInputData.getUsername());
+            String token = user.getAccessCode();
+            List<Transaction> transactions = plaidDao.fetchTransactions("access-sandbox-08fb2375-6eb7-4063-b008-66e5fb66da8b");
 
-        LocalDate startDate = LocalDate.now().minusDays(30);
-        LocalDate endDate = LocalDate.now();
-        TransactionsGetRequestOptions options = new TransactionsGetRequestOptions()
-                .includePersonalFinanceCategory(true);
 
-        TransactionsGetRequest request = new TransactionsGetRequest()
-                .accessToken(token)
-                .startDate(startDate)
-                .endDate(endDate)
-                .options(options);
+            return new GrabTransactionOutputData(transactions);
 
-        Response<TransactionsGetResponse> response = api.transactionsGet(request).execute();
-
-        assert response.body() != null;
-        List<Transaction> transactions = new ArrayList<>(response.body().getTransactions());
-
-        while (transactions.size() < response.body().getTotalTransactions()) {
-            options = new TransactionsGetRequestOptions()
-                    .offset(transactions.size())
-                    .includePersonalFinanceCategory(true);
-
-            request = new TransactionsGetRequest() // Note the removal of type declaration here
-                    .accessToken(token)
-                    .startDate(startDate)
-                    .endDate(endDate)
-                    .options(options);
-
-            response = api.transactionsGet(request).execute(); // Note the removal of type declaration here
-            assert response.body() != null;
-            transactions.addAll(response.body().getTransactions());
+        } catch (PlaidException e) {
+            throw new PlaidUseCaseException("Failed to create transactions: " + e.getMessage(), e);
+        } catch (IOException e) {
+            throw new PlaidUseCaseException("IO Error while creating transactions", e);
         }
-        outputBoundary.handleTransactions(transactions);
-        return transactions;
     }
 
 }

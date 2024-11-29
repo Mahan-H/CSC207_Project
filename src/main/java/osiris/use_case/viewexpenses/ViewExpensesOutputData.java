@@ -1,4 +1,4 @@
-package osiris.use_case.verify;
+package osiris.use_case.viewexpenses;
 
 public class ViewExpensesOutputData {
 }

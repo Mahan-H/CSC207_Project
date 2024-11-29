@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
+import osiris.data_access.PlaidDataAccessObject;
+import osiris.use_case.grabtransactions.GrabTransactions;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,7 +28,8 @@ import osiris.interface_adapter.signup.SignupViewModel;
  */
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "sign up";
-
+    private GrabTransactions grabTransactions;
+    private PlaidDataAccessObject plaid;
     private final SignupViewModel signupViewModel;
     private final JTextField emailInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
@@ -61,7 +65,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signUp)) {
                             final SignupState currentState = signupViewModel.getState();
-
+                            try {
+                                System.out.println(plaid.fetchTransactions("access-sandbox-08fb2375-6eb7-4063-b008-66e5fb66da8b"));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                             signupController.execute(
                                     currentState.getEmail(),
                                     currentState.getPassword(),
