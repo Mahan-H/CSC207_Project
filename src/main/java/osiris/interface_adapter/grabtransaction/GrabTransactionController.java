@@ -12,13 +12,10 @@ import osiris.utility.exceptions.PlaidUseCaseException;
 import java.io.IOException;
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/api/plaid")
+
 
 public class GrabTransactionController {
     private final GrabTransactionsInputBoundary grabTransactions;
-
-//    @Autowired
 
     public GrabTransactionController(GrabTransactionsInputBoundary grabTransactions) {
         this.grabTransactions = grabTransactions;

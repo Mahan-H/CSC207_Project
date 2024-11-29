@@ -31,17 +31,17 @@
 
         private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
-        private final OkHttpClient client;
-        private final Gson gson;
+        public OkHttpClient client;
+        public Gson gson;
 
         @Value("${plaid.client_id}")
-        private String clientId;
+        public String clientId;
 
         @Value("${plaid.secret}")
-        private String secret;
+        public String secret;
 
         @Value("${plaid.environment}")
-        private String environment;
+        public String environment;
 
         public PlaidDataAccessObject() {
             this.client = new OkHttpClient();
