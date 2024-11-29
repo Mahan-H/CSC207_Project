@@ -2,7 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.idea/easycode.ignore
+../../Downloads/plaid-integration/data/.idea/easycode.ignore
 
 target/
 
@@ -30,3 +30,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+.env
