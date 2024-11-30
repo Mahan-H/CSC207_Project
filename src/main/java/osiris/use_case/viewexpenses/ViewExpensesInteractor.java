@@ -1,12 +1,16 @@
 package osiris.use_case.viewexpenses;
 
-import com.plaid.client.model.Transaction;
 import java.util.List;
 import java.util.Set;
 
+import com.plaid.client.model.Transaction;
+
+/**
+ * The GrabTransaction Interactor.
+ */
 public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
     private final ViewExpensesOutputBoundary presenter;
-    private static final Set<String> ESSENTIAL_CATEGORIES = Set.of("Groceries", "Rent", "Utilities", "Healthcare");
+    private final Set<String> esscategories = Set.of("Groceries", "Rent", "Utilities", "Healthcare");
 
     public ViewExpensesInteractor(ViewExpensesOutputBoundary presenter) {
         this.presenter = presenter;
@@ -15,7 +19,7 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
     @Override
     public void handle(ViewExpensesInputData inputData) {
         // Fetch transactions from Plaid API
-        List<Transaction> transactions = inputData.getTransactionList();
+        final List<Transaction> transactions = inputData.getTransactionList();
 
         // Initialize totals
         double essentialTotal = 0.0;
@@ -23,20 +27,19 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
 
         // Categorize transactions
         for (Transaction transaction : transactions) {
-            List<String> categories = transaction.getCategory();
-            double amount = transaction.getAmount();
+            final List<String> categories = transaction.getCategory();
+            final double amount = transaction.getAmount();
 
             if (categories != null && isEssential(categories)) {
                 essentialTotal += amount;
-            } else {
+            }
+            else {
                 nonEssentialTotal += amount;
             }
         }
 
-        // Create output data
-        ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
-        // Pass data to presenter
-        presenter.PrepareChart(outputData);
+        final ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
+        presenter.prepareChart(outputData);
     }
 
     @Override
@@ -47,11 +50,13 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
 
     private boolean isEssential(List<String> categories) {
         // Check if any category in the list matches the essential category
+        boolean count = false;
         for (String category : categories) {
-            if (ESSENTIAL_CATEGORIES.contains(category)) {
-                return true;
+            if (esscategories.contains(category)) {
+                count = true;
+                break;
             }
         }
-        return false;
+        return count;
     }
 }

@@ -3,7 +3,6 @@ package osiris.interface_adapter.signup;
 import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.verify.VerifyState;
 import osiris.interface_adapter.verify.VerifyViewModel;
-
 import osiris.interface_adapter.welcome.WelcomeViewModel;
 import osiris.use_case.signup.SignupOutputBoundary;
 import osiris.use_case.signup.SignupOutputData;

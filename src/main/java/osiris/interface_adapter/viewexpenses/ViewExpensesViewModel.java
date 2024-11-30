@@ -1,13 +1,14 @@
 package osiris.interface_adapter.viewexpenses;
 
 import osiris.interface_adapter.ViewModel;
-import osiris.interface_adapter.signup.SignupState;
 
+/**
+ * The ViewModel for the ViewExpenses.
+ */
 public class ViewExpensesViewModel extends ViewModel<ViewExpensesViewModel> {
-        public static final String TITLE_LABEL = "Essentials vs Non-Essentials";
-        public static final String Button_LABEL = "Chart";
-        public static final String Back_label = "Back";
-
+    public static final String TITLE_LABEL = "Essentials vs Non-Essentials";
+    public static final String BUTTON_LABEL = "Chart";
+    public static final String BACK_LABEL = "Back";
 
     public ViewExpensesViewModel() {
         super("view expenses");

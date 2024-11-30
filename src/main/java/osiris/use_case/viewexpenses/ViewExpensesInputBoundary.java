@@ -1,6 +1,8 @@
 package osiris.use_case.viewexpenses;
 
-import osiris.use_case.viewexpenses.ViewExpensesInputData;
+/**
+ * The ImputBoundary for the ViewExpenses.
+ */
 
 public interface ViewExpensesInputBoundary {
     /**

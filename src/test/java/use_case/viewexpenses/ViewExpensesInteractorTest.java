@@ -4,7 +4,6 @@ import com.plaid.client.model.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 import osiris.use_case.viewexpenses.ViewExpensesInputData;
 import osiris.use_case.viewexpenses.ViewExpensesInteractor;
 import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
@@ -60,7 +59,7 @@ public class ViewExpensesInteractorTest {
 
         // Capture the output data
         ArgumentCaptor<ViewExpensesOutputData> outputCaptor = ArgumentCaptor.forClass(ViewExpensesOutputData.class);
-        verify(presenter).PrepareChart(outputCaptor.capture());
+        verify(presenter).prepareChart(outputCaptor.capture());
         ViewExpensesOutputData outputData = outputCaptor.getValue();
 
         // Validate the totals

@@ -2,9 +2,13 @@ package osiris.use_case.grabtransactions;
 
 import osiris.entity.User;
 
+/**
+ * The GrabTransactions DataAccessInterface.
+ */
+
 public interface GrabTransactionUserDataAccessInterface {
     /**
-     * get method for username.
+     * Get method for username.
      * @param username the username to look for
      * @return the code
      */

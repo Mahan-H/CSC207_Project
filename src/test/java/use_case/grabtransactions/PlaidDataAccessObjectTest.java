@@ -73,7 +73,8 @@ class PlaidDataAccessObjectTest {
         when(mockCall.execute()).thenReturn(mockResponse);
 
         // Perform the test
-        List<Transaction> transactions = plaidDAO.fetchTransactions("access-sandbox-1dc59c35-32f2-4885-8776-ba9e03196bfd");
+        List<Transaction> transactions = plaidDAO.fetchTransactions(
+                "access-sandbox-1dc59c35-32f2-4885-8776-ba9e03196bfd");
 
         // Assertions
         assertNotNull(transactions);
