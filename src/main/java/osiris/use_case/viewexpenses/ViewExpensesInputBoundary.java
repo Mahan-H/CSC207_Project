@@ -1,20 +1,12 @@
 package osiris.use_case.viewexpenses;
 
-import java.io.IOException;
+import osiris.use_case.viewexpenses.ViewExpensesInputData;
 
 public interface ViewExpensesInputBoundary {
-
     /**
-     * Execute the View Expenses Use Case.
-     * @param viewExpensesInputData the input data for this use case
+     * Processes the input data for viewing expenses.
+     *
+     * @param inputData Input data containing the required information for the use case.
      */
-
-    void execute(ViewExpensesInputData viewExpensesInputData) throws IOException;
-
-    /**
-     * Executes the switch to homepage use case.
-     */
-
-    void switchToHome();
-
+    void handle(ViewExpensesInputData inputData);
 }
