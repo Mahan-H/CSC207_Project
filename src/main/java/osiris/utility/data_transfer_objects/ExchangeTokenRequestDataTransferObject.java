@@ -3,7 +3,7 @@ package osiris.utility.data_transfer_objects;
 /**
  * Data Transfer Object for Exchange Token Requests.
  */
-public class ExchangeTokenRequestDTO {
+public class ExchangeTokenRequestDataTransferObject {
     private String publicToken;
     private String userClientId;
 

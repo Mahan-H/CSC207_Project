@@ -720,7 +720,7 @@
         <module name="OuterTypeFilename"/>
         <module name="TrailingComment"/>
         <module name="UncommentedMain">
-            <property name="excludedClasses" value="\.(Main.*|JavadocPropertiesGenerator)$"/>
+            <property name="excludedClasses" value="\.(PlaidIntegrationApplication.*|JavadocPropertiesGenerator)$"/>
         </module>
         <module name="UpperEll"/>
 

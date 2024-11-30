@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import osiris.use_case.plaid.UserPlaidDataAccessInterface;
 import osiris.utility.exceptions.PlaidException;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PlaidDataAccessObject {
+public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
 
     private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
@@ -136,6 +137,11 @@ public class PlaidDataAccessObject {
     public static class LinkTokenResponse {
         public String link_token;
         public String request_id;
+
+        public LinkTokenResponse(String testLinkToken, String testRequestId) {
+            this.link_token = testLinkToken;
+            this.request_id = testRequestId;
+        }
     }
 
     /**
@@ -145,5 +151,11 @@ public class PlaidDataAccessObject {
         public String access_token;
         public String item_id;
         public String request_id;
+
+        public ExchangeTokenResponse(String testAccessToken, String testItemId, String testRequestId) {
+            this.access_token = testAccessToken;
+            this.item_id = testItemId;
+            this.request_id = testRequestId;
+        }
     }
 }

@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 
 import osiris.data_access.DBUserDataAccessObject;
+import osiris.data_access.PlaidDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
 import osiris.data_access.EmailServiceImpl;
@@ -16,6 +17,7 @@ import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
+import osiris.interface_adapter.plaid.PlaidController;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
@@ -28,6 +30,8 @@ import osiris.interface_adapter.verify.VerifyViewModel;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
+import osiris.use_case.plaid.PlaidInputBoundary;
+import osiris.use_case.plaid.PlaidInteractor;
 import osiris.use_case.verify.VerifyInputBoundary;
 import osiris.use_case.verify.VerifyInteractor;
 import osiris.use_case.verify.VerifyOutputBoundary;
@@ -61,6 +65,7 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
+    private final PlaidDataAccessObject plaidDataAccessObject = new PlaidDataAccessObject();
 
     private final EmailServiceImpl emailService = new EmailServiceImpl();
 
@@ -145,6 +150,16 @@ public class AppBuilder {
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the Plaid Use Case to the application.
+     * @return this builder
+     */
+    public AppBuilder addPlaidUseCase() {
+        final PlaidInputBoundary plaidInteractor = new PlaidInteractor(plaidDataAccessObject, userDataAccessObject, userFactory);
+        final PlaidController plaidController = new PlaidController(plaidInteractor);
         return this;
     }
 
