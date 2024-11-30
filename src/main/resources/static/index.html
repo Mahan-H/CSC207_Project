@@ -1,0 +1,33 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plaid Integration</title>
+  <!-- Include the Plaid Link SDK -->
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+      text-align: center;
+    }
+    #link-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<h1>Connect Your Bank Account</h1>
+<button id="link-button">Connect Bank Account</button>
+<div id="status"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
