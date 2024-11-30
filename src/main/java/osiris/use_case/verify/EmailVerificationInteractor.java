@@ -1,10 +1,8 @@
-package use_case.verify;
+package osiris.use_case.verify;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-
-import interface_adapter.EmailService;
 
 public class EmailVerificationInteractor {
     private final EmailService emailService;

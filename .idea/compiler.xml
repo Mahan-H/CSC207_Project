@@ -7,9 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="plaid-integration" />
-        <module name="homework-5" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="homework-5" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="homework-5" options="-parameters" />
+      <module name="plaid-integration" options="-parameters" />
+    </option>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
