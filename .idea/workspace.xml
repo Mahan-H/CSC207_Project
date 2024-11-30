@@ -5,31 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/PlaidIntegrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/PlaidIntegrationApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/data_access/PlaidDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/PlaidDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/entity/CommonUserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/entity/CommonUserFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/PlaidDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/ExchangePublicTokenInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/ExchangePublicTokenInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/ExchangePublicTokenOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/ExchangePublicTokenOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/PlaidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/data_transfer_objects/ExchangeTokenRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/data_transfer_objects/ExchangeTokenRequestDataTransferObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/data_transfer_objects/LinkTokenRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/data_transfer_objects/LinkTokenRequestDataTransferObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidUseCaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidUseCaseException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,24 +39,30 @@
         <option value="editable-svg" />
         <option value="UML Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-    &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Mahan-H&quot;
-    }
-    }</component>
-  <component name="GithubPullRequestsUISettings">{
-    &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Mahan-H/lab-5.git&quot;,
-    &quot;accountId&quot;: &quot;f299831e-feab-4c4c-af6c-b49f8c84d731&quot;
-    }
-    }</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Mahan-H"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Mahan-H/lab-5.git",
+    "accountId": "f299831e-feab-4c4c-af6c-b49f8c84d731"
+  }
+}]]></component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="PlaidInteractorTest.testExchangePublicTokenSuccess" />
+    </enabled-run-configurations>
+  </component>
   <component name="ProjectColorInfo">{
     &quot;associatedIndex&quot;: 0
     }</component>
@@ -74,6 +81,12 @@
     "Application.Unnamed.executor": "Run",
     "Batch.mvnw.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
+    "JUnit.PlaidControllerTest.executor": "Run",
+    "JUnit.PlaidInteractorTest.executor": "Run",
+    "JUnit.PlaidInteractorTest.testCreateLinkTokenPlaidException.executor": "Debug",
+    "JUnit.PlaidInteractorTest.testExchangePublicTokenIOException.executor": "Debug",
+    "JUnit.PlaidInteractorTest.testExchangePublicTokenSuccess.executor": "Debug",
+    "JUnit.use_case.plaid in plaid-integration.executor": "Run",
     "JavaScript Debug.index.html.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -87,7 +100,7 @@
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "mahan.hooshmandkhayat",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml",
+    "last_opened_file_path": "C:/Users/mahan/IdeaProjects/lab-5/.env",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -121,10 +134,10 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PlaidIntegrationApplication (1)">
+  <component name="RunManager" selected="JUnit.PlaidInteractorTest">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
-      <module name="homework-5" />
+      <module name="plaid-integration" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="true" />
         <option name="IS_SUBST" value="false" />
@@ -158,10 +171,117 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaidIntegrationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="homework-5" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
+    <configuration name="PlaidControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.plaid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.plaid" />
+      <option name="MAIN_CLASS_NAME" value="use_case.plaid.PlaidControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlaidInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.plaid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.plaid.PlaidInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.plaid" />
+      <option name="MAIN_CLASS_NAME" value="use_case.plaid.PlaidInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlaidInteractorTest.testCreateLinkTokenPlaidException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.plaid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.plaid" />
+      <option name="MAIN_CLASS_NAME" value="use_case.plaid.PlaidInteractorTest" />
+      <option name="METHOD_NAME" value="testCreateLinkTokenPlaidException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlaidInteractorTest.testExchangePublicTokenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.plaid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.plaid" />
+      <option name="MAIN_CLASS_NAME" value="use_case.plaid.PlaidInteractorTest" />
+      <option name="METHOD_NAME" value="testExchangePublicTokenSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="use_case.plaid in plaid-integration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.plaid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.plaid" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test/java/use_case/plaid" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,12 +294,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlaidIntegrationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="plaid-integration" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Unnamed (1)" />
-      <item itemvalue="Spring Boot.PlaidIntegrationApplication (1)" />
+      <item itemvalue="JUnit.PlaidInteractorTest.testCreateLinkTokenPlaidException" />
+      <item itemvalue="JUnit.PlaidInteractorTest.testExchangePublicTokenSuccess" />
+      <item itemvalue="JUnit.PlaidInteractorTest" />
+      <item itemvalue="JUnit.PlaidControllerTest" />
+      <item itemvalue="JUnit.use_case.plaid in plaid-integration" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PlaidInteractorTest" />
+        <item itemvalue="JUnit.PlaidInteractorTest.testCreateLinkTokenPlaidException" />
+        <item itemvalue="JUnit.PlaidInteractorTest.testExchangePublicTokenSuccess" />
+        <item itemvalue="JUnit.use_case.plaid in plaid-integration" />
+        <item itemvalue="JUnit.PlaidControllerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -202,10 +354,20 @@
       <workItem from="1732664391116" duration="4703000" />
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
+      <workItem from="1732953378240" duration="20805000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab_5$PlaidInteractorTest.ic" NAME="PlaidInteractorTest Coverage Results" MODIFIED="1732993415219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.plaid.*</FILTER>
+      <FILTER>osiris.use_case.plaid.PlaidInteractor</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/lab_5$PlaidControllerTest.ic" NAME="PlaidControllerTest Coverage Results" MODIFIED="1732966945756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.plaid.*</FILTER>
+    </SUITE>
   </component>
 </project>

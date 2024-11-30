@@ -1,8 +1,8 @@
 package osiris.use_case.plaid;
 
-import osiris.data_access.PlaidDataAccessObject;
-
 import java.io.IOException;
+
+import osiris.data_access.PlaidDataAccessObject;
 
 /**
  * Interface for BankAccount data access operations.
