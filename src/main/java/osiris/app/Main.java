@@ -25,6 +25,8 @@ public class Main {
                 .addVerifyUseCase()
 //                .addChangePasswordUseCase()
 //                .addLogoutUseCase()
+                .addViewExpensesView()
+                .addViewExpensesUseCase()
                 .build();
 
         application.pack();

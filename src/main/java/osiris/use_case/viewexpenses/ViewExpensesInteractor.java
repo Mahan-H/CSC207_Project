@@ -36,7 +36,13 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
         // Create output data
         ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
         // Pass data to presenter
-        presenter.present(outputData);
+        presenter.PrepareChart(outputData);
+    }
+
+    @Override
+    public void switchToHomeView() {
+        presenter.switchToHomeView();
+
     }
 
     private boolean isEssential(List<String> categories) {

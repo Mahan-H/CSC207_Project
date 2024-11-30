@@ -15,4 +15,6 @@ public class ViewExpensesInputData {
     public List<Transaction> getTransactionList() {
         return transactionList;
     }
+
+
 }

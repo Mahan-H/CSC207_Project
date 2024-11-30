@@ -19,6 +19,7 @@ import osiris.interface_adapter.login.LoginViewModel;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
+import osiris.interface_adapter.viewexpenses.*;
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomePresenter;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
@@ -34,9 +35,14 @@ import osiris.use_case.verify.VerifyOutputBoundary;
 import osiris.use_case.signup.SignupInputBoundary;
 import osiris.use_case.signup.SignupInteractor;
 import osiris.use_case.signup.SignupOutputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInteractor;
+import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
+import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
 import osiris.view.*;
 
 
@@ -72,6 +78,10 @@ public class AppBuilder {
     private WelcomeViewModel welcomeViewModel;
     private VerifyViewModel verifyViewModel;
     private VerifyView verifyView;
+    private ViewExpenses viewExpenses;
+    private ViewExpensesViewModel viewExpensesViewModel;
+    private ViewExpensesState viewExpensesState;
+
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -86,6 +96,13 @@ public class AppBuilder {
         signupViewModel = new SignupViewModel();
         signupView = new SignupView(signupViewModel);
         cardPanel.add(signupView, signupView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addViewExpensesView() {
+        viewExpensesViewModel = new ViewExpensesViewModel();
+        viewExpenses = new ViewExpenses(viewExpensesViewModel, viewExpensesState);
+        cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
 
@@ -145,6 +162,18 @@ public class AppBuilder {
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
+        return this;
+    }
+
+    public AppBuilder addViewExpensesUseCase() {
+        final ViewExpensesOutputBoundary viewExpensesOutputBoundary = new ViewExpensesPresenter(viewExpensesViewModel,
+                viewExpensesState,
+                viewManagerModel);
+        final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
+                viewExpensesOutputBoundary);
+
+        final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
+        viewExpenses.setViewExpensesController(controller);
         return this;
     }
 

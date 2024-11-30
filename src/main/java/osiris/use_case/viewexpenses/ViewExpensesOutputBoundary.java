@@ -8,5 +8,11 @@ public interface ViewExpensesOutputBoundary {
      *
      * @param outputData Output data containing the result of the use case.
      */
-    void present(ViewExpensesOutputData outputData);
+
+    void PrepareChart(ViewExpensesOutputData outputData);
+
+    /**
+     * Executes the switch to home view use case.
+     */
+    void switchToHomeView();
 }

@@ -19,4 +19,8 @@ public class ViewExpensesController {
         ViewExpensesInputData inputData = new ViewExpensesInputData(transactionList);
         interactor.handle(inputData);
     }
+
+    public void switchToHomeView() {
+
+    }
 }
