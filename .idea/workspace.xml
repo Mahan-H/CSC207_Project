@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesUserDataAccessInterface.java" afterDir="false" />
-    </list>
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +112,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlaidDataAccessObjectTest">
+  <component name="RunManager" selected="JUnit.ViewExpensesControllerTest.testExecute">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
       <module name="homework-5" />
@@ -177,22 +164,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GrabTransactionsTest.testFetchTransactionsSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="plaid-integration" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="osiris.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
-      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsTest" />
-      <option name="METHOD_NAME" value="testFetchTransactionsSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PlaidDataAccessObjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
@@ -224,17 +195,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaidIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ViewExpensesControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="osiris.*" />
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
-      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.PlaidIntegrationTest" />
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesControllerTest.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
+      <option name="METHOD_NAME" value="testExecute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -268,21 +255,21 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Unnamed (1)" />
+      <item itemvalue="JUnit.ViewExpensesControllerTest" />
+      <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
       <item itemvalue="JUnit.GrabTransactionControllerTest" />
       <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
       <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
-      <item itemvalue="JUnit.GrabTransactionsTest.testFetchTransactionsSuccess" />
-      <item itemvalue="JUnit.PlaidIntegrationTest" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication (1)" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
+        <item itemvalue="JUnit.ViewExpensesControllerTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
         <item itemvalue="JUnit.GrabTransactionControllerTest" />
-        <item itemvalue="JUnit.GrabTransactionsTest.testFetchTransactionsSuccess" />
-        <item itemvalue="JUnit.PlaidIntegrationTest" />
       </list>
     </recent_temporary>
   </component>
@@ -307,7 +294,7 @@
       <workItem from="1732664391116" duration="4703000" />
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
-      <workItem from="1732927140228" duration="4494000" />
+      <workItem from="1732927140228" duration="4822000" />
     </task>
     <servers />
   </component>
