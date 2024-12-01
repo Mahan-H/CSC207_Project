@@ -1,0 +1,14 @@
+package osiris.use_case.dashboard;
+
+/**
+ * Input boundary for the Dashboard Use Case.
+ */
+public interface DashboardInputBoundary {
+
+    /**
+     * Executes the switch to add bank account view use case.
+     */
+    void switchToAddBankAccountView();
+
+
+}

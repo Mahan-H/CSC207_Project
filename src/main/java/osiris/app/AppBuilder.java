@@ -30,6 +30,9 @@ import osiris.interface_adapter.welcome.WelcomeViewModel;
 import osiris.interface_adapter.verify.VerifyController;
 import osiris.interface_adapter.verify.VerifyPresenter;
 import osiris.interface_adapter.verify.VerifyViewModel;
+import osiris.interface_adapter.dashboard.DashboardController;
+import osiris.interface_adapter.dashboard.DashboardPresenter;
+import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
@@ -47,6 +50,9 @@ import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
+import osiris.use_case.dashboard.DashboardInputBoundary;
+import osiris.use_case.dashboard.DashboardInteractor;
+import osiris.use_case.dashboard.DashboardOutputBoundary;
 import osiris.view.*;
 
 
@@ -83,6 +89,8 @@ public class AppBuilder {
     private WelcomeViewModel welcomeViewModel;
     private VerifyViewModel verifyViewModel;
     private VerifyView verifyView;
+    private DashboardView dashboardView;
+    private DashboardViewModel dashboardViewModel;
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
 
@@ -120,6 +128,31 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Login View to the application.
+     * @return this builder
+     */
+    public AppBuilder addDashboardView() {
+        dashboardViewModel = new DashboardViewModel();
+        dashboardView = new DashboardView(dashboardViewModel);
+        cardPanel.add(dashboardView, dashboardView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the welcome Use Case to the application.
+     * @return this builder
+     */
+    public AppBuilder addDashboardUseCase() {
+        final DashboardOutputBoundary dashboardOutputBoundary = new DashboardPresenter(viewManagerModel,
+                dashboardViewModel);
+        final DashboardInputBoundary userDashboardInteractor = new DashboardInteractor(dashboardOutputBoundary,
+                userFactory);
+
+        final DashboardController controller = new DashboardController(userDashboardInteractor);
+        dashboardView.setDashboardController(controller);
+        return this;
+    }
     /**
      * Adds the welcome Use Case to the application.
      * @return this builder
@@ -163,7 +196,7 @@ public class AppBuilder {
      */
     public AppBuilder addSignupUseCase() {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
-                signupViewModel, verifyViewModel, welcomeViewModel);
+                signupViewModel, verifyViewModel, welcomeViewModel, dashboardViewModel);
         final SignupInputBoundary userSignupInteractor = new SignupInteractor(
                 userDataAccessObject, signupOutputBoundary, userFactory, emailService);
 
@@ -204,7 +237,7 @@ public class AppBuilder {
      */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loginViewModel, welcomeViewModel, verifyViewModel);
+                loginViewModel, welcomeViewModel, verifyViewModel, dashboardViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
