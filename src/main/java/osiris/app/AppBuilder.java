@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 
 import osiris.data_access.DBUserDataAccessObject;
+import osiris.data_access.PlaidDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
 import osiris.data_access.EmailServiceImpl;
@@ -31,6 +32,8 @@ import osiris.interface_adapter.verify.VerifyViewModel;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
+import osiris.use_case.plaid.PlaidInputBoundary;
+import osiris.use_case.plaid.PlaidInteractor;
 import osiris.use_case.verify.VerifyInputBoundary;
 import osiris.use_case.verify.VerifyInteractor;
 import osiris.use_case.verify.VerifyOutputBoundary;
@@ -67,6 +70,7 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
+    private final PlaidDataAccessObject plaidDataAccessObject = new PlaidDataAccessObject();
 
     private final EmailServiceImpl emailService = new EmailServiceImpl();
 

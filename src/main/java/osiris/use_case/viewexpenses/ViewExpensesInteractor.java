@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.plaid.client.model.Transaction;
-import osiris.utility.jfreechart.PieChartUtility;
+// import osiris.utility.jfreechart.PieChartUtility;
 
 /**
  * The GrabTransaction Interactor.

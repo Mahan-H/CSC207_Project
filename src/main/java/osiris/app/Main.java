@@ -23,8 +23,8 @@ public class Main {
                 .addWelcomeUseCase()
                 .addLoginUseCase()
                 .addVerifyUseCase()
-//                .addChangePasswordUseCase()
-//                .addLogoutUseCase()
+                // .addChangePasswordUseCase()
+                // .addLogoutUseCase()
                 .addViewExpensesView()
                 .addViewExpensesUseCase()
                 .build();
