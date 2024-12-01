@@ -19,7 +19,9 @@ import osiris.interface_adapter.login.LoginViewModel;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
-import osiris.interface_adapter.viewexpenses.*;
+import osiris.interface_adapter.viewexpenses.ViewExpensesController;
+import osiris.interface_adapter.viewexpenses.ViewExpensesPresenter;
+import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomePresenter;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
@@ -41,8 +43,6 @@ import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
-import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
-import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
 import osiris.view.*;
 
 
