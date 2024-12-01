@@ -24,4 +24,8 @@ public interface PlaidInputBoundary {
      * @throws PlaidUseCaseException If an error occurs during the use case execution.
      */
     ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData) throws PlaidUseCaseException;
+
+    String createAssetReport(String accessToken, int daysRequested) throws PlaidUseCaseException;
+
+    String retrieveAssetReport(String assetReportToken) throws PlaidUseCaseException;
 }

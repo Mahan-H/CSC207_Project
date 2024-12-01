@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 /**
  * REST Controller for Plaid-related operations.
@@ -62,6 +64,35 @@ public class PlaidController {
 
         ExchangePublicTokenOutputData outputData = plaidInteractor.exchangePublicToken(inputData);
         return ResponseEntity.ok(outputData);
+    }
+
+    /**
+     * Endpoint to create an Asset Report.
+     *
+     * @param requestBody The request body containing access token and days requested.
+     * @return The asset report token.
+     */
+    @PostMapping("/asset-report/create")
+    public ResponseEntity<String> createAssetReport(@RequestBody Map<String, Object> requestBody) throws PlaidUseCaseException {
+        String accessToken = (String) requestBody.get("access_token");
+        int daysRequested = (int) requestBody.get("days_requested");
+
+        String assetReportToken = plaidInteractor.createAssetReport(accessToken, daysRequested);
+        return ResponseEntity.ok(assetReportToken);
+    }
+
+    /**
+     * Endpoint to retrieve an Asset Report.
+     *
+     * @param requestBody The request body containing the asset report token.
+     * @return The asset report JSON.
+     */
+    @PostMapping("/asset-report/retrieve")
+    public ResponseEntity<String> retrieveAssetReport(@RequestBody Map<String, String> requestBody) throws PlaidUseCaseException {
+        String assetReportToken = requestBody.get("asset_report_token");
+
+        String assetReport = plaidInteractor.retrieveAssetReport(assetReportToken);
+        return ResponseEntity.ok(assetReport);
     }
 
 }

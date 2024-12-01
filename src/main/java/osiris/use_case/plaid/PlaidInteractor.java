@@ -55,6 +55,28 @@ public class PlaidInteractor implements PlaidInputBoundary {
             throw new PlaidUseCaseException("IO Error while exchanging Public Token", e);
         }
     }
+
+    @Override
+    public String createAssetReport(String accessToken, int daysRequested) throws PlaidUseCaseException {
+        try {
+            return plaidDao.createAssetReport(accessToken, daysRequested);
+        } catch (PlaidException e) {
+            throw new PlaidUseCaseException("Failed to create Asset Report: " + e.getMessage(), e);
+        } catch (IOException e) {
+            throw new PlaidUseCaseException("IO Error while creating Asset Report", e);
+        }
+    }
+
+    @Override
+    public String retrieveAssetReport(String assetReportToken) throws PlaidUseCaseException {
+        try {
+            return plaidDao.retrieveAssetReport(assetReportToken);
+        } catch (PlaidException e) {
+            throw new PlaidUseCaseException("Failed to retrieve Asset Report: " + e.getMessage(), e);
+        } catch (IOException e) {
+            throw new PlaidUseCaseException("IO Error while retrieving Asset Report", e);
+        }
+    }
 }
 
 
