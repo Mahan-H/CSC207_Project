@@ -81,7 +81,6 @@ public class AppBuilder {
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
 
-
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
         cardPanel.setPreferredSize(new Dimension(850, 550));
@@ -104,7 +103,7 @@ public class AppBuilder {
      */
     public AppBuilder addViewExpensesView() {
         viewExpensesViewModel = new ViewExpensesViewModel();
-        viewExpenses = new ViewExpenses(viewExpensesViewModel);
+        viewExpenses = new ViewExpenses(viewExpensesViewModel, userDataAccessObject.getCurrentEmail());
         cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }

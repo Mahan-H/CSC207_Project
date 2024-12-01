@@ -26,6 +26,8 @@ public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
         viewExpensesViewModel.setState(viewExpensesState);
         viewManagerModel.setState(viewExpensesViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+        // System.out.println("Essential Amount: " + outputData.getEssentialTotal());
+        // System.out.println("Non-Essential Amount: " + outputData.getNonEssentialTotal());
     }
 
     @Override

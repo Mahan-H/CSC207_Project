@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.plaid.client.model.Transaction;
+import osiris.utility.jfreechart.PieChartUtility;
 
 /**
  * The GrabTransaction Interactor.
@@ -37,6 +38,7 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
                 nonEssentialTotal += amount;
             }
         }
+        // PieChartUtility.displayPieChart(essentialTotal, nonEssentialTotal);
 
         final ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
         presenter.prepareChart(outputData);

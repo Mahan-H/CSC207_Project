@@ -5,17 +5,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.plaid.client.model.Transaction;
 import lombok.Getter;
+import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesState;
 import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
+import osiris.use_case.grabtransactions.GrabTransactionOutputData;
+import osiris.utility.exceptions.PlaidUseCaseException;
 import osiris.utility.jfreechart.PieChartUtility;
+// import osiris.use_case.viewexpenses.ViewExpensesInteractor;
 
 /**
  * The View for when the user is logged into the program.
@@ -29,9 +36,10 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
     private ViewExpensesController controller;
     private final JButton goBack;
     private final JButton expensesButton;
+    private final JButton transactionsButton;
+    private GrabTransactionController grabTransactionController;
 
-    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel) {
-
+    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel, String name) {
         this.viewExpensesViewModel = viewExpensesViewModel;
 
         final JLabel title = new JLabel(ViewExpensesViewModel.TITLE_LABEL);
@@ -40,11 +48,31 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
         final JPanel buttons = new JPanel();
         expensesButton = new JButton(ViewExpensesViewModel.BUTTON_LABEL);
         goBack = new JButton(ViewExpensesViewModel.BACK_LABEL);
+        transactionsButton = new JButton(ViewExpensesViewModel.TRANSACTION_BUTTON);
 
         buttons.add(expensesButton);
         buttons.add(goBack);
+        buttons.add(transactionsButton);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        transactionsButton.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        try {
+                            final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
+                                    name);
+                            controller.execute((List<Transaction>) transactions);
+                        }
+                        catch (PlaidUseCaseException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
 
         expensesButton.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -52,7 +80,6 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         final ViewExpensesState currentState = viewExpensesViewModel.getState();
                         PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential());
-
                     }
                 });
 

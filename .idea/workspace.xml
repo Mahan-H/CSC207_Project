@@ -8,9 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/jfreechart/PieChartUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/jfreechart/PieChartUtility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,7 +371,7 @@
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="7775000" />
       <workItem from="1732979105447" duration="29151000" />
-      <workItem from="1733022890203" duration="6128000" />
+      <workItem from="1733022890203" duration="8803000" />
     </task>
     <servers />
   </component>
