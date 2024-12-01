@@ -1,6 +1,9 @@
 package osiris.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,10 +15,12 @@ import javax.swing.JPanel;
 
 import osiris.interface_adapter.dashboard.DashboardController;
 import osiris.interface_adapter.dashboard.DashboardViewModel;
-import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
 
-public class DashboardView extends JPanel implements ActionListener{
+/**
+ * The View for the Dashboard Use Case.
+ */
+public class DashboardView extends JPanel implements ActionListener {
 
     public static final String TIMES_NEW_ROMAN = "Times New Roman";
     public static final int TITTLE_SIZE = 60;
@@ -32,7 +37,6 @@ public class DashboardView extends JPanel implements ActionListener{
     private final JButton viewTransactionHistory;
     private final JButton viewShahCase;
     private final JButton viewBudget;
-    private final JButton emptyButton;
 
     public DashboardView(DashboardViewModel dashboardViewModel) {
         this.dashboardViewModel = dashboardViewModel;
@@ -79,25 +83,10 @@ public class DashboardView extends JPanel implements ActionListener{
         viewShahCase.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewShahCase.setPreferredSize(PREFERRED_SIZE_BUTTON);
 
-        emptyButton = new JButton(" ");
-        emptyButton.setOpaque(false);
-        emptyButton.setContentAreaFilled(false);
-        emptyButton.setBorderPainted(false);
-        emptyButton.setFocusPainted(false);
-
         buttons.add(addBankAccount);
-        //buttons.add(emptyButton);
         buttons.add(viewShahCase);
         buttons.add(viewTransactionHistory);
         buttons.add(viewBudget);
-
-        addBankAccount.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        dashboardController.switchToLoginView();
-                    }
-                }
-        );
 
         viewBudget.addActionListener(
                 new ActionListener() {
