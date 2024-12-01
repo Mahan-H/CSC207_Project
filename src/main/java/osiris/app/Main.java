@@ -16,13 +16,15 @@ public class Main {
         final JFrame application = appBuilder
                 .addLoginView()
                 .addSignupView()
-                .addVerifyView()
-                .addVerifyUseCase()
+//                .addVerifyView()
+//                .addVerifyUseCase()
                 .addWelcomeView()
+                .addDashboardView()
                 .addSignupUseCase()
                 .addWelcomeUseCase()
                 .addLoginUseCase()
-                .addVerifyUseCase()
+                .addDashboardUseCase()
+//                .addVerifyUseCase()
 //                .addChangePasswordUseCase()
 //                .addLogoutUseCase()
                 .build();

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="" />
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,20 +29,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-    &quot;lastFilter&quot;: {
+  &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;Mahan-H&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="GithubPullRequestsUISettings">{
-    &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Mahan-H/lab-5.git&quot;,
-    &quot;accountId&quot;: &quot;f299831e-feab-4c4c-af6c-b49f8c84d731&quot;
-    }
-    }</component>
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Mahan-H/CSC207_Project.git&quot;,
+    &quot;accountId&quot;: &quot;bf90b3b3-d855-430d-938e-fd58aa070cfe&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -76,7 +89,7 @@
     &quot;Spring Boot.PlaidIntegrationApplication.executor&quot;: &quot;Run&quot;,
     &quot;app.teamhub.selectedTeam&quot;: &quot;github.com/Mahan-H/lab-5&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;divnoor.chatha&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;christopher.roy&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -109,11 +122,13 @@
       <recent name="osiris.use_case.plaid" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="osiris.interface_adapter.dashboard" />
+      <recent name="osiris.use_case.dashboard" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ViewExpensesControllerTest.testExecute">
-    <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
       <module name="homework-5" />
       <extension name="net.ashald.envfile">
@@ -228,7 +243,7 @@
     </configuration>
     <configuration name="PlaidIntegrationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="plaid-integration" />
+      <module name="homework-5" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="false" />
@@ -254,7 +269,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Application.Unnamed (1)" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.ViewExpensesControllerTest" />
       <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
       <item itemvalue="JUnit.GrabTransactionControllerTest" />
@@ -295,10 +310,33 @@
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="4822000" />
+      <workItem from="1732991885900" duration="19601000" />
+      <workItem from="1733046801612" duration="10343000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
