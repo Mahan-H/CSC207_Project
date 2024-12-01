@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plaid-integration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plaid-integration.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/LocalDateAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/LocalDateAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/OffsetDateTimeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/OffsetDateTimeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/grabtransaction/GrabTransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/grabtransaction/GrabTransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/change_password/ChangePasswordInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/change_password/ChangePasswordInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionUserDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/grabtransactions/GrabTransactionsOutputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/viewexpenses/ViewExpensesOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/SignupView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/viewexpenses/ViewExpensesInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/viewexpenses/ViewExpensesInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +18,8 @@
         <option value="UML Use Case" />
         <option value="editable-svg" />
         <option value="UML Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -90,6 +64,8 @@
     "Batch.mvnw.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
     "JUnit.GrabTransactionControllerTest.executor": "Run",
+    "JUnit.GrabTransactionsInteractorTest.executor": "Coverage",
+    "JUnit.GrabTransactionsTest.executor": "Coverage",
     "JUnit.GrabTransactionsTest.testFetchTransactionsSuccess.executor": "Run",
     "JUnit.PlaidDataAccessObjectTest.executor": "Run",
     "JUnit.PlaidDataAccessObjectTest.testFetchTransactions.executor": "Run",
@@ -145,7 +121,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlaidDataAccessObjectTest.testFetchTransactions">
+  <component name="RunManager" selected="JUnit.GrabTransactionsTest">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
       <module name="homework-5" />
@@ -182,16 +158,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaidDataAccessObjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GrabTransactionsInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="use_case.grabtransactions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
       </extension>
       <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
-      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.PlaidDataAccessObjectTest" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrabTransactionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -224,22 +245,6 @@
       <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
       <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ViewExpensesControllerTest.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="plaid-integration" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_case.viewexpenses.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
-      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
-      <option name="METHOD_NAME" value="testExecute" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -320,21 +325,21 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Unnamed (1)" />
       <item itemvalue="JUnit.ViewExpensesControllerTest" />
+      <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
+      <item itemvalue="JUnit.GrabTransactionsTest" />
       <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
-      <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
       <item itemvalue="JUnit.ViewExpensesInteractorTest" />
       <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
-      <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication (1)" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GrabTransactionsTest" />
+        <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
         <item itemvalue="JUnit.ViewExpensesInteractorTest" />
         <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
-        <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
-        <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
       </list>
     </recent_temporary>
   </component>
@@ -360,7 +365,7 @@
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="7775000" />
-      <workItem from="1732979105447" duration="26808000" />
+      <workItem from="1732979105447" duration="29151000" />
     </task>
     <servers />
   </component>
@@ -368,6 +373,13 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CSC207_Project$GrabTransactionsTest.ic" NAME="GrabTransactionsTest Coverage Results" MODIFIED="1733013088854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.grabtransactions.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207_Project$GrabTransactionsInteractorTest.ic" NAME="GrabTransactionsInteractorTest Coverage Results" MODIFIED="1733012752454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.grabtransactions.*</FILTER>
+      <FILTER>osiris.use_case.grabtransactions.GrabTransactionsInteractor</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/CSC207_Project$ViewExpensesControllerTest.ic" NAME="ViewExpensesControllerTest Coverage Results" MODIFIED="1732987121789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>use_case.viewexpenses.*</FILTER>
     </SUITE>
