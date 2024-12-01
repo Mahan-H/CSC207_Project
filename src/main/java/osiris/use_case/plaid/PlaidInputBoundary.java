@@ -12,10 +12,9 @@ public interface PlaidInputBoundary {
      *
      * @param inputData The input data required to create a link token.
      * @return The output data containing the link token.
-     * @throws PlaidUseCaseException If an error occurs during the use case execution.
+     * @throws Exception If an error occurs during the use case execution
      */
-    CreateLinkTokenOutputData createLinkToken(CreateLinkTokenInputData inputData)
-            throws PlaidUseCaseException;
+    CreateLinkTokenOutputData createLinkToken(CreateLinkTokenInputData inputData) throws Exception;
 
     /**
      * Exchanges a Public Token for an Access Token.

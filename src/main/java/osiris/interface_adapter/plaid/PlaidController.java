@@ -35,12 +35,12 @@ public class PlaidController {
      *
      * @param linkTokenRequest The request body containing necessary parameters.
      * @return CreateLinkTokenOutputData containing the link token.
-     * @throws PlaidUseCaseException If an error occurs while creating the link token.
+     * @throws Exception If an error occurs while creating the link token.
      */
     @PostMapping("/create-link-token")
     public ResponseEntity<CreateLinkTokenOutputData> createLinkToken(
             @RequestBody LinkTokenRequestDataTransferObject linkTokenRequest)
-            throws PlaidUseCaseException {
+            throws Exception {
 
         final CreateLinkTokenInputData inputData = new CreateLinkTokenInputData(
                 linkTokenRequest.getClientName(),
@@ -58,6 +58,8 @@ public class PlaidController {
      * Endpoint to exchange a Public Token for an Access Token.
      *
      * @param exchangeTokenRequest The request body containing the public token.
+     * @param username The username of the user.
+     * @param password The password of the user.
      * @return ExchangePublicTokenOutputData containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
      */
