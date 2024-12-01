@@ -1,8 +1,8 @@
 package osiris.use_case.signup;
 
+import osiris.data_access.EmailServiceImpl;
 import osiris.entity.User;
 import osiris.entity.UserFactory;
-import osiris.data_access.EmailServiceImpl;
 
 import java.security.SecureRandom;
 

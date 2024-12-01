@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="" />
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,10 +68,16 @@
     &quot;Batch.mvnw.executor&quot;: &quot;Run&quot;,
     &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
     &quot;JUnit.GrabTransactionControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GrabTransactionsInteractorTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GrabTransactionsTest.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.GrabTransactionsTest.testFetchTransactionsSuccess.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.PlaidDataAccessObjectTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.PlaidDataAccessObjectTest.testFetchTransactions.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.PlaidIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesControllerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ViewExpensesControllerTest.testExecute.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesInteractorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesInteractorTest.testHandle.executor&quot;: &quot;Debug&quot;,
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -82,13 +91,13 @@
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;git-widget-placeholder&quot;: &quot;divnoor.chatha&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/garry/Documents/Uoft/CSC207/CSC207_Project/mystyle.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -116,7 +125,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ViewExpensesControllerTest.testExecute">
+  <component name="RunManager" selected="JUnit.GrabTransactionsTest">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
       <module name="plaid-integration" />
@@ -168,6 +177,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GrabTransactionsInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrabTransactionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlaidDataAccessObjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
@@ -199,7 +268,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlaidDataAccessObjectTest.testFetchTransactions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.PlaidDataAccessObjectTest" />
+      <option name="METHOD_NAME" value="testFetchTransactions" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ViewExpensesControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesControllerTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
         <pattern>
@@ -225,6 +325,52 @@
       <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
       <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
       <option name="METHOD_NAME" value="testExecute" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.viewexpenses.ViewExpensesInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesInteractorTest.testHandle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesInteractorTest" />
+      <option name="METHOD_NAME" value="testHandle" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -278,6 +424,10 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.Unnamed (1)" />
+      <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
+      <item itemvalue="JUnit.GrabTransactionsTest" />
+      <item itemvalue="JUnit.ViewExpensesInteractorTest" />
+      <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
       <item itemvalue="JUnit.ViewExpensesControllerTest" />
       <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
       <item itemvalue="JUnit.GrabTransactionControllerTest" />
@@ -288,11 +438,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
-        <item itemvalue="JUnit.ViewExpensesControllerTest" />
-        <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
+        <item itemvalue="JUnit.GrabTransactionsTest" />
+        <item itemvalue="JUnit.ViewExpensesInteractorTest" />
+        <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
-        <item itemvalue="JUnit.GrabTransactionControllerTest" />
+        <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
       </list>
     </recent_temporary>
   </component>
@@ -318,6 +468,9 @@
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="4822000" />
+      <workItem from="1732927140228" duration="7775000" />
+      <workItem from="1732979105447" duration="29151000" />
+      <workItem from="1733022890203" duration="10377000" />
     </task>
     <servers />
   </component>

@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EmailVerificationInteractor {
-    private final EmailService emailService;
+    private final interface_adapter.EmailService emailService;
     private final Map<String, String> verificationCodes = new HashMap<>();
     private final SecureRandom random = new SecureRandom();
 
-    public EmailVerificationInteractor(EmailService emailService) {
+    public EmailVerificationInteractor(interface_adapter.EmailService emailService) {
         this.emailService = emailService;
     }
 

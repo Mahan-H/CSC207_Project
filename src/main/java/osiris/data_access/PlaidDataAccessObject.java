@@ -2,18 +2,24 @@ package osiris.data_access;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.plaid.client.model.Transaction;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import osiris.use_case.plaid.UserPlaidDataAccessInterface;
+import osiris.use_case.plaid.UserPlaidDataAccessInterface;
 import osiris.utility.exceptions.PlaidException;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
@@ -131,6 +137,7 @@ public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
         return gson.fromJson(responseBody, ExchangeTokenResponse.class);
     }
 
+
     /**
      * Represents the response from Plaid when creating a Link Token.
      */
@@ -156,6 +163,44 @@ public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
             this.access_token = testAccessToken;
             this.item_id = testItemId;
             this.request_id = testRequestId;
+        }
+    }
+
+    /**
+     * Represents the response from Plaid when exchanging a access Token for transactions.
+     * @param accessToken   Name of your token.
+     * @return fetchTransactions containing the transactions.
+     * @throws IOException If an I/O error occurs during the API call.
+     * @throws PlaidException If an error occurs during the unsuccessful response.
+     */
+
+    public List<Transaction> fetchTransactions(String accessToken) throws IOException, PlaidException {
+        final LocalDate startDate = LocalDate.now().minusDays(30);
+        final LocalDate endDate = LocalDate.now();
+
+        final JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("client_id", clientId);
+        requestBody.addProperty("secret", secret);
+        requestBody.addProperty("access_token", accessToken);
+        requestBody.addProperty("start_date", startDate.toString());
+        requestBody.addProperty("end_date", endDate.toString());
+
+        final String url = getPlaidUrl("transactions/get");
+        final RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
+        final Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+            }
+            final JsonObject responseJson = gson.fromJson(response.body().string(), JsonObject.class);
+            // Parse the transactions from the response JSON
+            final Transaction[] transactions = gson.fromJson(responseJson.getAsJsonArray("transactions"), Transaction[].class);
+            return new ArrayList<>(List.of(transactions));
         }
     }
 }

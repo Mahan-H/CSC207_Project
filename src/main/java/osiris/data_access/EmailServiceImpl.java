@@ -1,4 +1,4 @@
-package interface_adapter;
+package osiris.data_access;
 
 import java.util.Properties;
 
@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailServiceImpl implements EmailService {
+public class EmailServiceImpl implements interface_adapter.EmailService {
 
     private final String username;
     private final String password;

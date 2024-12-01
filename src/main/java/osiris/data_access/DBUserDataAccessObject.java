@@ -13,6 +13,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import osiris.use_case.change_password.ChangePasswordUserDataAccessInterface;
+import osiris.use_case.grabtransactions.GrabTransactionUserDataAccessInterface;
 import osiris.use_case.login.LoginUserDataAccessInterface;
 import osiris.use_case.logout.LogoutUserDataAccessInterface;
 import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
@@ -26,7 +27,8 @@ import org.springframework.stereotype.Component;
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
-        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface {
+        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface,
+        GrabTransactionUserDataAccessInterface {
     private static final int SUCCESS_CODE = 200;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
@@ -37,6 +39,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String ACCESS_CODE = "access_code";
     public static final String ITEM_ID = "item_id";
     private final UserFactory userFactory;
+    private String name;
 
     public DBUserDataAccessObject(UserFactory userFactory) {
         this.userFactory = userFactory;
@@ -75,7 +78,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public void setCurrentEmail(String name) {
-        // this isn't implemented for the lab
+        this.name = name;
     }
 
     @Override
@@ -188,7 +191,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public String getCurrentEmail() {
-        return null;
+        return name;
     }
 
     public void saveVerificationCode(String email, String verificationCode) {

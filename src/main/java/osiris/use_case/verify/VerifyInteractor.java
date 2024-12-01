@@ -10,10 +10,10 @@ import osiris.data_access.DBUserDataAccessObject;
 
 public class VerifyInteractor implements VerifyInputBoundary {
     private final VerifyOutputBoundary userPresenter;
-    private final EmailService emailService;
+    private final interface_adapter.EmailService emailService;
     private final DBUserDataAccessObject dataAccessObject;
 
-    public VerifyInteractor(VerifyOutputBoundary verifyOutputBoundary, EmailService emailService, DBUserDataAccessObject dataAccessObject) {
+    public VerifyInteractor(VerifyOutputBoundary verifyOutputBoundary, interface_adapter.EmailService emailService, DBUserDataAccessObject dataAccessObject) {
         this.userPresenter = verifyOutputBoundary;
         this.emailService = emailService;
         this.dataAccessObject = dataAccessObject;
