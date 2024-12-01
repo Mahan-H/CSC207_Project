@@ -110,6 +110,7 @@ public class PlaidDataAccessObject {
         requestBody.add("products", gson.toJsonTree(products));
 
         String responseBody = postToPlaid("link/token/create", requestBody);
+        System.out.println(gson.fromJson(responseBody, LinkTokenResponse.class));
         return gson.fromJson(responseBody, LinkTokenResponse.class);
     }
 
@@ -145,43 +146,5 @@ public class PlaidDataAccessObject {
         public String access_token;
         public String item_id;
         public String request_id;
-    }
-
-    /**
-     * Creates an Asset Report.
-     *
-     * @param accessToken The access token for the user's account.
-     * @param daysRequested Number of days of data to include in the report.
-     * @return The asset report token.
-     * @throws IOException If an I/O error occurs during the API call.
-     * @throws PlaidException If the Plaid API returns an unsuccessful response.
-     */
-    public String createAssetReport(String accessToken, int daysRequested) throws IOException {
-        JsonObject requestBody = new JsonObject();
-        requestBody.addProperty("client_id", clientId);
-        requestBody.addProperty("secret", secret);
-        requestBody.add("access_tokens", gson.toJsonTree(new String[]{accessToken}));
-        requestBody.addProperty("days_requested", daysRequested);
-
-        String responseBody = postToPlaid("asset_report/create", requestBody);
-        JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
-        return jsonResponse.get("asset_report_token").getAsString();
-    }
-
-    /**
-     * Retrieves the Asset Report.
-     *
-     * @param assetReportToken The token for the generated asset report.
-     * @return The asset report JSON.
-     * @throws IOException If an I/O error occurs during the API call.
-     * @throws PlaidException If the Plaid API returns an unsuccessful response.
-     */
-    public String retrieveAssetReport(String assetReportToken) throws IOException {
-        JsonObject requestBody = new JsonObject();
-        requestBody.addProperty("client_id", clientId);
-        requestBody.addProperty("secret", secret);
-        requestBody.addProperty("asset_report_token", assetReportToken);
-
-        return postToPlaid("asset_report/get", requestBody);
     }
 }
