@@ -48,7 +48,7 @@ class PlaidInteractorTest {
 
 
     @Test
-    void testCreateLinkTokenSuccess() throws IOException, PlaidException, PlaidUseCaseException {
+    void testCreateLinkTokenSuccess() throws Exception {
         CreateLinkTokenInputData inputData = new CreateLinkTokenInputData(
                 "TestApp",
                 new String[]{"US"},
