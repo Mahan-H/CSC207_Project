@@ -9,19 +9,21 @@ import osiris.use_case.viewexpenses.ViewExpensesOutputData;
  */
 public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
     private final ViewExpensesViewModel viewExpensesViewModel;
-    private final ViewExpensesState viewExpensesState;
     private final ViewManagerModel viewManagerModel;
     //    HomeViewModel homeViewModel;
 
-    public ViewExpensesPresenter(ViewExpensesViewModel viewExpensesViewModel, ViewExpensesState viewExpensesState,
+    public ViewExpensesPresenter(ViewExpensesViewModel viewExpensesViewModel,
                                  ViewManagerModel viewManagerModel) {
         this.viewExpensesViewModel = viewExpensesViewModel;
-        this.viewExpensesState = viewExpensesState;
         this.viewManagerModel = viewManagerModel;
     }
 
     @Override
     public void prepareChart(ViewExpensesOutputData outputData) {
+        final ViewExpensesState viewExpensesState = viewExpensesViewModel.getState();
+        viewExpensesState.setEssential(outputData.getEssentialTotal());
+        viewExpensesState.setNonEssential(outputData.getNonEssentialTotal());
+        viewExpensesViewModel.setState(viewExpensesState);
         viewManagerModel.setState(viewExpensesViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

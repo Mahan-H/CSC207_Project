@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import lombok.Getter;
-import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesState;
 import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
@@ -30,9 +29,8 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
     private ViewExpensesController controller;
     private final JButton goBack;
     private final JButton expensesButton;
-    private GrabTransactionController gcontroller;
 
-    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel, ViewExpensesState viewExpensesState) {
+    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel) {
 
         this.viewExpensesViewModel = viewExpensesViewModel;
 
@@ -52,7 +50,7 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        final ViewExpensesState currentState = viewExpensesState;
+                        final ViewExpensesState currentState = viewExpensesViewModel.getState();
                         PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential());
 
                     }

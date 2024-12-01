@@ -1,17 +1,26 @@
 package osiris.interface_adapter.viewexpenses;
 
-import lombok.Getter;
-
 /**
  * The state for the ViewExpenses Model.
  */
-@Getter
-public class ViewExpensesState {
-    private final double essential;
-    private final double nonEssential;
 
-    public ViewExpensesState(double essential, double nonEssential) {
+public class ViewExpensesState {
+    private double essential;
+    private double nonEssential;
+
+    public double getEssential() {
+        return essential;
+    }
+
+    public double getNonEssential() {
+        return nonEssential;
+    }
+
+    public void setEssential(double essential) {
         this.essential = essential;
+    }
+
+    public void setNonEssential(double nonEssential) {
         this.nonEssential = nonEssential;
     }
 }

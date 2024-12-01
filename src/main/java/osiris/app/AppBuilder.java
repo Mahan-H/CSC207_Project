@@ -80,7 +80,6 @@ public class AppBuilder {
     private VerifyView verifyView;
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
-    private ViewExpensesState viewExpensesState;
 
 
     public AppBuilder() {
@@ -99,9 +98,13 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
     public AppBuilder addViewExpensesView() {
         viewExpensesViewModel = new ViewExpensesViewModel();
-        viewExpenses = new ViewExpenses(viewExpensesViewModel, viewExpensesState);
+        viewExpenses = new ViewExpenses(viewExpensesViewModel);
         cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
@@ -165,10 +168,14 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
     public AppBuilder addViewExpensesUseCase() {
         final ViewExpensesOutputBoundary viewExpensesOutputBoundary = new ViewExpensesPresenter(viewExpensesViewModel,
-                viewExpensesState,
                 viewManagerModel);
+
         final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
                 viewExpensesOutputBoundary);
 

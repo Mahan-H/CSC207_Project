@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/viewexpenses/ViewExpensesViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/utility/jfreechart/PieChartUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/jfreechart/PieChartUtility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,47 +62,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Unnamed (1).executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Batch.mvnw.executor": "Run",
-    "DefaultPlantUmlFileTemplate": "UML Class",
-    "JUnit.GrabTransactionControllerTest.executor": "Run",
-    "JUnit.GrabTransactionsInteractorTest.executor": "Coverage",
-    "JUnit.GrabTransactionsTest.executor": "Coverage",
-    "JUnit.GrabTransactionsTest.testFetchTransactionsSuccess.executor": "Run",
-    "JUnit.PlaidDataAccessObjectTest.executor": "Run",
-    "JUnit.PlaidDataAccessObjectTest.testFetchTransactions.executor": "Run",
-    "JUnit.PlaidIntegrationTest.executor": "Run",
-    "JUnit.ViewExpensesControllerTest.executor": "Coverage",
-    "JUnit.ViewExpensesControllerTest.testExecute.executor": "Run",
-    "JUnit.ViewExpensesInteractorTest.executor": "Run",
-    "JUnit.ViewExpensesInteractorTest.testHandle.executor": "Debug",
-    "JavaScript Debug.index.html.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.PlaidIntegrationApplication (1).executor": "Run",
-    "Spring Boot.PlaidIntegrationApplication.executor": "Run",
-    "app.teamhub.selectedTeam": "github.com/Mahan-H/lab-5",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "divnoor.chatha",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/garry/Documents/Uoft/CSC207/CSC207_Project/mystyle.xml",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Batch.mvnw.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
+    &quot;JUnit.GrabTransactionControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GrabTransactionsInteractorTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GrabTransactionsTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GrabTransactionsTest.testFetchTransactionsSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaidDataAccessObjectTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaidDataAccessObjectTest.testFetchTransactions.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaidIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesControllerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ViewExpensesControllerTest.testExecute.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesInteractorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewExpensesInteractorTest.testHandle.executor&quot;: &quot;Debug&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PlaidIntegrationApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PlaidIntegrationApplication.executor&quot;: &quot;Run&quot;,
+    &quot;app.teamhub.selectedTeam&quot;: &quot;github.com/Mahan-H/lab-5&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;divnoor.chatha&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/garry/Documents/Uoft/CSC207/CSC207_Project/mystyle.xml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mahan\IdeaProjects\lab-5" />
@@ -121,7 +127,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GrabTransactionsTest">
+  <component name="RunManager" selected="JUnit.ViewExpensesInteractorTest">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
       <module name="homework-5" />
@@ -335,10 +341,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ViewExpensesInteractorTest" />
         <item itemvalue="JUnit.GrabTransactionsTest" />
         <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
-        <item itemvalue="JUnit.ViewExpensesInteractorTest" />
         <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
       </list>
     </recent_temporary>
@@ -366,6 +372,7 @@
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="7775000" />
       <workItem from="1732979105447" duration="29151000" />
+      <workItem from="1733022890203" duration="6128000" />
     </task>
     <servers />
   </component>
