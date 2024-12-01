@@ -37,6 +37,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String ACCESS_CODE = "access_code";
     public static final String ITEM_ID = "item_id";
     private final UserFactory userFactory;
+    private String name;
 
     public DBUserDataAccessObject(UserFactory userFactory) {
         this.userFactory = userFactory;
@@ -75,7 +76,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public void setCurrentEmail(String name) {
-        // this isn't implemented for the lab
+        this.name = name;
     }
 
     @Override
@@ -188,7 +189,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public String getCurrentEmail() {
-        return null;
+        return name;
     }
 
     public void saveVerificationCode(String email, String verificationCode) {
