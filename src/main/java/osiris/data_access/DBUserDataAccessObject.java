@@ -13,6 +13,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import osiris.use_case.change_password.ChangePasswordUserDataAccessInterface;
+import osiris.use_case.grabtransactions.GrabTransactionUserDataAccessInterface;
 import osiris.use_case.login.LoginUserDataAccessInterface;
 import osiris.use_case.logout.LogoutUserDataAccessInterface;
 import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
@@ -26,7 +27,8 @@ import org.springframework.stereotype.Component;
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
-        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface {
+        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface,
+        GrabTransactionUserDataAccessInterface {
     private static final int SUCCESS_CODE = 200;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
