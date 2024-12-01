@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import osiris.entity.BankAccount;
 import osiris.use_case.plaid.UserPlaidDataAccessInterface;
 import osiris.use_case.plaid.UserPlaidDataAccessInterface;
 import osiris.utility.exceptions.PlaidException;
@@ -138,20 +137,6 @@ public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
         return gson.fromJson(responseBody, ExchangeTokenResponse.class);
     }
 
-    @Override
-    public BankAccount getUserByClientId(String userClientId) {
-        return null;
-    }
-
-    @Override
-    public void saveUser(BankAccount bankAccount) {
-
-    }
-
-    @Override
-    public boolean existsByClientId(String userClientId) {
-        return false;
-    }
 
     /**
      * Represents the response from Plaid when creating a Link Token.
