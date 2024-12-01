@@ -127,7 +127,7 @@ public class AppBuilder {
     public AppBuilder addWelcomeUseCase() {
         final WelcomeOutputBoundary welcomeOutputBoundary = new WelcomePresenter(viewManagerModel,
                 welcomeViewModel, loginViewModel, signupViewModel);
-        final WelcomeInputBoundary userWelcomeInteractor = new WelcomeInteractor(welcomeOutputBoundary, userFactory);
+        final WelcomeInputBoundary userWelcomeInteractor = new WelcomeInteractor(welcomeOutputBoundary);
 
         final WelcomeController controller = new WelcomeController(userWelcomeInteractor);
         welcomeView.setWelcomeController(controller);

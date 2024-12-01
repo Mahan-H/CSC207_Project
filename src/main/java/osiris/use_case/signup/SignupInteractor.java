@@ -34,15 +34,12 @@ public class SignupInteractor implements SignupInputBoundary {
             userPresenter.prepareFailView("Passwords don't match.");
         }
         else {
-            User user = userFactory.create(signupInputData.getEmail(), signupInputData.getPassword(), signupInputData.getAccessCode());
+            final User user = userFactory.create(signupInputData.getEmail(), signupInputData.getPassword(),
+                    signupInputData.getAccessCode());
             userDataAccessObject.save(user);
-
-            // Generate a verification code
-            String verificationCode = generateVerificationCode(6);
-            // Send verification email
+            final String verificationCode = generateVerificationCode(6);
             emailService.sendVerificationEmail(user.getEmail(), "Osiris Verification Code", verificationCode);
-
-            SignupOutputData signupOutputData = new SignupOutputData(user.getEmail(), false);
+            final SignupOutputData signupOutputData = new SignupOutputData(user.getEmail(), false);
             userPresenter.prepareSuccessView(signupOutputData);
         }
     }
