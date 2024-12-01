@@ -3,7 +3,7 @@ package osiris.interface_adapter.signup;
 import osiris.interface_adapter.ViewModel;
 
 /**
- * The ViewModel for the Signup View.
+ * The ViewModel for the View.
  */
 public class SignupViewModel extends ViewModel<SignupState> {
 

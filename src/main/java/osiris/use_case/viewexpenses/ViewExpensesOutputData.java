@@ -1,5 +1,8 @@
 package osiris.use_case.viewexpenses;
 
+/**
+ * ViewExpenses Output Data.
+ */
 public class ViewExpensesOutputData {
     private final double essentialTotal;
     private final double nonEssentialTotal;

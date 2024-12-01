@@ -1,23 +1,30 @@
 package osiris.utility.jfreechart;
 
+import javax.swing.JFrame;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-import javax.swing.*;
-import java.util.Map;
-
+/**
+ * The Class that helps generate pie chart for ViewExpenses UseCase.
+ */
 public class PieChartUtility {
 
+    /**
+     * The Class that helps displays pie chart for ViewExpenses UseCase.
+     * @param essential a double of essential value
+     * @param nonEssential a double of essential value
+     */
     public static void displayPieChart(double essential, double nonEssential) {
         // Create dataset
-        DefaultPieDataset dataset = new DefaultPieDataset();
+        final DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue("Essential", essential);
         dataset.setValue("Non-Essential", nonEssential);
 
         // Create chart
-        JFreeChart chart = ChartFactory.createPieChart(
+        final JFreeChart chart = ChartFactory.createPieChart(
                 "Expense Breakdown",
                 dataset,
                 true,
@@ -26,7 +33,7 @@ public class PieChartUtility {
         );
 
         // Display chart in JFrame
-        JFrame frame = new JFrame("Pie Chart");
+        final JFrame frame = new JFrame("Pie Chart");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(new ChartPanel(chart));
         frame.pack();

@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Created dashboard with no button functionality yet" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -17,6 +22,7 @@
         <option value="editable-svg" />
         <option value="UML Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -58,6 +64,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
@@ -92,6 +99,7 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+
   }
 }]]></component>
   <component name="RecentsManager">
@@ -120,10 +128,12 @@
       <recent name="" />
     </key>
   </component>
+
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
-      <module name="homework-5" />
+      <module name="plaid-integration" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="true" />
         <option name="IS_SUBST" value="false" />
@@ -172,6 +182,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GrabTransactionsInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrabTransactionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.grabtransactions.GrabTransactionsInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.GrabTransactionsTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlaidDataAccessObjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
@@ -203,7 +273,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlaidDataAccessObjectTest.testFetchTransactions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.grabtransactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.grabtransactions" />
+      <option name="MAIN_CLASS_NAME" value="use_case.grabtransactions.PlaidDataAccessObjectTest" />
+      <option name="METHOD_NAME" value="testFetchTransactions" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ViewExpensesControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesControllerTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="plaid-integration" />
       <extension name="coverage">
         <pattern>
@@ -229,6 +330,52 @@
       <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
       <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesControllerTest" />
       <option name="METHOD_NAME" value="testExecute" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="osiris.use_case.viewexpenses.ViewExpensesInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewExpensesInteractorTest.testHandle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plaid-integration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.viewexpenses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.viewexpenses" />
+      <option name="MAIN_CLASS_NAME" value="use_case.viewexpenses.ViewExpensesInteractorTest" />
+      <option name="METHOD_NAME" value="testHandle" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -260,9 +407,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlaidIntegrationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="plaid-integration" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
+
       <item itemvalue="Application.Main" />
+
       <item itemvalue="JUnit.ViewExpensesControllerTest" />
       <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
       <item itemvalue="JUnit.GrabTransactionControllerTest" />
@@ -273,11 +441,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ViewExpensesControllerTest.testExecute" />
-        <item itemvalue="JUnit.ViewExpensesControllerTest" />
-        <item itemvalue="JUnit.PlaidDataAccessObjectTest" />
+        <item itemvalue="JUnit.GrabTransactionsTest" />
+        <item itemvalue="JUnit.ViewExpensesInteractorTest" />
+        <item itemvalue="JUnit.GrabTransactionsInteractorTest" />
         <item itemvalue="JUnit.PlaidDataAccessObjectTest.testFetchTransactions" />
-        <item itemvalue="JUnit.GrabTransactionControllerTest" />
+        <item itemvalue="JUnit.ViewExpensesInteractorTest.testHandle" />
       </list>
     </recent_temporary>
   </component>
@@ -303,6 +471,7 @@
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
       <workItem from="1732927140228" duration="4822000" />
+
       <workItem from="1732991885900" duration="19601000" />
       <workItem from="1733046801612" duration="11202000" />
     </task>
@@ -321,6 +490,7 @@
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1733079761262</updated>
+
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -328,6 +498,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -352,5 +523,6 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+
   </component>
 </project>

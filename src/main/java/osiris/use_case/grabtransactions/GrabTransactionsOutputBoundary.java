@@ -1,8 +1,13 @@
 package osiris.use_case.grabtransactions;
 
-import com.plaid.client.model.Transaction;
-import java.util.List;
-
+/**
+ * Output Boundary for GrabTransactions UseCase.
+ */
 public interface GrabTransactionsOutputBoundary {
-    void handleTransactions(List<Transaction> transactions);
+    /**
+     * Presents the transaction data output to the user/system.
+     *
+     * @param outputData The processed output data containing transaction information.
+     */
+    void presentTransactions(GrabTransactionOutputData outputData);
 }

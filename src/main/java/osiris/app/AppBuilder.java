@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 
 import osiris.data_access.DBUserDataAccessObject;
+import osiris.data_access.PlaidDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
 import osiris.data_access.EmailServiceImpl;
@@ -16,9 +17,13 @@ import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
+import osiris.interface_adapter.plaid.PlaidController;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
+import osiris.interface_adapter.viewexpenses.ViewExpensesController;
+import osiris.interface_adapter.viewexpenses.ViewExpensesPresenter;
+import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomePresenter;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
@@ -31,12 +36,17 @@ import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
+import osiris.use_case.plaid.PlaidInputBoundary;
+import osiris.use_case.plaid.PlaidInteractor;
 import osiris.use_case.verify.VerifyInputBoundary;
 import osiris.use_case.verify.VerifyInteractor;
 import osiris.use_case.verify.VerifyOutputBoundary;
 import osiris.use_case.signup.SignupInputBoundary;
 import osiris.use_case.signup.SignupInteractor;
 import osiris.use_case.signup.SignupOutputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInteractor;
+import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
@@ -67,6 +77,7 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
+    private final PlaidDataAccessObject plaidDataAccessObject = new PlaidDataAccessObject();
 
     private final EmailServiceImpl emailService = new EmailServiceImpl();
 
@@ -80,6 +91,8 @@ public class AppBuilder {
     private VerifyView verifyView;
     private DashboardView dashboardView;
     private DashboardViewModel dashboardViewModel;
+    private ViewExpenses viewExpenses;
+    private ViewExpensesViewModel viewExpensesViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -94,6 +107,17 @@ public class AppBuilder {
         signupViewModel = new SignupViewModel();
         signupView = new SignupView(signupViewModel);
         cardPanel.add(signupView, signupView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
+    public AppBuilder addViewExpensesView() {
+        viewExpensesViewModel = new ViewExpensesViewModel();
+        viewExpenses = new ViewExpenses(viewExpensesViewModel, userDataAccessObject.getCurrentEmail());
+        cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
 
@@ -178,6 +202,32 @@ public class AppBuilder {
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
+    public AppBuilder addViewExpensesUseCase() {
+        final ViewExpensesOutputBoundary viewExpensesOutputBoundary = new ViewExpensesPresenter(viewExpensesViewModel,
+                viewManagerModel);
+
+        final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
+                viewExpensesOutputBoundary);
+
+        final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
+        viewExpenses.setViewExpensesController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the Plaid Use Case to the application.
+     * @return this builder
+     */
+    public AppBuilder addPlaidUseCase() {
+        final PlaidInputBoundary plaidInteractor = new PlaidInteractor(plaidDataAccessObject, userDataAccessObject, userFactory);
+        final PlaidController plaidController = new PlaidController(plaidInteractor);
         return this;
     }
 

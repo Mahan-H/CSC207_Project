@@ -36,10 +36,14 @@ public class ExchangePublicTokenOutputData {
 
     @Override
     public String toString() {
-        return "ExchangePublicTokenOutputData{" +
-                "accessToken='" + accessToken + '\'' +
-                ", itemId='" + itemId + '\'' +
-                ", requestId='" + requestId + '\'' +
+        return "ExchangePublicTokenOutputData{"
+                +
+                "accessToken='" + accessToken + '\''
+                +
+                ", itemId='" + itemId + '\''
+                +
+                ", requestId='" + requestId + '\''
+                +
                 '}';
     }
 }

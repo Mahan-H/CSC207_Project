@@ -1,22 +1,37 @@
 package osiris.interface_adapter.viewexpenses;
 
-
+import osiris.interface_adapter.ViewManagerModel;
 import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.viewexpenses.ViewExpensesOutputData;
-import osiris.utility.jfreechart.PieChartUtility;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * The Presenter for the ViewExpenses Use Case.
+ */
 public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
+    private final ViewExpensesViewModel viewExpensesViewModel;
+    private final ViewManagerModel viewManagerModel;
+    //    HomeViewModel homeViewModel;
 
-    @Override
-    public void present(ViewExpensesOutputData outputData) {
-        // Prepare data for the pie chart
-
-        // Generate pie chart
-        PieChartUtility.displayPieChart(outputData.getEssentialTotal(), outputData.getNonEssentialTotal());
+    public ViewExpensesPresenter(ViewExpensesViewModel viewExpensesViewModel,
+                                 ViewManagerModel viewManagerModel) {
+        this.viewExpensesViewModel = viewExpensesViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
+    @Override
+    public void prepareChart(ViewExpensesOutputData outputData) {
+        final ViewExpensesState viewExpensesState = viewExpensesViewModel.getState();
+        viewExpensesState.setEssential(outputData.getEssentialTotal());
+        viewExpensesState.setNonEssential(outputData.getNonEssentialTotal());
+        viewExpensesViewModel.setState(viewExpensesState);
+        viewManagerModel.setState(viewExpensesViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+        // System.out.println("Essential Amount: " + outputData.getEssentialTotal());
+        // System.out.println("Non-Essential Amount: " + outputData.getNonEssentialTotal());
+    }
+
+    @Override
+    public void switchToHomeView() {
+    }
 
 }

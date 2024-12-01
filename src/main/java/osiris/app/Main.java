@@ -23,10 +23,13 @@ public class Main {
                 .addSignupUseCase()
                 .addWelcomeUseCase()
                 .addLoginUseCase()
+
                 .addDashboardUseCase()
 //                .addVerifyUseCase()
 //                .addChangePasswordUseCase()
 //                .addLogoutUseCase()
+                .addViewExpensesView()
+                .addViewExpensesUseCase()
                 .build();
 
         application.pack();
