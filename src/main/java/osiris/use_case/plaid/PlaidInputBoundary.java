@@ -14,7 +14,8 @@ public interface PlaidInputBoundary {
      * @return The output data containing the link token.
      * @throws PlaidUseCaseException If an error occurs during the use case execution.
      */
-    CreateLinkTokenOutputData createLinkToken(CreateLinkTokenInputData inputData) throws PlaidUseCaseException;
+    CreateLinkTokenOutputData createLinkToken(CreateLinkTokenInputData inputData)
+            throws PlaidUseCaseException;
 
     /**
      * Exchanges a Public Token for an Access Token.
@@ -23,5 +24,6 @@ public interface PlaidInputBoundary {
      * @return The output data containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs during the use case execution.
      */
-    ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData) throws PlaidUseCaseException;
+    ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData)
+            throws PlaidUseCaseException;
 }

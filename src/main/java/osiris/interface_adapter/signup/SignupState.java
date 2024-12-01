@@ -1,7 +1,5 @@
 package osiris.interface_adapter.signup;
 
-import osiris.entity.BankAccount;
-
 /**
  * The state for the Signup View Model.
  */
@@ -75,10 +73,4 @@ public class SignupState {
                 + ", access_code='" + access_code + '\''
                 + '}';
     }
-
-    public BankAccount getUserPlaid() {
-        return new BankAccount();
-    }
-
-
 }

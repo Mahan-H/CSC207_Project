@@ -17,6 +17,7 @@ import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
+import osiris.interface_adapter.plaid.PlaidController;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
@@ -184,6 +185,16 @@ public class AppBuilder {
 
         final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
         viewExpenses.setViewExpensesController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the Plaid Use Case to the application.
+     * @return this builder
+     */
+    public AppBuilder addPlaidUseCase() {
+        final PlaidInputBoundary plaidInteractor = new PlaidInteractor(plaidDataAccessObject, userDataAccessObject, userFactory);
+        final PlaidController plaidController = new PlaidController(plaidInteractor);
         return this;
     }
 

@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import osiris.entity.BankAccount;
 import osiris.entity.User;
 import osiris.entity.UserFactory;
 import okhttp3.MediaType;
@@ -16,16 +15,18 @@ import okhttp3.Response;
 import osiris.use_case.change_password.ChangePasswordUserDataAccessInterface;
 import osiris.use_case.login.LoginUserDataAccessInterface;
 import osiris.use_case.logout.LogoutUserDataAccessInterface;
+import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
 import osiris.use_case.signup.SignupUserDataAccessInterface;
-import osiris.use_case.plaid.UserPlaidDataAccessInterface;
+import org.springframework.stereotype.Component;
 
 /**
  * The DAO for user data.
  */
+@Component
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
-        LogoutUserDataAccessInterface, UserPlaidDataAccessInterface {
+        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface {
     private static final int SUCCESS_CODE = 200;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
@@ -60,7 +61,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
                 final String name = userJSONObject.getString(USERNAME);
                 final String password = userJSONObject.getString(PASSWORD);
                 final String access_code = userJSONObject.has(ACCESS_CODE) ? userJSONObject.getString(ACCESS_CODE) : null;
-                final String item_id = userJSONObject.has(ITEM_ID) ? userJSONObject.getString(ITEM_ID) : null;
 
                 return userFactory.create(name, password, access_code);
             }
@@ -132,29 +132,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         }
     }
 
-    public void saveAccessCode(String access_code, String itemId) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put(ACCESS_CODE, access_code);
-        requestBody.put(ITEM_ID, itemId);
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/saveAccessCode")
-                .post(body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
     public String getAccessCode(String email) {
         final OkHttpClient client = new OkHttpClient.Builder().build();
         final Request request = new Request.Builder()
@@ -174,8 +151,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             throw new RuntimeException(ex);
         }
     }
-
-
 
     @Override
     public void changePassword(User user) {
@@ -253,73 +228,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-    @Override
-    public BankAccount getUserByClientId(String userClientId) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/getUserByClientId?userClientId=%s", userClientId))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                final JSONObject userJSONObject = responseBody.getJSONObject("user");
-                final String name = userJSONObject.getString(USERNAME);
-                final String password = userJSONObject.getString(PASSWORD);
-                final String access_code = userJSONObject.has(ACCESS_CODE) ? userJSONObject.getString(ACCESS_CODE) : null;
-
-                return new BankAccount(name, password, access_code);
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-    @Override
-    public void saveUser(BankAccount bankAccount) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put("userClientId", bankAccount.getUserClientId());
-        requestBody.put("accessToken", bankAccount.getAccessToken());
-        requestBody.put("itemId", bankAccount.getItemId());
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/saveUser")
-                .post(body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-    @Override
-    public boolean existsByClientId(String userClientId) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/checkIfUserExists?userClientId=%s", userClientId))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            return responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE;
         }
         catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);

@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.jetbrains.annotations.NotNull;
+
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
 
@@ -38,13 +40,9 @@ public class WelcomeView extends JPanel implements ActionListener {
     public WelcomeView(WelcomeViewModel welcomeViewModel) {
         this.welcomeViewModel = welcomeViewModel;
 
-        final JLabel title = new JLabel(WelcomeViewModel.TITLE_LABEL);
-        title.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, TITTLE_SIZE));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        final JLabel title = getTitleLabel(WelcomeViewModel.TITLE_LABEL, Font.BOLD, TITTLE_SIZE);
 
-        final JLabel slogan = new JLabel(WelcomeViewModel.SLOGAN_LABEL);
-        slogan.setFont(new Font(TIMES_NEW_ROMAN, Font.PLAIN, SLOGAN_SIZE));
-        slogan.setAlignmentX(Component.CENTER_ALIGNMENT);
+        final JLabel slogan = getTitleLabel(WelcomeViewModel.SLOGAN_LABEL, Font.PLAIN, SLOGAN_SIZE);
 
         final JPanel titles = new JPanel();
         titles.add(title);
@@ -72,18 +70,32 @@ public class WelcomeView extends JPanel implements ActionListener {
         createAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
         createAccount.setPreferredSize(PREFERRED_SIZE_LOGIN_BUTTON);
 
+        addButtons(buttons);
+
+        addLoginButton();
+
+        addCreateAccountButton();
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(titles);
+        this.add(buttons);
+    }
+
+    private void addButtons(JPanel buttons) {
         buttons.add(emptyButton);
         buttons.add(toLogin);
         buttons.add(createAccount);
+    }
 
-        toLogin.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        welcomeController.switchToLoginView();
-                    }
-                }
-        );
+    @NotNull
+    private JLabel getTitleLabel(String titleLabel, int bold, int tittleSize) {
+        final JLabel title = new JLabel(titleLabel);
+        title.setFont(new Font(TIMES_NEW_ROMAN, bold, tittleSize));
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return title;
+    }
 
+    private void addCreateAccountButton() {
         createAccount.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -91,10 +103,16 @@ public class WelcomeView extends JPanel implements ActionListener {
                     }
                 }
         );
+    }
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(titles);
-        this.add(buttons);
+    private void addLoginButton() {
+        toLogin.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        welcomeController.switchToLoginView();
+                    }
+                }
+        );
     }
 
     @Override

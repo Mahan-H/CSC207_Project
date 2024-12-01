@@ -3,7 +3,7 @@ package osiris.utility.data_transfer_objects;
 /**
  * Data Transfer Object for Link Token Requests.
  */
-public class LinkTokenRequestDTO {
+public class LinkTokenRequestDataTransferObject {
     private String clientName;
     private String[] countryCodes;
     private String language;

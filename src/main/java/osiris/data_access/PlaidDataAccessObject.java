@@ -10,6 +10,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import osiris.entity.BankAccount;
 import osiris.use_case.plaid.UserPlaidDataAccessInterface;
+import osiris.use_case.plaid.UserPlaidDataAccessInterface;
 import osiris.utility.exceptions.PlaidException;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
+
     private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
     private final OkHttpClient client;
