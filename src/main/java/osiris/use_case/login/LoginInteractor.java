@@ -26,7 +26,7 @@ public class LoginInteractor implements LoginInputBoundary {
 
     @Override
     public void execute(LoginInputData loginInputData) {
-        final String username = loginInputData.getEmail();
+        final String username = loginInputData.getUser();
         final String password = loginInputData.getPassword();
         if (!userDataAccessObject.existsByName(username)) {
             loginPresenter.prepareFailView(username + ": Account does not exist.");
@@ -37,12 +37,12 @@ public class LoginInteractor implements LoginInputBoundary {
                 loginPresenter.prepareFailView("Incorrect password for \"" + username + "\".");
             }
             else {
-                final User user = userDataAccessObject.get(loginInputData.getEmail());
+                final User user = userDataAccessObject.get(loginInputData.getUser());
 
-                userDataAccessObject.setCurrentEmail(user.getEmail());
-                final LoginOutputData loginOutputData = new LoginOutputData(user.getEmail(), false);
+                userDataAccessObject.setCurrentUser(user.getUser());
+                final LoginOutputData loginOutputData = new LoginOutputData(user.getUser(), false);
                 try {
-                    final String encodedEmail = URLEncoder.encode(user.getEmail(), "UTF-8");
+                    final String encodedEmail = URLEncoder.encode(user.getUser(), "UTF-8");
                     final String url = "http://localhost:8080?email=" + encodedEmail;
                     Desktop.getDesktop().browse(new URI(url));
                 }

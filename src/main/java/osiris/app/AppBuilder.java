@@ -1,24 +1,24 @@
 package osiris.app;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 import osiris.data_access.DBUserDataAccessObject;
 import osiris.data_access.PlaidDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
-import osiris.data_access.EmailServiceImpl;
 import osiris.interface_adapter.ViewManagerModel;
-import osiris.interface_adapter.grabtransaction.GrabTransactionController;
+import osiris.interface_adapter.dashboard.DashboardController;
+import osiris.interface_adapter.dashboard.DashboardPresenter;
+import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
-import osiris.interface_adapter.plaid.PlaidController;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
@@ -31,18 +31,12 @@ import osiris.interface_adapter.welcome.WelcomeViewModel;
 import osiris.interface_adapter.verify.VerifyController;
 import osiris.interface_adapter.verify.VerifyPresenter;
 import osiris.interface_adapter.verify.VerifyViewModel;
-import osiris.interface_adapter.dashboard.DashboardController;
-import osiris.interface_adapter.dashboard.DashboardPresenter;
-import osiris.interface_adapter.dashboard.DashboardViewModel;
-import osiris.use_case.grabtransactions.GrabTransactionsInputBoundary;
-import osiris.use_case.grabtransactions.GrabTransactionsInputData;
-import osiris.use_case.grabtransactions.GrabTransactionsInteractor;
+import osiris.use_case.dashboard.DashboardInputBoundary;
+import osiris.use_case.dashboard.DashboardInteractor;
+import osiris.use_case.dashboard.DashboardOutputBoundary;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
-import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
-import osiris.use_case.plaid.PlaidInputBoundary;
-import osiris.use_case.plaid.PlaidInteractor;
 import osiris.use_case.verify.VerifyInputBoundary;
 import osiris.use_case.verify.VerifyInteractor;
 import osiris.use_case.verify.VerifyOutputBoundary;
@@ -55,9 +49,6 @@ import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
-import osiris.use_case.dashboard.DashboardInputBoundary;
-import osiris.use_case.dashboard.DashboardInteractor;
-import osiris.use_case.dashboard.DashboardOutputBoundary;
 import osiris.view.*;
 
 
@@ -82,9 +73,6 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
-    private final PlaidDataAccessObject plaidDataAccessObject = new PlaidDataAccessObject();
-
-    private final EmailServiceImpl emailService = new EmailServiceImpl();
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
@@ -98,6 +86,7 @@ public class AppBuilder {
     private DashboardViewModel dashboardViewModel;
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
+    private PlaidDataAccessObject plaidDataAccessObject;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -158,6 +147,7 @@ public class AppBuilder {
         dashboardView.setDashboardController(controller);
         return this;
     }
+
     /**
      * Adds the welcome Use Case to the application.
      * @return this builder
@@ -189,8 +179,26 @@ public class AppBuilder {
      */
 
     public AppBuilder addVerifyView() {
+        // Initialize ViewModel
         verifyViewModel = new VerifyViewModel();
+
+        // Initialize Presenter (OutputBoundary)
+        final VerifyOutputBoundary verifyOutputBoundary =
+                new VerifyPresenter(verifyViewModel, signupViewModel, viewManagerModel);
+
+        // Initialize Interactor (InputBoundary)
+        final VerifyInputBoundary verifyInteractor =
+                new VerifyInteractor(verifyOutputBoundary);
+
+        // Initialize Controller
+        final VerifyController verifyController =
+                new VerifyController(verifyInteractor);
+
+        // Initialize View and inject Controller
         verifyView = new VerifyView(verifyViewModel);
+        verifyView.setVerifyController(verifyController);
+
+        // Add View to the card panel
         cardPanel.add(verifyView, verifyView.getViewName());
         return this;
     }
@@ -203,7 +211,7 @@ public class AppBuilder {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
                 signupViewModel, verifyViewModel, welcomeViewModel, dashboardViewModel);
         final SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory, emailService);
+                userDataAccessObject, signupOutputBoundary, userFactory);
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
@@ -221,15 +229,8 @@ public class AppBuilder {
         final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
                 viewExpensesOutputBoundary);
 
-        final GrabTransactionsInputBoundary userViewExpensesGrab = new GrabTransactionsInteractor(userDataAccessObject,
-                plaidDataAccessObject);
-
         final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
-        final GrabTransactionController grabTransactionController = new GrabTransactionController(userViewExpensesGrab);
-
         viewExpenses.setViewExpensesController(controller);
-        viewExpenses.setGrabTransactionController(grabTransactionController);
-
         return this;
     }
 
@@ -238,11 +239,19 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addLoginUseCase() {
-        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loginViewModel, welcomeViewModel, verifyViewModel, dashboardViewModel);
+        // Create the LoginOutputBoundary (Presenter)
+        final LoginOutputBoundary loginOutputBoundary =
+                new LoginPresenter(viewManagerModel, loginViewModel, welcomeViewModel, verifyViewModel, dashboardViewModel);
+
+        // Create the LoginInputBoundary (Interactor)
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary, userFactory, plaidDataAccessObject, userDataAccessObject);
-        final LoginController loginController = new LoginController(loginInteractor);
+
+        // Create the LoginController
+        final LoginController loginController =
+                new LoginController(loginInteractor);
+
+        // Add CAPTCHA integration in Login View
         loginView.setLoginController(loginController);
         return this;
     }
@@ -265,17 +274,19 @@ public class AppBuilder {
 //    }
 
     public AppBuilder addVerifyUseCase() {
+        final VerifyViewModel verifyViewModel = new VerifyViewModel();
+
         final VerifyOutputBoundary verifyOutputBoundary =
                 new VerifyPresenter(verifyViewModel, signupViewModel, viewManagerModel);
 
         final VerifyInputBoundary verifyInteractor =
-                new VerifyInteractor(verifyOutputBoundary, emailService, userDataAccessObject);
+                new VerifyInteractor(verifyOutputBoundary);
 
         final VerifyController verifyController =
                 new VerifyController(verifyInteractor);
-        verifyView.setVerifyController(verifyController);
-        return this;
 
+        verifyView.setVerifyController(verifyController); // Attach controller to view
+        return this;
     }
 
     /**

@@ -1,25 +1,30 @@
 package osiris.use_case.verify;
 
 /**
- * The Verify Email Use Case.
+ * The Verify User Use Case.
  */
 public interface VerifyInputBoundary {
     /**
-     * Execute the Verify Email Use Case.
+     * Execute the Verify User Use Case.
      * @param verifyInputData the input data for this use case
      */
 
     void execute(VerifyInputData verifyInputData);
 
-    /**
-     * Prepares the switch to signup view for the Verify Email Use Case.
-     */
     void switchToSignUpView();
 
     /**
-     * Prepares the resending for Verify Email Use Case.
-     * @param verifyInputData the input data for this use case
+     * Generate a CAPTCHA for the user.
+     * @param sessionId The unique session ID for the user.
+     * @return The generated CAPTCHA string.
      */
-    void resendVerificationEmail(VerifyInputData verifyInputData);
+    String generateCaptcha(String sessionId);
 
+    /**
+     * Validate the user's entered CAPTCHA.
+     * @param captchaCode The CAPTCHA code entered by the user.
+     * @param sessionId The unique session ID for the user.
+     * @return true if the CAPTCHA is valid, false otherwise.
+     */
+    boolean validateCaptcha(String captchaCode, String sessionId);
 }

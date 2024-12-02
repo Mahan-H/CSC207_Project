@@ -67,7 +67,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                             final LoginState currentState = loginViewModel.getState();
 
                             loginController.execute(
-                                    currentState.getEmail(),
+                                    currentState.getUser(),
                                     currentState.getPassword(),
                                     currentState.getAccessCode()
                             );
@@ -88,7 +88,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
             private void documentListenerHelper() {
                 final LoginState currentState = loginViewModel.getState();
-                currentState.setEmail(emailInputField.getText());
+                currentState.setUser(emailInputField.getText());
                 loginViewModel.setState(currentState);
             }
 
@@ -157,7 +157,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     }
 
     private void setFields(LoginState state) {
-        emailInputField.setText(state.getEmail());
+        emailInputField.setText(state.getUser());
         passwordInputField.setText(state.getPassword());
     }
 

@@ -1,6 +1,5 @@
 package osiris.use_case.signup;
 
-import osiris.data_access.EmailServiceImpl;
 import osiris.entity.User;
 import osiris.entity.UserFactory;
 
@@ -13,34 +12,28 @@ public class SignupInteractor implements SignupInputBoundary {
     private final SignupUserDataAccessInterface userDataAccessObject;
     private final SignupOutputBoundary userPresenter;
     private final UserFactory userFactory;
-    private final EmailServiceImpl emailService;
 
     public SignupInteractor(SignupUserDataAccessInterface signupDataAccessInterface,
                             SignupOutputBoundary signupOutputBoundary,
-                            UserFactory userFactory,
-                            EmailServiceImpl emailService) {
+                            UserFactory userFactory) {
         this.userDataAccessObject = signupDataAccessInterface;
         this.userPresenter = signupOutputBoundary;
         this.userFactory = userFactory;
-        this.emailService = emailService;
     }
 
     @Override
     public void execute(SignupInputData signupInputData) {
-        if (userDataAccessObject.existsByName(signupInputData.getEmail())) {
+        if (userDataAccessObject.existsByName(signupInputData.getUser())) {
             userPresenter.prepareFailView("User already exists.");
-        }
-        else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
+        } else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
             userPresenter.prepareFailView("Passwords don't match.");
-        }
-        else {
-            final User user = userFactory.create(signupInputData.getEmail(), signupInputData.getPassword(),
-                    signupInputData.getAccessCode());
+        } else {
+            // Store user information for verification
+            User user = userFactory.create(signupInputData.getUser(), signupInputData.getPassword(), null);
             userDataAccessObject.save(user);
-            final String verificationCode = generateVerificationCode(6);
-            emailService.sendVerificationEmail(user.getEmail(), "Osiris Verification Code", verificationCode);
-            final SignupOutputData signupOutputData = new SignupOutputData(user.getEmail(), false);
-            userPresenter.prepareSuccessView(signupOutputData);
+
+            // Pass control to verification step
+            userPresenter.switchToVerifyView();
         }
     }
 

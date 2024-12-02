@@ -4,10 +4,10 @@ import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.signup.SignupViewModel;
 import osiris.use_case.verify.VerifyOutputBoundary;
 import osiris.use_case.verify.VerifyOutputData;
-/**
- * The Presenter for the Verify Email Use Case.
- */
 
+/**
+ * The Presenter for the Verify CAPTCHA Use Case.
+ */
 public class VerifyPresenter implements VerifyOutputBoundary {
     private final VerifyViewModel verifyViewModel;
     private final SignupViewModel signupViewModel;
@@ -22,21 +22,26 @@ public class VerifyPresenter implements VerifyOutputBoundary {
 
     @Override
     public void prepareSuccessView(VerifyOutputData outputData) {
-        // currently there isn't anything to change based on the output data,
-        // since the output data only contains the username, which remains the same.
-        // We still fire the property changed event, but just to let the view know that
-        // it can alert the user that their password was changed successfully...
-        verifyViewModel.firePropertyChanged("password");
+        VerifyState state = verifyViewModel.getState();
+        state.setCaptchaCode(outputData.getCaptcha());
+        verifyViewModel.setState(state);
+        verifyViewModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-        // note: this use case currently can't fail
-        // If we get the wrong code
+        // Set the error message in the state
+        VerifyState state = verifyViewModel.getState();
+        state.setCaptchaError(error);
+        verifyViewModel.setState(state);
+
+        // Notify the view about the failure
+        verifyViewModel.firePropertyChanged();
     }
 
     @Override
     public void switchToSignUpView() {
+        // Switch back to the signup view if needed
         viewManagerModel.setState(signupViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

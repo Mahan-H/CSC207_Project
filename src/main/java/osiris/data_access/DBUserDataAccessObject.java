@@ -53,7 +53,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String COM_MYSQL_CJ_JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     private final UserFactory userFactory;
-    private String currentEmail;
 
     /**
      * Constructs a DBUserDataAccessObject with the specified UserFactory.
@@ -93,11 +92,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void setCurrentEmail(String name) {
-        this.currentEmail = name;
-    }
-
-    @Override
     public boolean existsByName(String username) {
         final String sql = "SELECT ONE FROM users WHERE username = ?";
         try {
@@ -125,7 +119,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(ONE, user.getEmail());
+                pstmt.setString(ONE, user.getUser());
                 pstmt.setString(TWO, user.getPassword());
                 pstmt.setString(THREE, user.getAccessCode());
 
@@ -146,7 +140,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(ONE, user.getEmail());
+                pstmt.setString(ONE, user.getUser());
                 pstmt.setString(TWO, user.getPassword());
                 pstmt.setString(THREE, user.getAccessCode());
 
@@ -159,47 +153,12 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public String getCurrentEmail() {
-        return currentEmail;
+    public String getCurrentUser() {
+        return null;
     }
 
-    public void saveVerificationCode(String email, String verificationCode) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put("email", email);
-        requestBody.put("verificationCode", verificationCode);
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/saveVerificationCode")
-                .post(body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        } catch (IOException | JSONException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    @Override
+    public void setCurrentUser(String user) {
 
-    public String getVerificationCode(String email) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/getVerificationCode?email=%s", email))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                return responseBody.getString("verificationCode");
-            } else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        } catch (IOException | JSONException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
