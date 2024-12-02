@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Added CAPTCHA files">
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Added more CAPTCHA files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/dashboard/DashboardViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/dashboard/DashboardViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/DashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/DashboardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/VerifyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/VerifyView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +21,8 @@
         <option value="UML Use Case" />
         <option value="editable-svg" />
         <option value="UML Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -484,7 +476,7 @@
       <workItem from="1732927140228" duration="4822000" />
       <workItem from="1732991885900" duration="19601000" />
       <workItem from="1733046801612" duration="11202000" />
-      <workItem from="1733165874632" duration="6635000" />
+      <workItem from="1733165874632" duration="8055000" />
     </task>
     <task id="LOCAL-00001" summary="Created dashboard with no button functionality yet">
       <option name="closed" value="true" />
@@ -510,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733169089199</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added more CAPTCHA files">
+      <option name="closed" value="true" />
+      <created>1733172606393</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733172606393</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +530,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created dashboard with no button functionality yet" />
     <MESSAGE value="Added CAPTCHA files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CAPTCHA files" />
+    <MESSAGE value="Added more CAPTCHA files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more CAPTCHA files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
