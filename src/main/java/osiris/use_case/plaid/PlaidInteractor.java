@@ -67,7 +67,7 @@ public class PlaidInteractor implements PlaidInputBoundary {
     @Override
     public ExchangePublicTokenOutputData exchangePublicToken(
             ExchangePublicTokenInputData inputData)
-            throws PlaidUseCaseException {
+            throws PlaidUseCaseException, SQLException {
         try {
             final ExchangeTokenResponse response = plaidDao.exchangePublicToken(
                     inputData.getPublicToken()
@@ -89,9 +89,6 @@ public class PlaidInteractor implements PlaidInputBoundary {
         }
         catch (IOException ex) {
             throw new PlaidUseCaseException("IO Error while exchanging Public Token.", ex);
-        }
-        catch (SQLException ex) {
-            throw new RuntimeException(ex);
         }
     }
 }

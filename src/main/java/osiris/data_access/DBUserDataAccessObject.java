@@ -1,40 +1,45 @@
 package osiris.data_access;
 
 import java.io.IOException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import osiris.entity.User;
-import osiris.entity.UserFactory;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import osiris.use_case.change_password.ChangePasswordUserDataAccessInterface;
-import osiris.use_case.grabtransactions.GrabTransactionUserDataAccessInterface;
-import osiris.use_case.login.LoginUserDataAccessInterface;
-import osiris.use_case.logout.LogoutUserDataAccessInterface;
-import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
-import osiris.use_case.signup.SignupUserDataAccessInterface;
-import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.stereotype.Component;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import osiris.entity.User;
+import osiris.entity.UserFactory;
+import osiris.use_case.change_password.ChangePasswordUserDataAccessInterface;
+import osiris.use_case.grabtransactions.GrabTransactionUserDataAccessInterface;
+import osiris.use_case.login.LoginUserDataAccessInterface;
+import osiris.use_case.logout.LogoutUserDataAccessInterface;
+import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
+import osiris.use_case.signup.SignupUserDataAccessInterface;
+
 /**
- * The DAO for user data.
+ * The Data Access Object (DAO) for user data.
  */
 @Component
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
-        LogoutUserDataAccessInterface, PlaidDataBaseUserAccessObjectInterface,
+        LogoutUserDataAccessInterface,
+        PlaidDataBaseUserAccessObjectInterface,
         GrabTransactionUserDataAccessInterface {
+
     private static final int SUCCESS_CODE = 200;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
     private static final String STATUS_CODE_LABEL = "status_code";
@@ -45,132 +50,117 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String PASSWORD = "passwords";
     private static final String MESSAGE = "message";
     private static final String ACCESS_CODE = "accessCode";
-    private final UserFactory userFactory;
-    private String name;
+    private static final String COM_MYSQL_CJ_JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    private final UserFactory userFactory;
+    private String currentEmail;
+
+    /**
+     * Constructs a DBUserDataAccessObject with the specified UserFactory.
+     *
+     * @param userFactory The UserFactory to create user instances.
+     */
     public DBUserDataAccessObject(UserFactory userFactory) {
         this.userFactory = userFactory;
-        // No need to do anything to reinitialize a user list! The data is the cloud that may be miles away.
     }
 
     @Override
     public User get(String username) {
-        String sql = "SELECT username, passwords, accessCode FROM table_name WHERE username = ?";
+        final String sql = "SELECT username, passwords, accessCode FROM users WHERE username = ?";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
 
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(1, username);
+                pstmt.setString(ONE, username);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        String name = rs.getString(USERNAME);
-                        String passwords = rs.getString(PASSWORD);
-                        String accessCode = rs.getString(ACCESS_CODE);
+                        final String name = rs.getString(USERNAME);
+                        final String passwords = rs.getString(PASSWORD);
+                        final String accessCode = rs.getString(ACCESS_CODE);
 
                         return userFactory.create(name, passwords, accessCode);
-                    }
-                    else {
-                        return null;
                     }
                 }
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error retrieving user: " + e.getMessage(), e);
+        catch (SQLException | ClassNotFoundException ex) {
+            throw new RuntimeException("Error retrieving user: " + ex.getMessage(), ex);
         }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("MySQL JDBC Driver not found.", e);
-        }
+        return null;
     }
 
     @Override
     public void setCurrentEmail(String name) {
-        this.name = name;
+        this.currentEmail = name;
     }
 
     @Override
     public boolean existsByName(String username) {
-        String sql = "SELECT 1 FROM table_name WHERE username = ?";
+        final String sql = "SELECT ONE FROM users WHERE username = ?";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, username);
+                pstmt.setString(ONE, username);
                 try (ResultSet rs = pstmt.executeQuery()) {
                     return rs.next();
                 }
             }
         }
-        catch (SQLException ex) {
-            ex.printStackTrace();
+        catch (SQLException | ClassNotFoundException ex) {
             throw new RuntimeException("Error checking if user exists: " + ex.getMessage(), ex);
-        }
-        catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException("MySQL JDBC Driver not found.", ex);
         }
     }
 
     @Override
     public void save(User user) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("MySQL JDBC Driver not found.", e);
-        }
-        String sql = "INSERT INTO table_name (username, passwords, accessCode) VALUES (?, ?, ?) "
+        final String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE passwords = VALUES(passwords), accessCode = VALUES(accessCode);";
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, user.getEmail());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getAccessCode());
+        try {
+            Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error saving user: " + e.getMessage(), e);
+                pstmt.setString(ONE, user.getEmail());
+                pstmt.setString(TWO, user.getPassword());
+                pstmt.setString(THREE, user.getAccessCode());
+
+                pstmt.executeUpdate();
+            }
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            throw new RuntimeException("Error saving user: " + ex.getMessage(), ex);
         }
     }
 
-
     @Override
     public void changePassword(User user) {
+        final String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
+                + "ON DUPLICATE KEY UPDATE passwords = VALUES(passwords), accessCode = VALUES(accessCode);";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("MySQL JDBC Driver not found.", e);
+            Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(ONE, user.getEmail());
+                pstmt.setString(TWO, user.getPassword());
+                pstmt.setString(THREE, user.getAccessCode());
+
+                pstmt.executeUpdate();
+            }
         }
-
-        String sql = "INSERT INTO table_name (username, passwords, accessCode) VALUES (?, ?, ?) "
-                + "ON DUPLICATE KEY UPDATE password = VALUES(password), accessCode = VALUES(accessCode);";
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, user.getEmail());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getAccessCode());
-
-            pstmt.executeUpdate();
-
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error changing password: " + e.getMessage(), e);
+        catch (SQLException | ClassNotFoundException ex) {
+            throw new RuntimeException("Error changing password: " + ex.getMessage(), ex);
         }
     }
 
     @Override
     public String getCurrentEmail() {
-        return name;
+        return currentEmail;
     }
 
     public void saveVerificationCode(String email, String verificationCode) {
@@ -190,9 +180,8 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        } catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -206,13 +195,11 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             final JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 return responseBody.getString("verificationCode");
-            }
-            else {
+            } else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        } catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -16,6 +16,8 @@ import osiris.utility.data_transfer_objects.ExchangeTokenRequestDataTransferObje
 import osiris.utility.data_transfer_objects.LinkTokenRequestDataTransferObject;
 import osiris.utility.exceptions.PlaidUseCaseException;
 
+import java.sql.SQLException;
+
 /**
  * REST Controller for Plaid-related operations.
  */
@@ -62,11 +64,12 @@ public class PlaidController {
      * @param exchangeTokenRequest The request body containing the public token.
      * @return ExchangePublicTokenOutputData containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
+     * @throws SQLException If an error occurs while exchanging the public token.
      */
     @PostMapping("/exchange-public-token")
     public ResponseEntity<ExchangePublicTokenOutputData> exchangePublicToken(
             @RequestBody ExchangeTokenRequestDataTransferObject exchangeTokenRequest)
-            throws PlaidUseCaseException {
+            throws PlaidUseCaseException, SQLException {
 
         final ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 exchangeTokenRequest.getPublicToken(),
