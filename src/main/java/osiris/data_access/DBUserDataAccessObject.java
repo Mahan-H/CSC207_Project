@@ -43,9 +43,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
     private static final String STATUS_CODE_LABEL = "status_code";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/osiris";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/schema_name";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "csc207";
+    private static final String DB_PASSWORD = "Divnoor123";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "passwords";
     private static final String MESSAGE = "message";
@@ -141,7 +141,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     public void changePassword(User user) {
         final String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE passwords = VALUES(passwords), accessCode = VALUES(accessCode);";
-
         try {
             Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

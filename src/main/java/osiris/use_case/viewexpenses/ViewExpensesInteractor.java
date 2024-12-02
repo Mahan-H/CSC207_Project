@@ -1,9 +1,12 @@
 package osiris.use_case.viewexpenses;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
-import com.plaid.client.model.Transaction;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 // import osiris.utility.jfreechart.PieChartUtility;
 
 /**
@@ -11,7 +14,6 @@ import com.plaid.client.model.Transaction;
  */
 public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
     private final ViewExpensesOutputBoundary presenter;
-    private final Set<String> esscategories = Set.of("Groceries", "Rent", "Utilities", "Healthcare");
 
     public ViewExpensesInteractor(ViewExpensesOutputBoundary presenter) {
         this.presenter = presenter;
@@ -20,25 +22,42 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
     @Override
     public void execute(ViewExpensesInputData inputData) {
         // Fetch transactions from Plaid API
-        final List<Transaction> transactions = inputData.getTransactionList();
+        final String transactionsJson = inputData.getTransactionList();
 
+        final Set<String> essentialCategories = new HashSet<>();
+        essentialCategories.add("Groceries");
+        essentialCategories.add("Rent");
+        essentialCategories.add("Utilities");
+        essentialCategories.add("Healthcare");
         // Initialize totals
         double essentialTotal = 0.0;
         double nonEssentialTotal = 0.0;
 
         // Categorize transactions
-        for (Transaction transaction : transactions) {
-            final List<String> categories = transaction.getCategory();
-            final double amount = transaction.getAmount();
+        final JsonObject jsonResponse = JsonParser.parseString(transactionsJson).getAsJsonObject();
+        final JsonArray transactions = jsonResponse.getAsJsonArray("transactions");
 
-            if (categories != null && isEssential(categories)) {
+        for (JsonElement transactionElement : transactions) {
+            final JsonObject transaction = transactionElement.getAsJsonObject();
+            final double amount = transaction.get("amount").getAsDouble();
+            final JsonArray categories = transaction.getAsJsonArray("category");
+
+            boolean isEssential = false;
+            for (JsonElement categoryElement : categories) {
+                final String category = categoryElement.getAsString();
+                if (essentialCategories.contains(category)) {
+                    isEssential = true;
+                    break;
+                }
+            }
+
+            if (isEssential) {
                 essentialTotal += amount;
             }
             else {
                 nonEssentialTotal += amount;
             }
         }
-        // PieChartUtility.displayPieChart(essentialTotal, nonEssentialTotal);
 
         final ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
         presenter.prepareChart(outputData);
@@ -50,15 +69,4 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
 
     }
 
-    private boolean isEssential(List<String> categories) {
-        // Check if any category in the list matches the essential category
-        boolean count = false;
-        for (String category : categories) {
-            if (esscategories.contains(category)) {
-                count = true;
-                break;
-            }
-        }
-        return count;
-    }
 }

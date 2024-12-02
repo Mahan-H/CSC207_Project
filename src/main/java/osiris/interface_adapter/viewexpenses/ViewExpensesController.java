@@ -21,7 +21,7 @@ public class ViewExpensesController {
      * @param transactionList List of transactions for a given access token
      */
 
-    public void execute(List<Transaction> transactionList) {
+    public void execute(String transactionList) {
         final ViewExpensesInputData inputData = new ViewExpensesInputData(transactionList);
         interactor.execute(inputData);
     }

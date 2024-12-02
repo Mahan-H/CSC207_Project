@@ -170,10 +170,9 @@ public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
      * @param accessToken   Name of your token.
      * @return fetchTransactions containing the transactions.
      * @throws IOException If an I/O error occurs during the API call.
-     * @throws PlaidException If an error occurs during the unsuccessful response.
      */
 
-    public List<Transaction> fetchTransactions(String accessToken) throws IOException, PlaidException {
+    public String fetchTransactions(String accessToken) throws IOException {
         final LocalDate startDate = LocalDate.now().minusDays(30);
         final LocalDate endDate = LocalDate.now();
 
@@ -181,25 +180,21 @@ public class PlaidDataAccessObject implements UserPlaidDataAccessInterface {
         requestBody.addProperty("client_id", clientId);
         requestBody.addProperty("secret", secret);
         requestBody.addProperty("access_token", accessToken);
-        requestBody.addProperty("start_date", startDate.toString());
-        requestBody.addProperty("end_date", endDate.toString());
+        requestBody.addProperty("start_date", String.valueOf(startDate));
+        requestBody.addProperty("end_date", String.valueOf(endDate));
 
-        final String url = getPlaidUrl("transactions/get");
         final RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
         final Request request = new Request.Builder()
-                .url(url)
+                .url("https://sandbox.plaid.com/transactions/get")
                 .post(body)
                 .addHeader("Content-Type", "application/json")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+                throw new IOException("Plaid API Error: " + response.code() + " - " + response.message());
             }
-            final JsonObject responseJson = gson.fromJson(response.body().string(), JsonObject.class);
-            // Parse the transactions from the response JSON
-            final Transaction[] transactions = gson.fromJson(responseJson.getAsJsonArray("transactions"), Transaction[].class);
-            return new ArrayList<>(List.of(transactions));
+            return response.body().string();
         }
     }
 }

@@ -1,8 +1,5 @@
 package osiris.use_case.viewexpenses;
 
-import java.util.List;
-
-import com.plaid.client.model.Transaction;
 import lombok.Getter;
 
 /**
@@ -10,9 +7,9 @@ import lombok.Getter;
  */
 @Getter
 public class ViewExpensesInputData {
-    private final List<Transaction> transactionList;
+    private final String transactionList;
 
-    public ViewExpensesInputData(List<Transaction> transactionList) {
+    public ViewExpensesInputData(String transactionList) {
         this.transactionList = transactionList;
     }
 
