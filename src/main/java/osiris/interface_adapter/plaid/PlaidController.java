@@ -1,11 +1,13 @@
 package osiris.interface_adapter.plaid;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import osiris.use_case.plaid.CreateLinkTokenInputData;
 import osiris.use_case.plaid.CreateLinkTokenOutputData;
@@ -15,8 +17,6 @@ import osiris.use_case.plaid.PlaidInputBoundary;
 import osiris.utility.data_transfer_objects.ExchangeTokenRequestDataTransferObject;
 import osiris.utility.data_transfer_objects.LinkTokenRequestDataTransferObject;
 import osiris.utility.exceptions.PlaidUseCaseException;
-
-import java.sql.SQLException;
 
 /**
  * REST Controller for Plaid-related operations.
@@ -64,7 +64,7 @@ public class PlaidController {
      * @param exchangeTokenRequest The request body containing the public token.
      * @return ExchangePublicTokenOutputData containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
-     * @throws SQLException If an error occurs while exchanging the public token.
+     * @throws SQLException          If an error occurs while exchanging the public token.
      */
     @PostMapping("/exchange-public-token")
     public ResponseEntity<ExchangePublicTokenOutputData> exchangePublicToken(

@@ -29,7 +29,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
     private ChangePasswordController changePasswordController;
     private LogoutController logoutController;
 
-    private final JLabel email;
+    private final JLabel user;
 
     private final JButton logOut;
 
@@ -47,7 +47,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                 new JLabel("Password"), passwordInputField);
 
         final JLabel usernameInfo = new JLabel("Currently logged in: ");
-        email = new JLabel();
+        user = new JLabel();
 
         final JPanel buttons = new JPanel();
         logOut = new JButton("Log Out");
@@ -89,7 +89,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                         final LoggedInState currentState = loggedInViewModel.getState();
 
                         this.changePasswordController.execute(
-                                currentState.getEmail(),
+                                currentState.getUser(),
                                 currentState.getPassword(),
                                 currentState.getAccessCode()
                         );
@@ -102,14 +102,14 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                 evt -> {
                     if (evt.getSource().equals(logOut)) {
                         final LoggedInState currentState = loggedInViewModel.getState();
-                        this.logoutController.execute(currentState.getEmail());
+                        this.logoutController.execute(currentState.getUser());
                     }
                 }
         );
 
         this.add(title);
         this.add(usernameInfo);
-        this.add(email);
+        this.add(user);
 
         this.add(passwordInfo);
         this.add(passwordErrorField);
@@ -120,11 +120,11 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("state")) {
             final LoggedInState state = (LoggedInState) evt.getNewValue();
-            email.setText(state.getEmail());
+            user.setText(state.getUser());
         }
         else if (evt.getPropertyName().equals("password")) {
             final LoggedInState state = (LoggedInState) evt.getNewValue();
-            JOptionPane.showMessageDialog(null, "password updated for " + state.getEmail());
+            JOptionPane.showMessageDialog(null, "password updated for " + state.getUser());
         }
 
     }

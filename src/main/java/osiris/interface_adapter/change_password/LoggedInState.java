@@ -4,14 +4,14 @@ package osiris.interface_adapter.change_password;
  * The State information representing the logged-in user.
  */
 public class LoggedInState {
-    private String email = "";
+    private String user = "";
 
     private String password = "";
     private String accessCode = "";
     private String passwordError;
 
     public LoggedInState(LoggedInState copy) {
-        email = copy.email;
+        user = copy.user;
         password = copy.password;
         passwordError = copy.passwordError;
     }
@@ -21,12 +21,12 @@ public class LoggedInState {
 
     }
 
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void setPassword(String password) {
