@@ -1,7 +1,7 @@
 package osiris.interface_adapter.dashboard;
 
 /**
- * The ViewModel for the Welcome View.
+ * The ViewModel for the Dashboard View.
  */
 public class DashboardViewModel {
 
