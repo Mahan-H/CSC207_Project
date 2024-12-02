@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Created dashboard with no button functionality yet" />
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Created dashboard with no button functionality yet">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +43,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Mahan-H/CSC207_Project.git&quot;,
-    &quot;accountId&quot;: &quot;bf90b3b3-d855-430d-938e-fd58aa070cfe&quot;
+    &quot;accountId&quot;: &quot;567f7439-1398-4705-9b04-777fb3067431&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -86,7 +88,7 @@
     &quot;Spring Boot.PlaidIntegrationApplication.executor&quot;: &quot;Run&quot;,
     &quot;app.teamhub.selectedTeam&quot;: &quot;github.com/Mahan-H/lab-5&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;christopher.roy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#27 on shah.kabir&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -96,7 +98,6 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-
   }
 }</component>
   <component name="RecentsManager">
@@ -470,6 +471,7 @@
       <workItem from="1732927140228" duration="4822000" />
       <workItem from="1732991885900" duration="19601000" />
       <workItem from="1733046801612" duration="11202000" />
+      <workItem from="1733164389967" duration="719000" />
     </task>
     <task id="LOCAL-00001" summary="Created dashboard with no button functionality yet">
       <option name="closed" value="true" />
@@ -487,7 +489,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733079761262</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created dashboard with no button functionality yet">
+      <option name="closed" value="true" />
+      <created>1733164601730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733164601730</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +508,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
