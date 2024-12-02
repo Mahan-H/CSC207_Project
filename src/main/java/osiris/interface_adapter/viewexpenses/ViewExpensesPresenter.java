@@ -1,6 +1,7 @@
 package osiris.interface_adapter.viewexpenses;
 
 import osiris.interface_adapter.ViewManagerModel;
+import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.viewexpenses.ViewExpensesOutputData;
 
@@ -10,7 +11,7 @@ import osiris.use_case.viewexpenses.ViewExpensesOutputData;
 public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
     private final ViewExpensesViewModel viewExpensesViewModel;
     private final ViewManagerModel viewManagerModel;
-    //    HomeViewModel homeViewModel;
+    private DashboardViewModel dashboardViewModel;
 
     public ViewExpensesPresenter(ViewExpensesViewModel viewExpensesViewModel,
                                  ViewManagerModel viewManagerModel) {
@@ -32,6 +33,8 @@ public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
 
     @Override
     public void switchToHomeView() {
+        viewManagerModel.setState(dashboardViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
 }

@@ -36,7 +36,6 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
     private ViewExpensesController controller;
     private final JButton goBack;
     private final JButton expensesButton;
-    private final JButton transactionsButton;
     private GrabTransactionController grabTransactionController;
 
     public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel, String name) {
@@ -48,11 +47,9 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
         final JPanel buttons = new JPanel();
         expensesButton = new JButton(ViewExpensesViewModel.BUTTON_LABEL);
         goBack = new JButton(ViewExpensesViewModel.BACK_LABEL);
-        transactionsButton = new JButton(ViewExpensesViewModel.TRANSACTION_BUTTON);
 
         buttons.add(expensesButton);
         buttons.add(goBack);
-        buttons.add(transactionsButton);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

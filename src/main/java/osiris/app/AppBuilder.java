@@ -116,7 +116,7 @@ public class AppBuilder {
      */
     public AppBuilder addViewExpensesView() {
         viewExpensesViewModel = new ViewExpensesViewModel();
-        viewExpenses = new ViewExpenses(viewExpensesViewModel, userDataAccessObject.getCurrentEmail());
+        viewExpenses = new ViewExpenses(viewExpensesViewModel, "divnoor");
         cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
@@ -145,7 +145,7 @@ public class AppBuilder {
      */
     public AppBuilder addDashboardUseCase() {
         final DashboardOutputBoundary dashboardOutputBoundary = new DashboardPresenter(viewManagerModel,
-                dashboardViewModel);
+                dashboardViewModel, viewExpensesViewModel);
         final DashboardInputBoundary userDashboardInteractor = new DashboardInteractor(dashboardOutputBoundary,
                 userFactory);
 

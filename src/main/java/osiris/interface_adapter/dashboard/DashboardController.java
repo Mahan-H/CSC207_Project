@@ -20,5 +20,10 @@ public class DashboardController {
         userDashboardUseCaseInteractor.switchToAddBankAccountView();
     }
 
-
+    /**
+     * Executes the "switch to ViewExpenses" Use Case.
+     */
+    public void switchToViewExpenses() {
+        userDashboardUseCaseInteractor.switchToViewExpenses();
+    }
 }

@@ -18,5 +18,10 @@ public class DashboardInteractor implements DashboardInputBoundary {
     @Override
     public void switchToAddBankAccountView() {
         userPresenter.switchToAddBankAccountView();
-        }
+    }
+
+    @Override
+    public void switchToViewExpenses() {
+        userPresenter.switchToViewExpenses();
+    }
 }

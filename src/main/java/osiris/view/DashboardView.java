@@ -99,7 +99,7 @@ public class DashboardView extends JPanel implements ActionListener {
         viewTransactionHistory.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        dashboardController.switchToLoginView();
+                        dashboardController.switchToViewExpenses();
                     }
                 }
         );
