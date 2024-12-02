@@ -66,7 +66,7 @@ public class DashboardView extends JPanel implements ActionListener {
         viewBudget.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewBudget.setPreferredSize(PREFERRED_SIZE_BUTTON);
 
-        viewShahCase = new JButton(dashboardViewModel.VIEW_SHAHCASE_BUTTON_LABEL);
+        viewShahCase = new JButton(dashboardViewModel.VIEW_ASSETS_REPORT_BUTTON_LABEL);
         viewShahCase.setForeground(Color.BLACK);
         viewShahCase.setBackground(COLOR);
         viewShahCase.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, BUTTON_FONT_SIZE));
