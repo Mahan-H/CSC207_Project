@@ -71,7 +71,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                                     currentState.getPassword(),
                                     currentState.getAccessCode()
                             );
-                            openWebPageWithEmail(currentState.getEmail());
                         }
                     }
                 }
@@ -169,15 +168,4 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-
-    public void openWebPageWithEmail(String email) {
-        try {
-            String encodedEmail = URLEncoder.encode(email, "UTF-8");
-            String url = "http://localhost:8080?email=" + encodedEmail;
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -7,12 +7,12 @@ public class CommonUser implements User {
 
     private final String name;
     private final String password;
-    private final String access_code;
+    private final String accessCode;
 
     public CommonUser(String name, String password, String access_code) {
         this.name = name;
         this.password = password;
-        this.access_code = access_code;
+        this.accessCode = access_code;
     }
 
     @Override
@@ -27,12 +27,7 @@ public class CommonUser implements User {
 
     @Override
     public String getAccessCode() {
-        return access_code;
-    }
-
-    @Override
-    public String getItemID() {
-        return "";
+        return accessCode;
     }
 
 }

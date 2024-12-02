@@ -1,5 +1,7 @@
 package osiris.use_case.plaid;
 
+import java.sql.SQLException;
+
 import osiris.entity.User;
 
 /**
@@ -8,16 +10,11 @@ import osiris.entity.User;
 public interface PlaidDataBaseUserAccessObjectInterface {
 
     /**
-     * Saves the user.
-     * @param user the user to save
-     */
-    void save(User user);
-
-    /**
      * Sets the access code.
      * @param user the user to set the access code
+     * @throws SQLException if there is an error setting the access code
      */
-    void setAccessCode(User user);
+    void save(User user) throws SQLException;
 
     /**
      * Gets the user.
@@ -25,4 +22,6 @@ public interface PlaidDataBaseUserAccessObjectInterface {
      * @return the user
      */
     User get(String username);
+
+    void changePassword(User newUser);
 }

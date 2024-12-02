@@ -9,9 +9,9 @@ public interface UserFactory {
      *
      * @param name      the name of the new user
      * @param password  the password of the new user
-     * @param userPlaid
+     * @param accessCode the user's Plaid
      * @return the new user
      */
-    User create(String name, String password, String userPlaid);
+    User create(String name, String password, String accessCode);
 
 }
