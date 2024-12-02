@@ -33,7 +33,7 @@ public class ViewExpensesPresenter implements ViewExpensesOutputBoundary {
 
     @Override
     public void switchToHomeView() {
-        viewManagerModel.setState(dashboardViewModel.getViewName());
+        viewManagerModel.setState("dashboard");
         viewManagerModel.firePropertyChanged();
     }
 

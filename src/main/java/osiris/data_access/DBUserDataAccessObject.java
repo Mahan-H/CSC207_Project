@@ -38,9 +38,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
     private static final String STATUS_CODE_LABEL = "status_code";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/osiris";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/schema_name";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "csc207";
+    private static final String DB_PASSWORD = "Divnoor123";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "passwords";
     private static final String MESSAGE = "message";
@@ -55,7 +55,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public User get(String username) {
-        String sql = "SELECT username, passwords, accessCode FROM users WHERE username = ?";
+        String sql = "SELECT username, passwords, accessCode FROM table_name WHERE username = ?";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -95,7 +95,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public boolean existsByName(String username) {
-        String sql = "SELECT 1 FROM users WHERE username = ?";
+        String sql = "SELECT 1 FROM table_name WHERE username = ?";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -106,13 +106,13 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
                 }
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error checking if user exists: " + e.getMessage(), e);
+        catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Error checking if user exists: " + ex.getMessage(), ex);
         }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("MySQL JDBC Driver not found.", e);
+        catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("MySQL JDBC Driver not found.", ex);
         }
     }
 
@@ -124,7 +124,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             e.printStackTrace();
             throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
-        String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
+        String sql = "INSERT INTO table_name (username, passwords, accessCode) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE passwords = VALUES(passwords), accessCode = VALUES(accessCode);";
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -150,7 +150,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
 
-        String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
+        String sql = "INSERT INTO table_name (username, passwords, accessCode) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE password = VALUES(password), accessCode = VALUES(accessCode);";
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
