@@ -38,7 +38,7 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
     private final JButton expensesButton;
     private GrabTransactionController grabTransactionController;
 
-    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel, String name) {
+    public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel) {
         this.viewExpensesViewModel = viewExpensesViewModel;
 
         final JLabel title = new JLabel(ViewExpensesViewModel.TITLE_LABEL);
@@ -59,8 +59,8 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         try {
                             final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
-                                    name);
-                            controller.execute((List<Transaction>) transactions);
+                                    "divnoor");
+                            controller.execute(String.valueOf(transactions));
                             final ViewExpensesState currentState = viewExpensesViewModel.getState();
                             PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
                             );
@@ -94,6 +94,10 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
 
     public void setViewExpensesController(ViewExpensesController viewExpensesController) {
         this.controller = viewExpensesController;
+    }
+
+    public void setGrabTransactionController(GrabTransactionController grabTransactionController) {
+        this.grabTransactionController = grabTransactionController;
     }
 
     @Override

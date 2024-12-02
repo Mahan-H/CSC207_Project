@@ -2,7 +2,6 @@ package osiris.use_case.grabtransactions;
 
 import java.util.List;
 
-import com.plaid.client.model.Transaction;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,13 +13,13 @@ import lombok.Setter;
 @Getter
 public class GrabTransactionOutputData {
 
-    private List<Transaction> transactions;
+    private String transactions;
 
-    public GrabTransactionOutputData(List<Transaction> transactions) {
+    public GrabTransactionOutputData(String transactions) {
         this.transactions = transactions;
     }
 
-    public List<Transaction> getTransactions() {
+    public String getTransactions() {
         return transactions;
     }
 

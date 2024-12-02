@@ -14,6 +14,7 @@ import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
 import osiris.data_access.EmailServiceImpl;
 import osiris.interface_adapter.ViewManagerModel;
+import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
@@ -33,6 +34,9 @@ import osiris.interface_adapter.verify.VerifyViewModel;
 import osiris.interface_adapter.dashboard.DashboardController;
 import osiris.interface_adapter.dashboard.DashboardPresenter;
 import osiris.interface_adapter.dashboard.DashboardViewModel;
+import osiris.use_case.grabtransactions.GrabTransactionsInputBoundary;
+import osiris.use_case.grabtransactions.GrabTransactionsInputData;
+import osiris.use_case.grabtransactions.GrabTransactionsInteractor;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
@@ -117,7 +121,7 @@ public class AppBuilder {
      */
     public AppBuilder addViewExpensesView() {
         viewExpensesViewModel = new ViewExpensesViewModel();
-        viewExpenses = new ViewExpenses(viewExpensesViewModel, "divnoor");
+        viewExpenses = new ViewExpenses(viewExpensesViewModel);
         cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
@@ -217,8 +221,15 @@ public class AppBuilder {
         final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
                 viewExpensesOutputBoundary);
 
+        final GrabTransactionsInputBoundary userViewExpensesGrab = new GrabTransactionsInteractor(userDataAccessObject,
+                plaidDataAccessObject);
+
         final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
+        final GrabTransactionController grabTransactionController = new GrabTransactionController(userViewExpensesGrab);
+
         viewExpenses.setViewExpensesController(controller);
+        viewExpenses.setGrabTransactionController(grabTransactionController);
+
         return this;
     }
 
