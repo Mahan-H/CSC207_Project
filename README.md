@@ -4,7 +4,7 @@
 ### Mahan Hooshmandkhayat:
 ###### Welcome View for Team Use Case, Add Bank Account Use Case, MySQL Database Integration, Spring Boot Server Integration, Frontend Integration Using JavaScript and Html
 ### Divnoor Pal Singh Chatha:
-###### Verify View for Team Use Case, GrabTransaction UseCase, ViewExpenses UseCase
+###### Verify View for Team Use Case, GrabTransaction UseCase, ViewExpenses UseCase, JFreeChart Integration
 ### Shah Jalalul Kabir:
 ######
 ### Christopher Han Roy:

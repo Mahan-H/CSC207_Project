@@ -2,6 +2,8 @@ package osiris.use_case.plaid;
 
 import osiris.utility.exceptions.PlaidUseCaseException;
 
+import java.sql.SQLException;
+
 /**
  * Interface defining the Plaid Interactor's use cases.
  */
@@ -24,5 +26,5 @@ public interface PlaidInputBoundary {
      * @throws PlaidUseCaseException If an error occurs during the use case execution.
      */
     ExchangePublicTokenOutputData exchangePublicToken(
-            ExchangePublicTokenInputData inputData) throws PlaidUseCaseException;
+            ExchangePublicTokenInputData inputData) throws PlaidUseCaseException, SQLException;
 }
