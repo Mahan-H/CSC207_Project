@@ -6,9 +6,8 @@ package osiris.use_case.dashboard;
 public interface DashboardOutputBoundary {
 
     /**
-     * Switches to the add bank account View.
+     * Switches to the ViewExpenses.
      */
-    void switchToAddBankAccountView();
-
+    void switchToViewExpenses();
 
 }

@@ -10,5 +10,8 @@ public interface DashboardInputBoundary {
      */
     void switchToAddBankAccountView();
 
-
+    /**
+     * Executes the switch to ViewExpenses view use case.
+     */
+    void switchToViewExpenses();
 }

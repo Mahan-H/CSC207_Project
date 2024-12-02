@@ -18,7 +18,7 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
     }
 
     @Override
-    public void handle(ViewExpensesInputData inputData) {
+    public void execute(ViewExpensesInputData inputData) {
         // Fetch transactions from Plaid API
         final List<Transaction> transactions = inputData.getTransactionList();
 

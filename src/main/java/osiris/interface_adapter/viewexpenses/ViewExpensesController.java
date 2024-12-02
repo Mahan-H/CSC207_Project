@@ -23,13 +23,13 @@ public class ViewExpensesController {
 
     public void execute(List<Transaction> transactionList) {
         final ViewExpensesInputData inputData = new ViewExpensesInputData(transactionList);
-        interactor.handle(inputData);
+        interactor.execute(inputData);
     }
 
     /**
      * Executes the "switch to Home" Use Case.
      */
     public void switchToHomeView() {
-
+        interactor.switchToHomeView();
     }
 }

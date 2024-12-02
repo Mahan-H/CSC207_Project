@@ -16,4 +16,5 @@ public class VerifyViewModel extends ViewModel<VerifyState> {
         super("verify");
         setState(new VerifyState());
     }
+
 }
