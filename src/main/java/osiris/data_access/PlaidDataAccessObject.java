@@ -1,7 +1,20 @@
 package osiris.data_access;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.plaid.client.model.AssetReportCreateRequest;
+import com.plaid.client.model.AssetReportCreateRequestOptions;
+import com.plaid.client.model.AssetReportCreateResponse;
+import com.plaid.client.model.AssetReportUser;
+import com.plaid.client.model.Transaction;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -9,27 +22,22 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import osiris.utility.exceptions.PlaidException;
 
-import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
-
 @Repository
 public class PlaidDataAccessObject {
 
     private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
-    private final OkHttpClient client;
-    private final Gson gson;
+    public OkHttpClient client;
+    public Gson gson;
 
     @Value("${plaid.client_id}")
-    private String clientId;
+    public String clientId;
 
     @Value("${plaid.secret}")
-    private String secret;
+    public String secret;
 
     @Value("${plaid.environment}")
-    private String environment;
+    public String environment;
 
     public PlaidDataAccessObject() {
         this.client = new OkHttpClient();
@@ -57,17 +65,19 @@ public class PlaidDataAccessObject {
     /**
      * Sends a POST request to the specified Plaid endpoint with the given JSON body.
      *
-     * @param endpoint   The specific Plaid API endpoint.
-     * @param jsonBody   The JSON body to send in the request.
+     * @param endpoint The specific Plaid API endpoint.
+     * @param jsonBody The JSON body to send in the request.
      * @return The JSON response from Plaid as a string.
-     * @throws IOException If an I/O error occurs during the API call.
+     * @throws IOException    If an I/O error occurs during the API call.
      * @throws PlaidException If the Plaid API returns an unsuccessful response.
      */
     private String postToPlaid(String endpoint, JsonObject jsonBody) throws IOException {
         String url = getPlaidUrl(endpoint);
 
-        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(jsonBody));
+        System.out.println("Sending request to: " + url);
+        System.out.println("Request payload: " + gson.toJson(jsonBody));
 
+        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(jsonBody));
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
@@ -75,11 +85,14 @@ public class PlaidDataAccessObject {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            String responseBody = response.body().string();
+            System.out.println("Response from Plaid: " + responseBody);
+
             if (!response.isSuccessful()) {
-                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message() + " - " + responseBody);
             }
 
-            return response.body().string();
+            return responseBody;
         }
     }
 
@@ -146,5 +159,82 @@ public class PlaidDataAccessObject {
         public String access_token;
         public String item_id;
         public String request_id;
+    }
+
+    public List<Transaction> fetchTransactions(String accessToken) throws IOException, PlaidException {
+        LocalDate startDate = LocalDate.now().minusDays(30);
+        LocalDate endDate = LocalDate.now();
+
+        JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("client_id", clientId);
+        requestBody.addProperty("secret", secret);
+        requestBody.addProperty("access_token", accessToken);
+        requestBody.addProperty("start_date", startDate.toString());
+        requestBody.addProperty("end_date", endDate.toString());
+
+        String url = getPlaidUrl("transactions/get");
+        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+            }
+            assert response.body() != null;
+            JsonObject responseJson = gson.fromJson(response.body().string(), JsonObject.class);
+            // Parse the transactions from the response JSON
+            Transaction[] transactions = gson.fromJson(responseJson.getAsJsonArray("transactions"), Transaction[].class);
+            return new ArrayList<>(List.of(transactions));
+        }
+    }
+
+    // Create Asset Report
+    public String createAssetReport(String accessToken, int daysRequested) throws IOException {
+        JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("client_id", clientId);
+        requestBody.addProperty("secret", secret);
+        requestBody.add("access_tokens", gson.toJsonTree(new String[]{accessToken}));
+        requestBody.addProperty("days_requested", daysRequested);
+
+        String responseBody = postToPlaid("asset_report/create", requestBody);
+        JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+        return jsonResponse.get("asset_report_token").getAsString();
+    }
+
+    // Retrieve Asset Report (JSON)
+    public String getAssetReport(String assetReportToken) throws IOException {
+        JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("client_id", clientId);
+        requestBody.addProperty("secret", secret);
+        requestBody.addProperty("asset_report_token", assetReportToken);
+
+        String responseBody = postToPlaid("asset_report/get", requestBody);
+        return responseBody;
+    }
+
+    // Retrieve Asset Report as PDF
+    public byte[] getAssetReportPdf(String assetReportToken) throws IOException {
+        JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("client_id", clientId);
+        requestBody.addProperty("secret", secret);
+        requestBody.addProperty("asset_report_token", assetReportToken);
+
+        RequestBody body = RequestBody.create(JSON_MEDIA_TYPE, gson.toJson(requestBody));
+        Request request = new Request.Builder()
+                .url(getPlaidUrl("asset_report/pdf/get"))
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new PlaidException("Plaid API Error: " + response.code() + " - " + response.message());
+            }
+            return response.body().bytes();
+        }
     }
 }
