@@ -6,7 +6,7 @@
 ### Divnoor Pal Singh Chatha:
 ###### Verify View for Team Use Case, GrabTransaction UseCase, ViewExpenses UseCase
 ### Shah Jalalul Kabir:
-######
+###### CAPTCHA Verification System for Team Use Case, Generate Assets Report UseCase
 ### Christopher Han Roy:
 #####
 
