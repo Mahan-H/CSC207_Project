@@ -3,7 +3,6 @@ package osiris.interface_adapter.signup;
 import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.verify.VerifyState;
 import osiris.interface_adapter.verify.VerifyViewModel;
-
 import osiris.interface_adapter.welcome.WelcomeViewModel;
 import osiris.use_case.signup.SignupOutputBoundary;
 import osiris.use_case.signup.SignupOutputData;
@@ -31,7 +30,7 @@ public class SignupPresenter implements SignupOutputBoundary {
     public void prepareSuccessView(SignupOutputData response) {
         // On success, switch to the login view.
         final VerifyState verifyState = verifyViewModel.getState();
-        verifyState.setUsername(response.getEmail());
+        verifyState.setUsername(response.getUser());
         this.verifyViewModel.setState(verifyState);
         verifyViewModel.firePropertyChanged();
 
@@ -42,7 +41,7 @@ public class SignupPresenter implements SignupOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         final SignupState signupState = signupViewModel.getState();
-        signupState.setEmailError(error);
+        signupState.setUserError(error);
         signupViewModel.firePropertyChanged();
     }
 

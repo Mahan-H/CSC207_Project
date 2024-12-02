@@ -1,17 +1,16 @@
 package osiris.app;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 import osiris.data_access.DBUserDataAccessObject;
 import osiris.entity.CommonUserFactory;
 import osiris.entity.UserFactory;
-import osiris.data_access.EmailServiceImpl;
 import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
@@ -19,6 +18,9 @@ import osiris.interface_adapter.login.LoginViewModel;
 import osiris.interface_adapter.signup.SignupController;
 import osiris.interface_adapter.signup.SignupPresenter;
 import osiris.interface_adapter.signup.SignupViewModel;
+import osiris.interface_adapter.viewexpenses.ViewExpensesController;
+import osiris.interface_adapter.viewexpenses.ViewExpensesPresenter;
+import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
 import osiris.interface_adapter.welcome.WelcomeController;
 import osiris.interface_adapter.welcome.WelcomePresenter;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
@@ -34,6 +36,9 @@ import osiris.use_case.verify.VerifyOutputBoundary;
 import osiris.use_case.signup.SignupInputBoundary;
 import osiris.use_case.signup.SignupInteractor;
 import osiris.use_case.signup.SignupOutputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInputBoundary;
+import osiris.use_case.viewexpenses.ViewExpensesInteractor;
+import osiris.use_case.viewexpenses.ViewExpensesOutputBoundary;
 import osiris.use_case.welcome.WelcomeInputBoundary;
 import osiris.use_case.welcome.WelcomeInteractor;
 import osiris.use_case.welcome.WelcomeOutputBoundary;
@@ -62,8 +67,6 @@ public class AppBuilder {
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
 
-    private final EmailServiceImpl emailService = new EmailServiceImpl();
-
     private SignupView signupView;
     private SignupViewModel signupViewModel;
     private LoginViewModel loginViewModel;
@@ -72,6 +75,8 @@ public class AppBuilder {
     private WelcomeViewModel welcomeViewModel;
     private VerifyViewModel verifyViewModel;
     private VerifyView verifyView;
+    private ViewExpenses viewExpenses;
+    private ViewExpensesViewModel viewExpensesViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -86,6 +91,17 @@ public class AppBuilder {
         signupViewModel = new SignupViewModel();
         signupView = new SignupView(signupViewModel);
         cardPanel.add(signupView, signupView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
+    public AppBuilder addViewExpensesView() {
+        viewExpensesViewModel = new ViewExpensesViewModel();
+        viewExpenses = new ViewExpenses(viewExpensesViewModel, userDataAccessObject.getCurrentUser());
+        cardPanel.add(viewExpenses, viewExpenses.getViewName());
         return this;
     }
 
@@ -127,8 +143,26 @@ public class AppBuilder {
      */
 
     public AppBuilder addVerifyView() {
+        // Initialize ViewModel
         verifyViewModel = new VerifyViewModel();
+
+        // Initialize Presenter (OutputBoundary)
+        final VerifyOutputBoundary verifyOutputBoundary =
+                new VerifyPresenter(verifyViewModel, signupViewModel, viewManagerModel);
+
+        // Initialize Interactor (InputBoundary)
+        final VerifyInputBoundary verifyInteractor =
+                new VerifyInteractor(verifyOutputBoundary);
+
+        // Initialize Controller
+        final VerifyController verifyController =
+                new VerifyController(verifyInteractor);
+
+        // Initialize View and inject Controller
         verifyView = new VerifyView(verifyViewModel);
+        verifyView.setVerifyController(verifyController);
+
+        // Add View to the card panel
         cardPanel.add(verifyView, verifyView.getViewName());
         return this;
     }
@@ -141,10 +175,26 @@ public class AppBuilder {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
                 signupViewModel, verifyViewModel, welcomeViewModel);
         final SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory, emailService);
+                userDataAccessObject, signupOutputBoundary, userFactory);
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the ViewExpenses View to the application.
+     * @return this builder
+     */
+    public AppBuilder addViewExpensesUseCase() {
+        final ViewExpensesOutputBoundary viewExpensesOutputBoundary = new ViewExpensesPresenter(viewExpensesViewModel,
+                viewManagerModel);
+
+        final ViewExpensesInputBoundary userViewExpensesInteractor = new ViewExpensesInteractor(
+                viewExpensesOutputBoundary);
+
+        final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
+        viewExpenses.setViewExpensesController(controller);
         return this;
     }
 
@@ -153,12 +203,19 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addLoginUseCase() {
-        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loginViewModel, welcomeViewModel, verifyViewModel);
-        final LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject, loginOutputBoundary);
+        // Create the LoginOutputBoundary (Presenter)
+        final LoginOutputBoundary loginOutputBoundary =
+                new LoginPresenter(viewManagerModel, loginViewModel, welcomeViewModel, verifyViewModel);
 
-        final LoginController loginController = new LoginController(loginInteractor);
+        // Create the LoginInputBoundary (Interactor)
+        final LoginInputBoundary loginInteractor =
+                new LoginInteractor(userDataAccessObject, loginOutputBoundary);
+
+        // Create the LoginController
+        final LoginController loginController =
+                new LoginController(loginInteractor);
+
+        // Add CAPTCHA integration in Login View
         loginView.setLoginController(loginController);
         return this;
     }
@@ -181,17 +238,19 @@ public class AppBuilder {
 //    }
 
     public AppBuilder addVerifyUseCase() {
+        final VerifyViewModel verifyViewModel = new VerifyViewModel();
+
         final VerifyOutputBoundary verifyOutputBoundary =
                 new VerifyPresenter(verifyViewModel, signupViewModel, viewManagerModel);
 
         final VerifyInputBoundary verifyInteractor =
-                new VerifyInteractor(verifyOutputBoundary, emailService, userDataAccessObject);
+                new VerifyInteractor(verifyOutputBoundary);
 
         final VerifyController verifyController =
                 new VerifyController(verifyInteractor);
-        verifyView.setVerifyController(verifyController);
-        return this;
 
+        verifyView.setVerifyController(verifyController); // Attach controller to view
+        return this;
     }
 
     /**

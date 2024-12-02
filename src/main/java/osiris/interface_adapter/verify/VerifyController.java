@@ -4,42 +4,29 @@ import osiris.use_case.verify.VerifyInputBoundary;
 import osiris.use_case.verify.VerifyInputData;
 
 /**
- * Controller for the verify Use Case.
+ * Controller for the Verify Use Case.
  */
 
 public class VerifyController {
-    private final VerifyInputBoundary verifyUseCaseInteractor;
+    private final VerifyInputBoundary verifyInteractor;
 
-    public VerifyController(VerifyInputBoundary verifyUseCaseInteractor) {
-        this.verifyUseCaseInteractor = verifyUseCaseInteractor;
+    public VerifyController(VerifyInputBoundary verifyInteractor) {
+        this.verifyInteractor = verifyInteractor;
     }
 
-    /**
-     * Executes the Verify Email Use Case.
-     * @param email the email of the user whose password to change
-     * @param verifyCode the verification code that is being sent to the user.
-     */
-
-    public void execute(String email, String verifyCode) {
-        final VerifyInputData verifyInputData = new VerifyInputData(email, verifyCode);
-        verifyUseCaseInteractor.execute(verifyInputData);
+    public String generateCaptcha() {
+        // Generate a new CAPTCHA via the interactor
+        String sessionId = "user-session-id";
+        return verifyInteractor.generateCaptcha(sessionId);
     }
 
-    /**
-     * Executes the "switch to LoginView" Use Case.
-     */
-
-    public void switchToSignUpView() {
-        verifyUseCaseInteractor.switchToSignUpView();
+    public boolean validateCaptcha(String enteredCaptcha, String currentCaptcha) {
+        String sessionId = "user-session-id";
+        return verifyInteractor.validateCaptcha(enteredCaptcha, currentCaptcha);
     }
 
-    /**
-     * Resends the verification email to the user.
-     * @param email the user's email
-     */
-    public void resendVerificationEmail(String email) {
-        VerifyInputData inputData = new VerifyInputData(email, null);
-        verifyUseCaseInteractor.resendVerificationEmail(inputData);
+    public void execute(String enteredCaptcha) {
+        VerifyInputData inputData = new VerifyInputData("User", enteredCaptcha);
+        verifyInteractor.execute(inputData);
     }
-
 }

@@ -62,18 +62,16 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
                 final String item_id = userJSONObject.has(ITEM_ID) ? userJSONObject.getString(ITEM_ID) : null;
 
                 return userFactory.create(name, password, access_code);
-            }
-            else {
+            } else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
 
     @Override
-    public void setCurrentEmail(String name) {
+    public void setCurrentUser(String name) {
         // this isn't implemented for the lab
     }
 
@@ -91,8 +89,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             final JSONObject responseBody = new JSONObject(response.body().string());
 
             return responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE;
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -105,7 +102,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         // POST METHOD
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
-        requestBody.put(USERNAME, user.getEmail());
+        requestBody.put(USERNAME, user.getUser());
         requestBody.put(PASSWORD, user.getPassword());
         requestBody.put(ACCESS_CODE, user.getAccessCode());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
@@ -121,12 +118,10 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 // success!
-            }
-            else {
+            } else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -148,32 +143,28 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    public String getAccessCode(String email) {
+    public String getAccessCode(String user) {
         final OkHttpClient client = new OkHttpClient.Builder().build();
         final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/saveAccessCode?email=%s", email))
+                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/saveAccessCode?user=%s", user))
                 .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
                 .build();
         try (Response response = client.newCall(request).execute()) {
             final JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 return responseBody.getString("access_code");
-            }
-            else {
+            } else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
-
 
 
     @Override
@@ -184,7 +175,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         // POST METHOD
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
-        requestBody.put(USERNAME, user.getEmail());
+        requestBody.put(USERNAME, user.getUser());
         requestBody.put(PASSWORD, user.getPassword());
         requestBody.put(ACCESS_CODE, user.getAccessCode());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
@@ -200,61 +191,16 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 // success!
-            }
-            else {
+            } else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
 
     @Override
-    public String getCurrentEmail() {
+    public String getCurrentUser() {
         return null;
-    }
-
-    public void saveVerificationCode(String email, String verificationCode) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put("email", email);
-        requestBody.put("verificationCode", verificationCode);
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/saveVerificationCode")
-                .post(body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) != SUCCESS_CODE) {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-    public String getVerificationCode(String email) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/getVerificationCode?email=%s", email))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                return responseBody.getString("verificationCode");
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
     }
 }

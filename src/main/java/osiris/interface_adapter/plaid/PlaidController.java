@@ -1,5 +1,6 @@
 package osiris.interface_adapter.plaid;
 
+import org.springframework.http.*;
 import osiris.use_case.plaid.PlaidInputBoundary;
 import osiris.use_case.plaid.CreateLinkTokenInputData;
 import osiris.use_case.plaid.ExchangePublicTokenInputData;
@@ -10,9 +11,9 @@ import osiris.utility.data_transfer_objects.ExchangeTokenRequestDTO;
 import osiris.utility.data_transfer_objects.LinkTokenRequestDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -66,33 +67,44 @@ public class PlaidController {
         return ResponseEntity.ok(outputData);
     }
 
-    /**
-     * Endpoint to create an Asset Report.
-     *
-     * @param requestBody The request body containing access token and days requested.
-     * @return The asset report token.
-     */
+    // Create Asset Report
     @PostMapping("/asset-report/create")
-    public ResponseEntity<String> createAssetReport(@RequestBody Map<String, Object> requestBody) throws PlaidUseCaseException {
-        String accessToken = (String) requestBody.get("access_token");
-        int daysRequested = (int) requestBody.get("days_requested");
-
-        String assetReportToken = plaidInteractor.createAssetReport(accessToken, daysRequested);
-        return ResponseEntity.ok(assetReportToken);
+    public ResponseEntity<String> createAssetReport(@RequestBody String accessToken) {
+        try {
+            String assetReportToken = plaidInteractor.createAssetReport(accessToken, 90);
+            return ResponseEntity.ok(assetReportToken);
+        } catch (PlaidUseCaseException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error creating asset report: " + e.getMessage());
+        }
     }
 
-    /**
-     * Endpoint to retrieve an Asset Report.
-     *
-     * @param requestBody The request body containing the asset report token.
-     * @return The asset report JSON.
-     */
-    @PostMapping("/asset-report/retrieve")
-    public ResponseEntity<String> retrieveAssetReport(@RequestBody Map<String, String> requestBody) throws PlaidUseCaseException {
-        String assetReportToken = requestBody.get("asset_report_token");
-
-        String assetReport = plaidInteractor.retrieveAssetReport(assetReportToken);
-        return ResponseEntity.ok(assetReport);
+    // Get Asset Report (JSON)
+    @GetMapping("/asset-report/get")
+    public ResponseEntity<String> getAssetReport(@RequestParam String assetReportToken) {
+        try {
+            String assetReport = plaidInteractor.getAssetReport(assetReportToken);
+            return ResponseEntity.ok(assetReport);
+        } catch (PlaidUseCaseException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error retrieving asset report: " + e.getMessage());
+        }
     }
 
+    // Get Asset Report as PDF
+    @GetMapping("/asset-report/pdf")
+    public ResponseEntity<byte[]> getAssetReportPdf(@RequestParam String assetReportToken) {
+        try {
+            byte[] pdfData = plaidInteractor.getAssetReportPdf(assetReportToken);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDisposition(ContentDisposition.builder("attachment").filename("asset_report.pdf").build());
+
+            return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+        } catch (PlaidUseCaseException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
+        }
+    }
 }

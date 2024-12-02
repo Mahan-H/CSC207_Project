@@ -4,13 +4,13 @@ package osiris.interface_adapter.login;
  * The state for the Login View Model.
  */
 public class LoginState {
-    private String email = "";
+    private String user = "";
     private String loginError;
     private String password = "";
     private String access_code = "";
 
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
     public String getLoginError() {
@@ -21,8 +21,8 @@ public class LoginState {
         return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void setLoginError(String usernameError) {

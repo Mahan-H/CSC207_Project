@@ -25,7 +25,31 @@ public interface PlaidInputBoundary {
      */
     ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData) throws PlaidUseCaseException;
 
+    /**
+     * Create an Asset Report.
+     *
+     * @param accessToken The access token for the user's bank account.
+     * @param daysRequested Number of days of data to include in the report.
+     * @return The asset report token.
+     * @throws PlaidUseCaseException If an error occurs while creating the report.
+     */
     String createAssetReport(String accessToken, int daysRequested) throws PlaidUseCaseException;
 
-    String retrieveAssetReport(String assetReportToken) throws PlaidUseCaseException;
+    /**
+     * Retrieve an Asset Report in JSON format.
+     *
+     * @param assetReportToken The token for the generated asset report.
+     * @return The asset report as a JSON string.
+     * @throws PlaidUseCaseException If an error occurs while retrieving the report.
+     */
+    String getAssetReport(String assetReportToken) throws PlaidUseCaseException;
+
+    /**
+     * Retrieve an Asset Report in PDF format.
+     *
+     * @param assetReportToken The token for the generated asset report.
+     * @return The asset report as a byte array representing a PDF file.
+     * @throws PlaidUseCaseException If an error occurs while retrieving the report.
+     */
+    byte[] getAssetReportPdf(String assetReportToken) throws PlaidUseCaseException;
 }

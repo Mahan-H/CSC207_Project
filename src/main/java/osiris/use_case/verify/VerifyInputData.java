@@ -5,35 +5,30 @@ package osiris.use_case.verify;
  */
 
 public class VerifyInputData {
-    private final String email;
-    private final String verifyCode;
+    private final String user;
+    private final String captchaResponse;
 
     /**
      * Constructs a new VerifyInputData instance with the specified email and verification code.
      *
-     * @param email      the user's email address
-     * @param verifyCode the verification code
+     * @param user the user's username
+     * @param captchaResponse the response to the CAPTCHA
      */
-    public VerifyInputData(String email, String verifyCode) {
-        this.email = email;
-        this.verifyCode = verifyCode;
+    public VerifyInputData(String user, String captchaResponse) {
+        this.user = user;
+        this.captchaResponse = captchaResponse;
     }
 
     /**
-     * Returns the user's email address.
+     * Returns the user's username.
      *
-     * @return the email address
+     * @return the username
      */
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
-    /**
-     * Returns the verification code.
-     *
-     * @return the verification code
-     */
-    public String getVerifyCode() {
-        return verifyCode;
+    public String getCaptchaResponse() {
+        return captchaResponse;
     }
 }

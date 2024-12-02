@@ -5,20 +5,20 @@ package osiris.use_case.signup;
  */
 public class SignupInputData {
 
-    private final String email;
+    private final String user;
     private final String password;
     private final String repeatPassword;
     private final String access_code;
 
-    public SignupInputData(String email, String password, String repeatPassword, String access_code) {
-        this.email = email;
+    public SignupInputData(String user, String password, String repeatPassword, String access_code) {
+        this.user = user;
         this.password = password;
         this.repeatPassword = repeatPassword;
         this.access_code = access_code;
     }
 
-    String getEmail() {
-        return email;
+    String getUser() {
+        return user;
     }
 
     String getPassword() {

@@ -9,7 +9,7 @@ public interface User {
      * Returns the username of the user.
      * @return the username of the user.
      */
-    String getEmail();
+    String getUser();
 
     /**
      * Returns the password of the user.
@@ -22,4 +22,8 @@ public interface User {
      * @return the access code of the user.
      */
     String getAccessCode();
+
+
+    String getItemID();
+
 }

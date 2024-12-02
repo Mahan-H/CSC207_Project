@@ -5,16 +5,16 @@ package osiris.use_case.logout;
  */
 public class LogoutOutputData {
 
-    private String email;
+    private String user;
     private boolean useCaseFailed;
 
-    public LogoutOutputData(String email, boolean useCaseFailed) {
-        this.email = email;
+    public LogoutOutputData(String user, boolean useCaseFailed) {
+        this.user = user;
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
     public boolean isUseCaseFailed() {

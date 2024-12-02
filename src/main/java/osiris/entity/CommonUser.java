@@ -16,7 +16,7 @@ public class CommonUser implements User {
     }
 
     @Override
-    public String getEmail() {
+    public String getUser() {
         return name;
     }
 
@@ -28,6 +28,11 @@ public class CommonUser implements User {
     @Override
     public String getAccessCode() {
         return access_code;
+    }
+
+    @Override
+    public String getItemID() {
+        return "";
     }
 
 }

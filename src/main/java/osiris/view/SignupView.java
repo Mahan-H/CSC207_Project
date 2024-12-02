@@ -27,7 +27,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final String viewName = "sign up";
 
     private final SignupViewModel signupViewModel;
-    private final JTextField emailInputField = new JTextField(15);
+    private final JTextField userInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private SignupController signupController;
@@ -43,7 +43,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final LabelTextPanel emailInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.EMAIL_LABEL), emailInputField);
+                new JLabel(SignupViewModel.USER_LABEL), userInputField);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
         final LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
@@ -63,7 +63,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             final SignupState currentState = signupViewModel.getState();
 
                             signupController.execute(
-                                    currentState.getEmail(),
+                                    currentState.getUser(),
                                     currentState.getPassword(),
                                     currentState.getRepeatPassword(),
                                     currentState.getAccessCode()
@@ -81,7 +81,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        addEmailListener();
+        addUserListener();
         addPasswordListener();
         addRepeatPasswordListener();
 
@@ -94,12 +94,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
-    private void addEmailListener() {
-        emailInputField.getDocument().addDocumentListener(new DocumentListener() {
+    private void addUserListener() {
+        userInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
                 final SignupState currentState = signupViewModel.getState();
-                currentState.setEmail(emailInputField.getText());
+                currentState.setUser(userInputField.getText());
                 signupViewModel.setState(currentState);
             }
 
@@ -180,8 +180,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final SignupState state = (SignupState) evt.getNewValue();
-        if (state.getEmailError() != null) {
-            JOptionPane.showMessageDialog(this, state.getEmailError());
+        if (state.getUserError() != null) {
+            JOptionPane.showMessageDialog(this, state.getUserError());
         }
     }
 
@@ -190,11 +190,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     }
 
     private void handleSignup() {
-        String email = emailInputField.getText();
+        String user = userInputField.getText();
         String password = new String(passwordInputField.getPassword());
         String repeatPassword = new String(repeatPasswordInputField.getPassword());
 
-        if (email.isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
+        if (user.isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this, "All fields are required.");
             return;
         }
@@ -204,7 +204,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             return;
         }
 
-        signupController.execute(email, password, repeatPassword, "");
+        signupController.execute(user, password, repeatPassword, "");
     }
 
     public void setSignupController(SignupController controller) {

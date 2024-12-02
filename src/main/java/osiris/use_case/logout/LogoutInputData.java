@@ -4,14 +4,14 @@ package osiris.use_case.logout;
  * The Input Data for the Logout Use Case.
  */
 public class LogoutInputData {
-    private final String email;
+    private final String user;
 
-    public LogoutInputData(String email) {
-        this.email = email;
+    public LogoutInputData(String user) {
+        this.user = user;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
 }
