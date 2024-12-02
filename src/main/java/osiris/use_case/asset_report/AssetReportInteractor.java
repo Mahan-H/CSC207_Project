@@ -5,6 +5,9 @@ import osiris.utility.exceptions.PlaidUseCaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Interactor for the Dashboard Use Case.
+ */
 @Service
 public class AssetReportInteractor implements AssetReportInputBoundary {
 
