@@ -4,27 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+    <list default="true" id="37038727-020f-4306-9966-45194133245d" name="Changes" comment="Started implementation of Asset Report">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/app/AppBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/DBUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/data_access/EmailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/entity/CommonUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/EmailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/change_password/LoggedInState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/change_password/LoggedInState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/login/LoginState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/logout/LogoutPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/logout/LogoutPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/plaid/PlaidController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/welcome/WelcomePresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/data_access/PlaidDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/UserPlaidDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/signup/SignupViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/interface_adapter/verify/VerifyViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/change_password/ChangePasswordInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/change_password/ChangePasswordInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/login/LoginUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/logout/LogoutUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/plaid/PlaidInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInputData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/signup/SignupUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/EmailVerificationInteractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInputData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/welcome/WelcomeOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/PlaidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/utility/exceptions/PlaidException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/WelcomeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/use_case/verify/VerifyOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/LoggedInView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/LoggedInView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/VerifyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/VerifyView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/osiris/view/ViewExpenses.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +84,9 @@
     &quot;accountId&quot;: &quot;f299831e-feab-4c4c-af6c-b49f8c84d731&quot;
     }
     }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
     &quot;associatedIndex&quot;: 0
     }</component>
@@ -85,7 +116,7 @@
     "Spring Boot.PlaidIntegrationApplication.executor": "Run",
     "app.teamhub.selectedTeam": "github.com/Mahan-H/lab-5",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "mahan.hooshmandkhayat",
+    "git-widget-placeholder": "a9656890",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/mahan/IdeaProjects/lab-5/mystyle.xml",
     "node.js.detected.package.eslint": "true",
@@ -121,10 +152,14 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PlaidIntegrationApplication (1)">
-    <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/../lab-5.1/.env" />
+        <option value="$PROJECT_DIR$/../lab-5.1/.env" />
+      </option>
       <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
-      <module name="homework-5" />
+      <module name="plaid-integration" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="true" />
         <option name="IS_SUBST" value="false" />
@@ -133,16 +168,16 @@
         <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
         <ENTRIES>
           <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="true" PATH=".env" />
         </ENTRIES>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="app.Main" />
-      <module name="homework-5" />
+    <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="osiris.app.Main" />
+      <module name="plaid-integration" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="true" />
         <option name="IS_SUBST" value="false" />
@@ -160,8 +195,18 @@
     </configuration>
     <configuration name="PlaidIntegrationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="homework-5" />
+      <module name="plaid-integration" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="osiris.PlaidIntegrationApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -175,7 +220,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.Unnamed (1)" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication (1)" />
       <item itemvalue="Spring Boot.PlaidIntegrationApplication" />
@@ -203,9 +248,41 @@
       <workItem from="1732716541896" duration="12536000" />
       <workItem from="1732749621524" duration="13057000" />
     </task>
+    <task id="LOCAL-00001" summary="Started implementation of Asset Report">
+      <option name="closed" value="true" />
+      <created>1733136480613</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733136480613</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Worked on Asset Report implementation 2" />
+    <MESSAGE value="Updated own branch with other files" />
+    <MESSAGE value="Started implementation of Asset Report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started implementation of Asset Report" />
   </component>
 </project>

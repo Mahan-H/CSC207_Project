@@ -15,9 +15,9 @@ public class LogoutInteractor implements LogoutInputBoundary {
 
     @Override
     public void execute(LogoutInputData logoutInputData) {
-        final String email = logoutInputData.getEmail();
-        userDataAccessObject.setCurrentEmail(null);
-        final LogoutOutputData outputData = new LogoutOutputData(email, false);
+        final String user = logoutInputData.getUser();
+        userDataAccessObject.setCurrentUser(null);
+        final LogoutOutputData outputData = new LogoutOutputData(user, false);
         logoutPresenter.prepareSuccessView(outputData);
     }
 }

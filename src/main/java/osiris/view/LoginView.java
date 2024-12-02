@@ -27,8 +27,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final String viewName = "log in";
     private final LoginViewModel loginViewModel;
 
-    private final JTextField emailInputField = new JTextField(15);
-    private final JLabel emailErrorField = new JLabel();
+    private final JTextField userInputField = new JTextField(15);
+    private final JLabel userErrorField = new JLabel();
 
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JLabel passwordErrorField = new JLabel();
@@ -45,8 +45,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         final JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        final LabelTextPanel emailInfo = new LabelTextPanel(
-                new JLabel("Email"), emailInputField);
+        final LabelTextPanel userInfo = new LabelTextPanel(
+                new JLabel("Username"), userInputField);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), passwordInputField);
 
@@ -63,7 +63,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                             final LoginState currentState = loginViewModel.getState();
 
                             loginController.execute(
-                                    currentState.getEmail(),
+                                    currentState.getUser(),
                                     currentState.getPassword(),
                                     currentState.getAccessCode()
                             );
@@ -80,11 +80,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        emailInputField.getDocument().addDocumentListener(new DocumentListener() {
+        userInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
                 final LoginState currentState = loginViewModel.getState();
-                currentState.setEmail(emailInputField.getText());
+                currentState.setUser(userInputField.getText());
                 loginViewModel.setState(currentState);
             }
 
@@ -131,8 +131,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         });
 
         this.add(title);
-        this.add(emailInfo);
-        this.add(emailErrorField);
+        this.add(userInfo);
+        this.add(userErrorField);
         this.add(passwordInfo);
         this.add(buttons);
     }
@@ -149,11 +149,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void propertyChange(PropertyChangeEvent evt) {
         final LoginState state = (LoginState) evt.getNewValue();
         setFields(state);
-        emailErrorField.setText(state.getLoginError());
+        userErrorField.setText(state.getLoginError());
     }
 
     private void setFields(LoginState state) {
-        emailInputField.setText(state.getEmail());
+        userInputField.setText(state.getUser());
         passwordInputField.setText(state.getPassword());
     }
 

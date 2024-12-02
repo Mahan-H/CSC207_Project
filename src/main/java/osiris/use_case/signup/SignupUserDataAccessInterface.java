@@ -9,10 +9,10 @@ public interface SignupUserDataAccessInterface {
 
     /**
      * Checks if the given username exists.
-     * @param email the username to look for
+     * @param user the username to look for
      * @return true if a user with the given username exists; false otherwise
      */
-    boolean existsByName(String email);
+    boolean existsByName(String user);
 
     /**
      * Saves the user.

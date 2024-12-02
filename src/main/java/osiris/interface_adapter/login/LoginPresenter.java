@@ -30,7 +30,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
         final VerifyState verifyState = verifyViewModel.getState();
-        verifyState.setUsername(response.getEmail());
+        verifyState.setUsername(response.getUser());
         this.verifyViewModel.setState(verifyState);
         this.verifyViewModel.firePropertyChanged();
         this.viewManagerModel.setState(verifyViewModel.getViewName());

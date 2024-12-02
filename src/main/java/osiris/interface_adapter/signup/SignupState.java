@@ -4,20 +4,20 @@ package osiris.interface_adapter.signup;
  * The state for the Signup View Model.
  */
 public class SignupState {
-    private String email = "";
-    private String emailError;
+    private String user = "";
+    private String userError;
     private String password = "";
     private String passwordError;
     private String repeatPassword = "";
     private String repeatPasswordError;
     private String access_code = "";
 
-    public String getEmail() {
-        return email;
+    public String getUser() {
+        return user;
     }
 
-    public String getEmailError() {
-        return emailError;
+    public String getUserError() {
+        return userError;
     }
 
     public String getPassword() {
@@ -40,12 +40,12 @@ public class SignupState {
         return repeatPasswordError;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(String email) {
+        this.user = email;
     }
 
-    public void setEmailError(String emailError) {
-        this.emailError = emailError;
+    public void setUserError(String userError) {
+        this.userError = userError;
     }
 
     public void setPassword(String password) {
@@ -67,7 +67,7 @@ public class SignupState {
     @Override
     public String toString() {
         return "SignupState{"
-                + "email='" + email + '\''
+                + "user='" + user + '\''
                 + ", password='" + password + '\''
                 + ", repeatPassword='" + repeatPassword + '\''
                 + ", access_code='" + access_code + '\''
