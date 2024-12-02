@@ -73,9 +73,9 @@ public class PlaidInteractor implements PlaidInputBoundary {
                     inputData.getPublicToken()
             );
             final User user = userDataAccessObject.get(username);
-            String email = user.getEmail();
-            String password = user.getPassword();
-            String accessToken = response.access_token;
+            final String email = user.getEmail();
+            final String password = user.getPassword();
+            final String accessToken = response.access_token;
             final User newUser = userFactory.create(email, password, accessToken);
             userDataAccessObject.save(newUser);
             return new ExchangePublicTokenOutputData(

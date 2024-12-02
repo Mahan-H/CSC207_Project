@@ -2,7 +2,7 @@
 
 ## Author: 
 ### Mahan Hooshmandkhayat:
-######
+###### Welcome View for Team Use Case, Add Bank Account Use Case, MySQL Database Integration, Spring Boot Server Integration, Frontend Integration Using JavaScript and Html
 ### Divnoor Pal Singh Chatha:
 ###### Verify View for Team Use Case, GrabTransaction UseCase, ViewExpenses UseCase
 ### Shah Jalalul Kabir:
@@ -276,8 +276,48 @@ Make sure you load the maven project and make sure that the pom.xml file is the 
 </project>
 
 ```
+Once you have the pom.xml file, you need to download the MySQL database. You can download the MySQL database from here https://dev.mysql.com/downloads/mysql/. 
+Once you have downloaded the MySQL database, you need to follow the instructions that will be provided to you in the MySQL installer. 
+Once you have installed and configured the MySQL database, you need to create a local database in your code editor. We will showcase how you can do this in IntelliJ.
+1. Open IntelliJ and click on the Database tab on the right side of the screen.
 
+![img.png](img.png)
+2. Click on the + icon and select Data Source -> MySQL.
+
+!<img src="img_1.png" alt="MySQL Data Source" width="500" height="800">
+3. You will be prompted to enter the following information:
+    - Host: localhost
+    - Port
+    - User: root
+    - Password: Your password
+    - Database: Your database name
+    - Click on the Test Connection button to ensure that the connection is successful.
+    - Click on the OK button to save the configuration.
+
+![img_2.png](img_2.png)
+4. You should now see your database in the Database tab.
+
+![img_3.png](img_3.png)
+5. You can now create a new schema in your database by right-clicking on the database and selecting New -> Schema.
+
+![img_4.png](img_4.png)
+5. You can now create a new table in your database by right-clicking on the database and selecting New -> Table.
+
+![img_5.png](img_5.png)
+6. Once you have created the table, you can now connect your database to your Spring Boot application. You can do this by adding the following code to your application.properties file:
+   - spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
+   - spring.datasource.username=root
+   - spring.datasource.password=your_password
+   - spring.jpa.hibernate.ddl-auto=update
+   - spring.jpa.show-sql=true
+   - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+7. You can now run your Spring Boot application and test the connection to your database.
+8. You can now start adding data to your database and retrieving data from your database in your Spring Boot application.
+
+Now you are ready to run the program. You can look at usage guide for instructions on how to run the program.
+```
 ## Usage Guide
+
 ## Section for feedback (how to give feedback on the project):
 #### Email: mahan.hooshmandkhayat@mail.utoronto.ca or divnoor.chatha@mail.utoronto.ca
 # YOU MAY NOT ADD ANY CONTRIBUTIONS TO THIS PROJECT!!!
