@@ -117,7 +117,7 @@ class PlaidInteractorTest {
     void testExchangePublicTokenSuccess() throws IOException, PlaidException, PlaidUseCaseException {
         ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 "test-public-token",
-                "test-client-id", "test-username", "test-password"
+                "test-client-id"
         );
 
         ExchangeTokenResponse mockResponse = new ExchangeTokenResponse(
@@ -138,7 +138,7 @@ class PlaidInteractorTest {
     void testExchangePublicTokenPlaidException() throws IOException, PlaidException {
         ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 "test-public-token",
-                "test-client-id", "test-username", "test-password"
+                "test-client-id"
         );
 
         when(mockPlaidDao.exchangePublicToken(any()))
@@ -155,7 +155,7 @@ class PlaidInteractorTest {
     void testExchangePublicTokenIOException() throws IOException, PlaidException {
         ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 "test-public-token",
-                "test-client-id", "test-username", "test-password"
+                "test-client-id"
         );
 
         // Mocking IOException

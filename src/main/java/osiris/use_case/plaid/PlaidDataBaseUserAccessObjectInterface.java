@@ -12,4 +12,17 @@ public interface PlaidDataBaseUserAccessObjectInterface {
      * @param user the user to save
      */
     void save(User user);
+
+    /**
+     * Sets the access code.
+     * @param user the user to set the access code
+     */
+    void setAccessCode(User user);
+
+    /**
+     * Gets the user.
+     * @param username the username of the user to get
+     * @return the user
+     */
+    User get(String username);
 }

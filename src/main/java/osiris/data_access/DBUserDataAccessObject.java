@@ -190,6 +190,40 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
+    public void setAccessCode(User user) {
+        final OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+
+        // POST METHOD
+        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
+        final JSONObject requestBody = new JSONObject();
+        requestBody.put(USERNAME, user.getEmail());
+        requestBody.put(PASSWORD, user.getPassword());
+        requestBody.put(ACCESS_CODE, user.getAccessCode());
+        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
+        final Request request = new Request.Builder()
+                .url("http://vm003.teach.cs.toronto.edu:20112/user")
+                .method("PUT", body)
+                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
+                .build();
+        try {
+            final Response response = client.newCall(request).execute();
+
+            final JSONObject responseBody = new JSONObject(response.body().string());
+
+            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
+                // success!
+            }
+            else {
+                throw new RuntimeException(responseBody.getString(MESSAGE));
+            }
+        }
+        catch (IOException | JSONException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
     public String getCurrentEmail() {
         return name;
     }

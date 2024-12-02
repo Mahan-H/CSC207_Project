@@ -1,9 +1,6 @@
 package osiris.view;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +13,7 @@ import javax.swing.JPanel;
 import osiris.interface_adapter.dashboard.DashboardController;
 import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.interface_adapter.welcome.WelcomeViewModel;
+
 
 /**
  * The View for the Dashboard Use Case.
@@ -33,7 +31,6 @@ public class DashboardView extends JPanel implements ActionListener {
     private final DashboardViewModel dashboardViewModel;
     private DashboardController dashboardController;
 
-    private final JButton addBankAccount;
     private final JButton viewTransactionHistory;
     private final JButton viewShahCase;
     private final JButton viewBudget;
@@ -54,13 +51,6 @@ public class DashboardView extends JPanel implements ActionListener {
         titles.add(slogan);
 
         final JPanel buttons = new JPanel();
-
-        addBankAccount = new JButton(dashboardViewModel.ADD_BANK_ACCOUNT_BUTTON_LABEL);
-        addBankAccount.setForeground(Color.BLACK);
-        addBankAccount.setBackground(COLOR);
-        addBankAccount.setFont(new Font(TIMES_NEW_ROMAN, Font.BOLD, BUTTON_FONT_SIZE));
-        addBankAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addBankAccount.setPreferredSize(PREFERRED_SIZE_BUTTON);
 
         viewTransactionHistory = new JButton(dashboardViewModel.VIEW_TRANSACTION_HISTORY_BUTTON_LABEL);
         viewTransactionHistory.setForeground(Color.BLACK);
@@ -83,7 +73,6 @@ public class DashboardView extends JPanel implements ActionListener {
         viewShahCase.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewShahCase.setPreferredSize(PREFERRED_SIZE_BUTTON);
 
-        buttons.add(addBankAccount);
         buttons.add(viewShahCase);
         buttons.add(viewTransactionHistory);
         buttons.add(viewBudget);

@@ -21,6 +21,7 @@ public class PlaidInteractor implements PlaidInputBoundary {
     private final UserPlaidDataAccessInterface plaidDao;
     private final PlaidDataBaseUserAccessObjectInterface userDataAccessObject;
     private final UserFactory userFactory;
+    private String username;
 
     @Autowired
     public PlaidInteractor(UserPlaidDataAccessInterface plaidDao,
@@ -39,7 +40,6 @@ public class PlaidInteractor implements PlaidInputBoundary {
      */
     @Override
     public CreateLinkTokenOutputData createLinkToken(CreateLinkTokenInputData inputData) throws Exception {
-
         try {
             final LinkTokenResponse response = plaidDao.createLinkToken(
                     inputData.getClientName(),
@@ -48,6 +48,7 @@ public class PlaidInteractor implements PlaidInputBoundary {
                     inputData.getUserClientId(),
                     inputData.getProducts()
             );
+            username = inputData.getUserClientId();
             return new CreateLinkTokenOutputData(response.link_token, response.request_id);
         }
         catch (PlaidException ex) {
@@ -63,16 +64,16 @@ public class PlaidInteractor implements PlaidInputBoundary {
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
      */
     @Override
-    public ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData)
+    public ExchangePublicTokenOutputData exchangePublicToken(
+            ExchangePublicTokenInputData inputData)
             throws PlaidUseCaseException {
-
         try {
             final ExchangeTokenResponse response = plaidDao.exchangePublicToken(
                     inputData.getPublicToken()
             );
-            final User user = userFactory.create(inputData.getUsername(),
-                    inputData.getPassword(), response.access_token);
-            userDataAccessObject.save(user);
+            final User user = userDataAccessObject.get(username);
+            final User newUser = userFactory.create(user.getEmail(), user.getPassword(), response.access_token);
+            userDataAccessObject.setAccessCode(newUser);
             return new ExchangePublicTokenOutputData(
                     response.access_token,
                     response.item_id,
