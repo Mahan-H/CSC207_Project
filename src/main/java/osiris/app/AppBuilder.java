@@ -36,6 +36,7 @@ import osiris.interface_adapter.dashboard.DashboardViewModel;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
+import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
 import osiris.use_case.plaid.PlaidInputBoundary;
 import osiris.use_case.plaid.PlaidInteractor;
 import osiris.use_case.verify.VerifyInputBoundary;
@@ -222,16 +223,6 @@ public class AppBuilder {
     }
 
     /**
-     * Adds the Plaid Use Case to the application.
-     * @return this builder
-     */
-    public AppBuilder addPlaidUseCase() {
-        final PlaidInputBoundary plaidInteractor = new PlaidInteractor(plaidDataAccessObject, userDataAccessObject, userFactory);
-        final PlaidController plaidController = new PlaidController(plaidInteractor);
-        return this;
-    }
-
-    /**
      * Adds the Login Use Case to the application.
      * @return this builder
      */
@@ -239,8 +230,7 @@ public class AppBuilder {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
                 loginViewModel, welcomeViewModel, verifyViewModel, dashboardViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject, loginOutputBoundary);
-
+                userDataAccessObject, loginOutputBoundary, userFactory, plaidDataAccessObject, userDataAccessObject);
         final LoginController loginController = new LoginController(loginInteractor);
         loginView.setLoginController(loginController);
         return this;

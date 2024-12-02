@@ -8,13 +8,13 @@ public class SignupInputData {
     private final String email;
     private final String password;
     private final String repeatPassword;
-    private final String access_code;
+    private final String accessCode;
 
-    public SignupInputData(String email, String password, String repeatPassword, String access_code) {
+    public SignupInputData(String email, String password, String repeatPassword, String accessCode) {
         this.email = email;
         this.password = password;
         this.repeatPassword = repeatPassword;
-        this.access_code = access_code;
+        this.accessCode = accessCode;
     }
 
     String getEmail() {
@@ -26,7 +26,7 @@ public class SignupInputData {
     }
 
     String getAccessCode() {
-        return access_code;
+        return accessCode;
     }
 
     public String getRepeatPassword() {

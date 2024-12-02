@@ -6,14 +6,10 @@ package osiris.use_case.plaid;
 public class ExchangePublicTokenInputData {
     private final String publicToken;
     private final String userClientId;
-    private final String username;
-    private final String password;
 
-    public ExchangePublicTokenInputData(String publicToken, String userClientId, String username, String password) {
+    public ExchangePublicTokenInputData(String publicToken, String userClientId) {
         this.publicToken = publicToken;
         this.userClientId = userClientId;
-        this.username = username;
-        this.password = password;
     }
 
     public String getPublicToken() {
@@ -22,13 +18,5 @@ public class ExchangePublicTokenInputData {
 
     public String getUserClientId() {
         return userClientId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

@@ -24,6 +24,8 @@ import osiris.utility.exceptions.PlaidUseCaseException;
 public class PlaidController {
 
     private final PlaidInputBoundary plaidInteractor;
+    private String email;
+    private String password;
 
     @Autowired
     public PlaidController(PlaidInputBoundary plaidInteractor) {
@@ -58,24 +60,21 @@ public class PlaidController {
      * Endpoint to exchange a Public Token for an Access Token.
      *
      * @param exchangeTokenRequest The request body containing the public token.
-     * @param username The username of the user.
-     * @param password The password of the user.
      * @return ExchangePublicTokenOutputData containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
      */
     @PostMapping("/exchange-public-token")
     public ResponseEntity<ExchangePublicTokenOutputData> exchangePublicToken(
-            @RequestBody ExchangeTokenRequestDataTransferObject exchangeTokenRequest, String username, String password)
+            @RequestBody ExchangeTokenRequestDataTransferObject exchangeTokenRequest)
             throws PlaidUseCaseException {
 
         final ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 exchangeTokenRequest.getPublicToken(),
-                exchangeTokenRequest.getUserClientId(),
-                username,
-                password
+                exchangeTokenRequest.getUserClientId()
         );
+        final ExchangePublicTokenOutputData outputData =
+                plaidInteractor.exchangePublicToken(inputData);
 
-        final ExchangePublicTokenOutputData outputData = plaidInteractor.exchangePublicToken(inputData);
         return ResponseEntity.ok(outputData);
     }
 }

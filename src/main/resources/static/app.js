@@ -1,3 +1,22 @@
+/**
+ * Parses a query parameter from the URL.
+ * @param {string} name - The name of the parameter to retrieve.
+ * @returns {string|null} The value of the parameter or null if not found.
+ */
+function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+
+
+const email = getQueryParam('email');
+
+if (!email) {
+    alert('Email is missing from URL parameters.');
+    // Handle the missing email appropriately
+}
+
 document.getElementById('link-button').addEventListener('click', function() {
     const statusDiv = document.getElementById('status');
     statusDiv.textContent = 'Fetching Link Token...';
@@ -12,7 +31,7 @@ document.getElementById('link-button').addEventListener('click', function() {
             clientName: "Osiris",
             countryCodes: ["US", "CA"],
             language: "en",
-            userClientId: "user_12345",
+            userClientId: email,
             products: ["transactions"]
         })
     })
@@ -27,13 +46,14 @@ document.getElementById('link-button').addEventListener('click', function() {
             console.log('Link Token Data:', data);
             const linkToken = data.linkToken;
             statusDiv.textContent = 'Initializing Plaid Link...';
-            initializePlaidLink(linkToken)
+            initializePlaidLink(linkToken);
         })
         .catch(error => {
             console.error('Error fetching Link Token:', error);
             statusDiv.textContent = 'Error fetching Link Token.';
         });
 });
+
 
 /**
  * Initializes Plaid Link with the provided Link Token.
@@ -78,7 +98,7 @@ function exchangePublicToken(publicToken) {
         },
         body: JSON.stringify({
             publicToken: publicToken,
-            userClientId: "user_12345"
+            email: email
         })
     })
         .then(response => {

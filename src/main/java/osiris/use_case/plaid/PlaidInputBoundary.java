@@ -23,6 +23,6 @@ public interface PlaidInputBoundary {
      * @return The output data containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs during the use case execution.
      */
-    ExchangePublicTokenOutputData exchangePublicToken(ExchangePublicTokenInputData inputData)
-            throws PlaidUseCaseException;
+    ExchangePublicTokenOutputData exchangePublicToken(
+            ExchangePublicTokenInputData inputData) throws PlaidUseCaseException;
 }

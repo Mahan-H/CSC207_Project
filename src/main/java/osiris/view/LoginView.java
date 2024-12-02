@@ -1,10 +1,13 @@
 package osiris.view;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.Objects;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,6 +21,7 @@ import javax.swing.event.DocumentListener;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginState;
 import osiris.interface_adapter.login.LoginViewModel;
+
 
 /**
  * The View for when the user is logging into the program.
@@ -67,6 +71,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                                     currentState.getPassword(),
                                     currentState.getAccessCode()
                             );
+                            openWebPageWithEmail(currentState.getEmail());
                         }
                     }
                 }
@@ -164,4 +169,15 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
+
+    public void openWebPageWithEmail(String email) {
+        try {
+            String encodedEmail = URLEncoder.encode(email, "UTF-8");
+            String url = "http://localhost:8080?email=" + encodedEmail;
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
