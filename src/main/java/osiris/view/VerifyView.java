@@ -33,13 +33,13 @@ public class VerifyView extends JPanel implements PropertyChangeListener {
         this.verifyViewModel = verifyViewModel;
         this.verifyViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(VerifyViewModel.TITLE_LABEL);
+        final JLabel title = new JLabel(VerifyViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        LabelTextPanel verifyCodeInfo = new LabelTextPanel(
+        final LabelTextPanel verifyCodeInfo = new LabelTextPanel(
                 new JLabel(verifyViewModel.VERIFY_LABEL), verifyCodeField);
 
-        JPanel buttons = new JPanel();
+        final JPanel buttons = new JPanel();
         verifyButton = new JButton(VerifyViewModel.VERIFY_BUTTON_LABEL);
         goBack = new JButton(VerifyViewModel.RETURN_BUTTON_LABEL);
         resendButton = new JButton("Resend Verification Email");
@@ -52,9 +52,9 @@ public class VerifyView extends JPanel implements PropertyChangeListener {
 
         verifyButton.addActionListener(evt -> {
             if (evt.getSource().equals(verifyButton)) {
-                VerifyState currentState = verifyViewModel.getState();
-                String username = currentState.getUsername();
-                String verifyCode = verifyCodeField.getText().trim();
+                final VerifyState currentState = verifyViewModel.getState();
+                final String username = currentState.getUsername();
+                final String verifyCode = verifyCodeField.getText().trim();
 
                 if (username == null || username.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Username is not available. Please go back and sign up again.");
@@ -80,8 +80,8 @@ public class VerifyView extends JPanel implements PropertyChangeListener {
     }
 
     private void handleResendVerificationEmail() {
-        VerifyState currentState = verifyViewModel.getState();
-        String username = currentState.getUsername();
+        final VerifyState currentState = verifyViewModel.getState();
+        final String username = currentState.getUsername();
         if (username == null || username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username is not available. Please go back and sign up again.");
             return;

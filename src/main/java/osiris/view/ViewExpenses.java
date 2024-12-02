@@ -53,38 +53,33 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        expensesButton.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        try {
-                            final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
-                                    "divnoor");
-                            controller.execute(String.valueOf(transactions));
-                            final ViewExpensesState currentState = viewExpensesViewModel.getState();
-                            PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
-                            );
-                        }
-                        catch (PlaidUseCaseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
+//        expensesButton.addActionListener(
+//                // This creates an anonymous subclass of ActionListener and instantiates it.
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        try {
+//                            final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
+//                                    "divnoor");
+//                            controller.execute(String.valueOf(transactions));
+//                            final ViewExpensesState currentState = viewExpensesViewModel.getState();
+//                            PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
+//                            );
+//                        }
+//                        catch (PlaidUseCaseException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                        catch (IOException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                    }
+//                });
 
-        // expensesButton.addActionListener(
-        // This creates an anonymous subclass of ActionListener and instantiates it.
-        // new ActionListener() {
-        //     public void actionPerformed(ActionEvent evt) {
-        //         final ViewExpensesState currentState = viewExpensesViewModel.getState();
-        //         PieChartUtility.displayPieChart(
-        //             currentState.getEssential(),
-        //             currentState.getNonEssential()
-        //         );
-        //     }
-        // });
+        expensesButton.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    PieChartUtility.displayPieChart(200.9, 300.45);
+                }
+            });
 
         goBack.addActionListener(evt -> controller.switchToHomeView());
 
