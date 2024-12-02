@@ -34,8 +34,32 @@ in the homepage to view various analysis regarding thier bank account. Features 
 Non-Essential vs Essential spending over the last 30 days. Or ...
 
 ## Installation Instructions
-Fork the Repo and you are good to go. Make sure you load the maven project. Make sure that the pom.xml 
-file is the following
+You should currently be viewing this README in the GitHub repository: https://github.com/Mahan-H/CSC207_Project.
+Ensure you're logged into GitHub. 
+
+In the top-right corner of the page, you'll see a Fork button. Click it to create your 
+own copy of the repository, which you can modify as needed. On the next page, confirm the fork creation. This will 
+generate your own version of the OSIRIS repository on GitHub. Once you’ve created your fork, close this page, navigate 
+to your forked repository, and follow the subsequent instructions. 
+
+Next, you’ll need a local copy of your forked repository on your computer. This process is called cloning the 
+repository. In your forked repository on GitHub, click the green Code button and copy the HTTPS URL by clicking the 
+small copy icon (two overlapping rectangles). 
+
+Open IntelliJ. If you have a project already open, close it. From the main screen, select Get From VCS. Paste the copied
+URL into the appropriate field. You can use the default location on your computer to save the project or choose a custom 
+directory. 
+
+Note: If you clone the repository again later, you’ll need to select a new directory, as duplicate projects 
+cannot exist in the same directory. Click Clone and IntelliJ will set up your project. If prompted, you may need to 
+configure an access token to clone the repository, especially if this was not completed during the initial software 
+setup on Quercus. 
+
+With the repository cloned to your computer, proceed to work through the rest of the activity in 
+IntelliJ. Open this README.md file in IntelliJ, and toggle between the editor, editor+preview, or preview view using 
+the options in the top-right corner. You can take notes directly in the file or simply review it in the preview view. 
+
+Make sure you load the maven project and make sure that the pom.xml file is the following:
 
 ```    
 <?xml version="1.0" encoding="UTF-8"?>
@@ -254,150 +278,11 @@ file is the following
 ```
 
 ## Usage Guide
+## Section for feedback (how to give feedback on the project):
+#### Email: mahan.hooshmandkhayat@mail.utoronto.ca or divnoor.chatha@mail.utoronto.ca
+# YOU MAY NOT ADD ANY CONTRIBUTIONS TO THIS PROJECT!!!
 
 
 * * *
 
-Open the project in IntelliJ and make sure you can successfully run `app/Main.java`.
-Note: you may need to set the Project SDK in the `Project Structure...` menu, and possibly
-also manually link the Maven project, as you did in Phase 1.
-
-## Task 1: Understanding the Program
-
-You may notice that we have refactored the CA engine code _slightly_ since Phase 1, but the
-way we build the engine is drastically different: we have switched from using Factories to
-using the Builder design pattern, which we'll be discussing in lecture soon. 
-
-Open up `app.Main` and read it as a team.
-- What are the Views and what are the current Use Cases?
-- Which Uses Cases are triggered from each View?
-- Which version of the DAO is `app.Main` using?
-
-The major change since Phase 1 is that we have added the `app.AppBuilder` class which makes
-it easier to understand how our CA engine is being constructed — it also makes `app.Main` nice and concise!
-- Why do all those `addX` methods end in `return this;`? 
-
-Run the program and make sure the signup and login Use Cases work.
-
-Currently, you'll notice that the "Log Out" button still doesn't actually log you out. It's time to fix
-that button, which is part of the `LoggedInView`.
-We have created all the classes for you, but some of the code is missing.
-As a team, your task is to fill in the missing code so that the Logout Use Case is implemented.
-**The next part of the readme describes how your team will do this.**
-
-* * *
-
-**Your team will know when you are done when:**
-
-- Clicking the "Log Out" button takes the user back to the Login View when you use the program.
-- The provided `LogoutInteractorTest` test passes.
-
-The "Log Out" button is an instance variable in class `LoggedInVew`. Go find it.
-Also look at the `interface_adapter.change_password.LoggedInViewModel`, which contains any
-data showing on the `LoggedInVew`.
-
-* * *
-
-## Task 2: Dividing up the work
-
-There are `TODO` comments left in the files
-Recall that you can use the TODO tool window to conveniently pull up a complete list.
-
-Once the TODOs are all complete, the "Log Out" button _should_ work!
-
-As a team, split up the TODOs (see below) between the members of your team.
-
-There are TODOs in seven of the files.
-Make sure each member has at least one TODO which they will be responsible for completing.
-If your team prefers to work in pairs, that is fine too. Your individual branches
-will not be graded for this — only the final, working version.
-
-The TODOs are summarized below (by file) to help your team decide how to split them up:
-
-* * *
-
-- `Main.java`
-
-  - [ ] TODO: add the Logout Use Case to the app using the appBuilder
-
-* * *
-
-- `LoggedInView.java` (tip: refer to the other views for similar code)
-
-  - [ ] TODO: save the logout controller in the instance variable.
-  - [ ] TODO: execute the logout use case through the Controller
-
-* * *
-
-- `LogoutController.java` (tip: refer to the other controllers for similar code)
-
-  - [ ] TODO: Save the interactor in the instance variable.
-  - [ ] TODO: run the use case interactor for the logout use case
-
-* * *
-
-- `LogoutInputData.java` (should be done with the LogoutInteractor TODOs below)
-
-  - [ ] TODO: save the current email in an instance variable and add a getter.
-
-- `LogoutInteractor.java` (tip: refer to `ChangePasswordInteractor.java` for similar code)
-
-  - [ ] TODO: save the DAO and Presenter in the instance variables.
-  - [ ] TODO: implement the logic of the Logout Use Case
-
-* * *
-
-- `LogoutOutputData.java`
-
-  - [ ] TODO: save the parameters in the instance variables.
-
-* * *
-
-- `LogoutPresenter.java` (tip: refer to `SignupPresenter.java` for similar code)
-
-  - [ ] TODO: assign to the three instance variables.
-  - [ ] TODO: have prepareSuccessView update the LoggedInState
-  - [ ] TODO: have prepareSuccessView update the LoginState
-
-* * *
-
-1. Make a branch named the first part of your UofT email address, everything before the `@`.
-For example, if your email address is `paul.gries@mail.utoronto.ca`, then the branch name would
-be `paul.gries`.
-
-Make sure you switch to the new branch.
-
-In the terminal, this would look like below, but replaced with your own information:
-```
-git branch paul.gries
-git switch paul.gries
-```
-
-2. Complete your assigned TODOs and make a pull request on GitHub. In your pull request,
-   briefly describe what your TODOs were and how you implemented them. If you aren't sure
-   about part of it, include this in your pull request so everyone knows what to look
-   for when reviewing — or you can of course discuss with your team before making your
-   pull request since you are physically working in the same space.
-   - **Important: don't push any changes to the `.idea` folder, as that
-     may cause issues for your other teammates, as some files contain
-     configurations specific to your individual IntelliJ projects.**
-
-3. Review each other's pull requests to ensure each TODO is correctly implemented and that
-   there are no Checkstyle issues in the files that were modified.
-
-4. Once all TODOs are completed, your team should debug as needed to ensure the
-   correctness of the code. Setting a breakpoint where the log-out use case
-   interactor starts its work will likely be a great place to start when debugging.
-
-And that's it; you now have a working Logout Use Case! Instructions for
-how to submit your work on MarkUs will be posted later.
-
-Your team should spend the rest of the lab working on your project blueprint.
-
-* * *
-
-# Project Blueprint
-
-See Quercus for details about the project blueprint! By the end of the week,
-the goal is for your team to have a fully drafted blueprint so that your team
-will be ready to get started on your project after Reading Week.
+##### Licensing can be seen in LICENSE.txt
