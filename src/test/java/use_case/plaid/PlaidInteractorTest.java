@@ -95,7 +95,7 @@ class PlaidInteractorTest {
         );
         User mockUser = new User() {
             @Override
-            public String getEmail() {
+            public String getUser() {
                 return "";
             }
 
@@ -111,7 +111,7 @@ class PlaidInteractorTest {
         };
         User newUser = new User() {
             @Override
-            public String getEmail() {
+            public String getUser() {
                 return "";
             }
 

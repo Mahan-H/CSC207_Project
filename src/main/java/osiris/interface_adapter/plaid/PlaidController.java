@@ -3,9 +3,6 @@ package osiris.interface_adapter.plaid;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,12 +61,11 @@ public class PlaidController {
      * @param exchangeTokenRequest The request body containing the public token.
      * @return ExchangePublicTokenOutputData containing the access token and item ID.
      * @throws PlaidUseCaseException If an error occurs while exchanging the public token.
-     * @throws SQLException          If an error occurs while exchanging the public token.
      */
     @PostMapping("/exchange-public-token")
     public ResponseEntity<ExchangePublicTokenOutputData> exchangePublicToken(
             @RequestBody ExchangeTokenRequestDataTransferObject exchangeTokenRequest)
-            throws PlaidUseCaseException, SQLException {
+            throws PlaidUseCaseException {
 
         final ExchangePublicTokenInputData inputData = new ExchangePublicTokenInputData(
                 exchangeTokenRequest.getPublicToken(),

@@ -57,7 +57,7 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         try {
                             final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
-                                    "divnoor");
+                                    "q");
                             controller.execute(String.valueOf(transactions));
                             final ViewExpensesState currentState = viewExpensesViewModel.getState();
                             PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
