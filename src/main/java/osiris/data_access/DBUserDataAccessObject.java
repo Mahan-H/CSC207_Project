@@ -36,19 +36,11 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         PlaidDataBaseUserAccessObjectInterface,
         GrabTransactionUserDataAccessInterface {
 
-    private static final int SUCCESS_CODE = 200;
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int THREE = 3;
-    private static final String CONTENT_TYPE_LABEL = "Content-Type";
-    private static final String CONTENT_TYPE_JSON = "application/json";
-    private static final String STATUS_CODE_LABEL = "status_code";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/schema_name";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/osiris";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Divnoor123";
+    private static final String DB_PASSWORD = "csc207";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "passwords";
-    private static final String MESSAGE = "message";
     private static final String ACCESS_CODE = "accessCode";
     private static final String COM_MYSQL_CJ_JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -72,7 +64,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(ONE, username);
+                pstmt.setString(1, username);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
@@ -93,12 +85,12 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public boolean existsByName(String username) {
-        final String sql = "SELECT ONE FROM users WHERE username = ?";
+        final String sql = "SELECT 1 FROM users WHERE username = ?";
         try {
             Class.forName(COM_MYSQL_CJ_JDBC_DRIVER);
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(ONE, username);
+                pstmt.setString(1, username);
                 try (ResultSet rs = pstmt.executeQuery()) {
                     return rs.next();
                 }
@@ -119,9 +111,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(ONE, user.getUser());
-                pstmt.setString(TWO, user.getPassword());
-                pstmt.setString(THREE, user.getAccessCode());
+                pstmt.setString(1, user.getUser());
+                pstmt.setString(2, user.getPassword());
+                pstmt.setString(3, user.getAccessCode());
 
                 pstmt.executeUpdate();
             }
@@ -140,9 +132,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(ONE, user.getUser());
-                pstmt.setString(TWO, user.getPassword());
-                pstmt.setString(THREE, user.getAccessCode());
+                pstmt.setString(1, user.getUser());
+                pstmt.setString(2, user.getPassword());
+                pstmt.setString(3, user.getAccessCode());
 
                 pstmt.executeUpdate();
             }

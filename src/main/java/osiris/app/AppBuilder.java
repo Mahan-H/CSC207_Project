@@ -16,6 +16,7 @@ import osiris.interface_adapter.ViewManagerModel;
 import osiris.interface_adapter.dashboard.DashboardController;
 import osiris.interface_adapter.dashboard.DashboardPresenter;
 import osiris.interface_adapter.dashboard.DashboardViewModel;
+import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.login.LoginController;
 import osiris.interface_adapter.login.LoginPresenter;
 import osiris.interface_adapter.login.LoginViewModel;
@@ -34,6 +35,9 @@ import osiris.interface_adapter.verify.VerifyViewModel;
 import osiris.use_case.dashboard.DashboardInputBoundary;
 import osiris.use_case.dashboard.DashboardInteractor;
 import osiris.use_case.dashboard.DashboardOutputBoundary;
+import osiris.use_case.grabtransactions.GrabTransactionUserDataAccessInterface;
+import osiris.use_case.grabtransactions.GrabTransactionsInputBoundary;
+import osiris.use_case.grabtransactions.GrabTransactionsInteractor;
 import osiris.use_case.login.LoginInputBoundary;
 import osiris.use_case.login.LoginInteractor;
 import osiris.use_case.login.LoginOutputBoundary;
@@ -73,6 +77,9 @@ public class AppBuilder {
 
     // thought question: is the hard dependency below a problem?
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
+    private final GrabTransactionUserDataAccessInterface grabTransactionUserDataAccessInterface =
+            new DBUserDataAccessObject(userFactory);
+    private final PlaidDataAccessObject plaidDataAccessObject = new PlaidDataAccessObject();
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
@@ -86,7 +93,6 @@ public class AppBuilder {
     private DashboardViewModel dashboardViewModel;
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
-    private PlaidDataAccessObject plaidDataAccessObject;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -231,6 +237,11 @@ public class AppBuilder {
 
         final ViewExpensesController controller = new ViewExpensesController(userViewExpensesInteractor);
         viewExpenses.setViewExpensesController(controller);
+
+        final GrabTransactionsInputBoundary grabTransactionsInteractor = new GrabTransactionsInteractor(
+                grabTransactionUserDataAccessInterface, plaidDataAccessObject);
+        final GrabTransactionController grabTransactionController = new GrabTransactionController(grabTransactionsInteractor);
+        viewExpenses.setGrabTransactionController(grabTransactionController);
         return this;
     }
 
