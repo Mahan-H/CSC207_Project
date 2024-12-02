@@ -23,7 +23,4 @@ public interface User {
      */
     String getAccessCode();
 
-
-    String getItemID();
-
 }

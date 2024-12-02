@@ -19,6 +19,11 @@ import osiris.use_case.logout.LogoutUserDataAccessInterface;
 import osiris.use_case.plaid.PlaidDataBaseUserAccessObjectInterface;
 import osiris.use_case.signup.SignupUserDataAccessInterface;
 import org.springframework.stereotype.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * The DAO for user data.
@@ -33,11 +38,13 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
     private static final String STATUS_CODE_LABEL = "status_code";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/osiris";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "csc207";
     private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "passwords";
     private static final String MESSAGE = "message";
-    private static final String ACCESS_CODE = "access_code";
-    public static final String ITEM_ID = "item_id";
+    private static final String ACCESS_CODE = "accessCode";
     private final UserFactory userFactory;
     private String name;
 
@@ -48,31 +55,36 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public User get(String username) {
-        // Make an API call to get the user object.
-        final OkHttpClient client = new OkHttpClient().newBuilder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/user?username=%s", username))
-                .addHeader("Content-Type", CONTENT_TYPE_JSON)
-                .build();
+        String sql = "SELECT username, passwords, accessCode FROM users WHERE username = ?";
         try {
-            final Response response = client.newCall(request).execute();
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            final JSONObject responseBody = new JSONObject(response.body().string());
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                final JSONObject userJSONObject = responseBody.getJSONObject("user");
-                final String name = userJSONObject.getString(USERNAME);
-                final String password = userJSONObject.getString(PASSWORD);
-                final String access_code = userJSONObject.has(ACCESS_CODE) ? userJSONObject.getString(ACCESS_CODE) : null;
+                pstmt.setString(1, username);
 
-                return userFactory.create(name, password, access_code);
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String name = rs.getString(USERNAME);
+                        String passwords = rs.getString(PASSWORD);
+                        String accessCode = rs.getString(ACCESS_CODE);
+
+                        return userFactory.create(name, passwords, accessCode);
+                    }
+                    else {
+                        return null;
+                    }
+                }
             }
         }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving user: " + e.getMessage(), e);
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
     }
 
@@ -83,143 +95,76 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public boolean existsByName(String username) {
-        final OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/checkIfUserExists?username=%s", username))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
+        String sql = "SELECT 1 FROM users WHERE username = ?";
         try {
-            final Response response = client.newCall(request).execute();
-
-            final JSONObject responseBody = new JSONObject(response.body().string());
-
-            return responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, username);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    return rs.next();
+                }
+            }
         }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error checking if user exists: " + e.getMessage(), e);
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
     }
 
     @Override
     public void save(User user) {
-        final OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-
-        // POST METHOD
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put(USERNAME, user.getEmail());
-        requestBody.put(PASSWORD, user.getPassword());
-        requestBody.put(ACCESS_CODE, user.getAccessCode());
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/user")
-                .method("POST", body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
         try {
-            final Response response = client.newCall(request).execute();
-
-            final JSONObject responseBody = new JSONObject(response.body().string());
-
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                // success!
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
+                + "ON DUPLICATE KEY UPDATE passwords = VALUES(passwords), accessCode = VALUES(accessCode);";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getEmail());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getAccessCode());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error saving user: " + e.getMessage(), e);
         }
     }
 
-    public String getAccessCode(String email) {
-        final OkHttpClient client = new OkHttpClient.Builder().build();
-        final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/saveAccessCode?email=%s", email))
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            final JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                return responseBody.getString("access_code");
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
     @Override
     public void changePassword(User user) {
-        final OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-
-        // POST METHOD
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put(USERNAME, user.getEmail());
-        requestBody.put(PASSWORD, user.getPassword());
-        requestBody.put(ACCESS_CODE, user.getAccessCode());
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/user")
-                .method("PUT", body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
         try {
-            final Response response = client.newCall(request).execute();
-
-            final JSONObject responseBody = new JSONObject(response.body().string());
-
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                // success!
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("MySQL JDBC Driver not found.", e);
         }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+
+        String sql = "INSERT INTO users (username, passwords, accessCode) VALUES (?, ?, ?) "
+                + "ON DUPLICATE KEY UPDATE password = VALUES(password), accessCode = VALUES(accessCode);";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getEmail());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getAccessCode());
+
+            pstmt.executeUpdate();
+
         }
-    }
-
-    @Override
-    public void setAccessCode(User user) {
-        final OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-
-        // POST METHOD
-        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put(USERNAME, user.getEmail());
-        requestBody.put(PASSWORD, user.getPassword());
-        requestBody.put(ACCESS_CODE, user.getAccessCode());
-        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
-        final Request request = new Request.Builder()
-                .url("http://vm003.teach.cs.toronto.edu:20112/user")
-                .method("PUT", body)
-                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                .build();
-        try {
-            final Response response = client.newCall(request).execute();
-
-            final JSONObject responseBody = new JSONObject(response.body().string());
-
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                // success!
-            }
-            else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
-            }
-        }
-        catch (IOException | JSONException ex) {
-            throw new RuntimeException(ex);
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error changing password: " + e.getMessage(), e);
         }
     }
 

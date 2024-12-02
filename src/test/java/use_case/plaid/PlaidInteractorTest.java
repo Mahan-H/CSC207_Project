@@ -14,6 +14,7 @@ import osiris.utility.exceptions.PlaidException;
 import osiris.utility.exceptions.PlaidUseCaseException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,7 +26,7 @@ class PlaidInteractorTest {
     private static PlaidDataBaseUserAccessObjectInterface mockUserRepository;
 
     @BeforeAll
-    static void setUp() {
+    static void setUp() throws SQLException {
         mockPlaidDao = mock(PlaidDataAccessObject.class);
         UserFactory mockFactory = mock(UserFactory.class);
         mockUserRepository = mock(PlaidDataBaseUserAccessObjectInterface.class);

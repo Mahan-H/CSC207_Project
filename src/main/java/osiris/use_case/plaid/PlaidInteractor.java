@@ -1,6 +1,7 @@
 package osiris.use_case.plaid;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,8 +73,11 @@ public class PlaidInteractor implements PlaidInputBoundary {
                     inputData.getPublicToken()
             );
             final User user = userDataAccessObject.get(username);
-            final User newUser = userFactory.create(user.getEmail(), user.getPassword(), response.access_token);
-            userDataAccessObject.setAccessCode(newUser);
+            String email = user.getEmail();
+            String password = user.getPassword();
+            String accessToken = response.access_token;
+            final User newUser = userFactory.create(email, password, accessToken);
+            userDataAccessObject.save(newUser);
             return new ExchangePublicTokenOutputData(
                     response.access_token,
                     response.item_id,
@@ -85,6 +89,9 @@ public class PlaidInteractor implements PlaidInputBoundary {
         }
         catch (IOException ex) {
             throw new PlaidUseCaseException("IO Error while exchanging Public Token.", ex);
+        }
+        catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }

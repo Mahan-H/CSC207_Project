@@ -21,6 +21,11 @@ public class DashboardPresenter implements DashboardOutputBoundary {
     }
 
     @Override
+    public void switchToAddBankAccountView() {
+
+    }
+
+    @Override
     public void switchToViewExpenses() {
         viewManagerModel.setState("view expenses");
         viewManagerModel.firePropertyChanged();
