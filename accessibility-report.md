@@ -1,5 +1,17 @@
 ### For each Principle of Universal Design, write 2-3 sentences — or point form notes — explaining which features of your program adhere to that principle.
 
+Equitable Use:​
+
+Anyone who has basic computer knowledge​
+
+Target Audience:​
+
+Anyone who is looking to gain insight from their financial information​
+
+Low Effort and Simple and Intuitive:
+
+It is low effort and efficient for people with a low attention span
+
 **S:** The PieChartUtility class is solely responsible for creating and displaying pie charts. It does not handle transactions, user data, or presentation logic, adhering to SRP. The way we have laid out our use cases to adhere to clean architecture also shows this. For example, the Views for each use case are responsible for making the view page (should only change for changing the display) 
 
 **O:** The PlaidDataAccessObject cannot be modified since it organizes functionality into methods with specific responsibilities, but it can be extended to support accessing different Plaid data. (fetching transactions,​ creating link tokens, etc). The entity package cannot be modified (as that will change what the entity represents), but we can add more entities to that package as our project expands. 
