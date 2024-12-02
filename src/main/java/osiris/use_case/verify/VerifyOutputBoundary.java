@@ -22,4 +22,6 @@ public interface VerifyOutputBoundary {
      * Prepares the switch to signup view for the Verify Email Use Case.
      */
     void switchToSignUpView();
+
+    void switchToDashboardView();
 }

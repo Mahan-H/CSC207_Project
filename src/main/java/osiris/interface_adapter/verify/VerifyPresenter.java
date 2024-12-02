@@ -20,18 +20,24 @@ public class VerifyPresenter implements VerifyOutputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
 
+    public void switchToDashboard() {
+        viewManagerModel.setState("dashboard");
+        viewManagerModel.firePropertyChanged();
+    }
+
     @Override
     public void prepareSuccessView(VerifyOutputData outputData) {
-        VerifyState state = verifyViewModel.getState();
+        final VerifyState state = verifyViewModel.getState();
         state.setCaptchaCode(outputData.getCaptcha());
         verifyViewModel.setState(state);
+        viewManagerModel.setState("dashboard");
         verifyViewModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
         // Set the error message in the state
-        VerifyState state = verifyViewModel.getState();
+        final VerifyState state = verifyViewModel.getState();
         state.setCaptchaError(error);
         verifyViewModel.setState(state);
 
@@ -43,6 +49,12 @@ public class VerifyPresenter implements VerifyOutputBoundary {
     public void switchToSignUpView() {
         // Switch back to the signup view if needed
         viewManagerModel.setState(signupViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToDashboardView() {
+        viewManagerModel.setState("dashboard");
         viewManagerModel.firePropertyChanged();
     }
 }

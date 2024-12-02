@@ -1,94 +1,99 @@
 package osiris.view;
 
+import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import osiris.interface_adapter.verify.VerifyController;
-import osiris.interface_adapter.verify.VerifyState;
 import osiris.interface_adapter.verify.VerifyViewModel;
 
 /**
  * The View for CAPTCHA Verification.
  */
-
 public class VerifyView extends JPanel implements PropertyChangeListener {
 
     private final String viewName = "verify";
     private final VerifyViewModel verifyViewModel;
     private final JLabel captchaDisplay;
     private final JTextField captchaField = new JTextField(6);
-    private JLabel captchaLabel;
     private VerifyController verifyController;
-    private final JButton verifyButton;
-    private final JButton refreshCaptchaButton;
 
     public VerifyView(VerifyViewModel verifyViewModel) {
         this.verifyViewModel = verifyViewModel;
         this.verifyViewModel.addPropertyChangeListener(this);
 
+        setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
         JLabel title = new JLabel("CAPTCHA Verification");
-        title.setAlignmentX(Component.LEFT_ALIGNMENT);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 18));
 
-        JLabel captchaLabel = new JLabel("Enter CAPTCHA:");
-        captchaField.setPreferredSize(new Dimension(150, 30)); // Width: 150px, Height: 30px
-        captchaField.setMaximumSize(new Dimension(150, 30));
-        this.verifyButton = new JButton("Verify");
-        verifyButton.addActionListener(evt -> handleVerify());
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        add(title, gbc);
 
-        // Add the button to the panel
-        this.add(verifyButton);
+        final JLabel captchaLabel = new JLabel("Enter CAPTCHA:");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        add(captchaLabel, gbc);
+
+        captchaField.setPreferredSize(new Dimension(150, 30));
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        add(captchaField, gbc);
 
         captchaDisplay = new JLabel("CAPTCHA Placeholder");
-        refreshCaptchaButton = new JButton("Refresh CAPTCHA");
+        captchaDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        add(captchaDisplay, gbc);
 
-        // Add action listener to refresh button
+        JButton verifyButton = new JButton("Verify");
+        verifyButton.addActionListener(evt -> handleVerify());
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        add(verifyButton, gbc);
+
+        final JButton refreshCaptchaButton = new JButton("Refresh CAPTCHA");
         refreshCaptchaButton.addActionListener(evt -> refreshCaptcha());
-
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
-        formPanel.add(captchaLabel);
-        formPanel.add(captchaField);
-        formPanel.add(captchaDisplay);
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(refreshCaptchaButton);
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(title);
-        this.add(formPanel);
-        this.add(buttonPanel);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        add(refreshCaptchaButton, gbc);
     }
 
     private void handleVerify() {
-        // Get the entered CAPTCHA response from the text field
-        String enteredCaptcha = captchaField.getText();
-        String currentCaptcha = verifyViewModel.getState().getCaptchaCode();
+        final String enteredCaptcha = captchaField.getText();
+        final String currentCaptcha = verifyViewModel.getState().getCaptchaCode();
 
-        // Check if the entered CAPTCHA matches the generated CAPTCHA
+        System.out.println("Entered CAPTCHA: " + enteredCaptcha);
+        System.out.println("Current CAPTCHA: " + currentCaptcha);
+
         if (enteredCaptcha == null || enteredCaptcha.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter the CAPTCHA.");
-        } else if (!enteredCaptcha.equalsIgnoreCase(currentCaptcha)) {
+        }
+        else if (!enteredCaptcha.equalsIgnoreCase(currentCaptcha)) {
             JOptionPane.showMessageDialog(this, "CAPTCHA verification failed. Please try again.");
-        } else {
+        }
+        else {
             JOptionPane.showMessageDialog(this, "CAPTCHA verified successfully!");
             verifyController.execute(enteredCaptcha);
+            verifyController.switchToDashboardView();
         }
     }
 
-    // Refreshes the displayed captcha using the controller
     public void refreshCaptcha() {
         if (verifyController != null) {
             String captcha = verifyController.generateCaptcha();
             captchaDisplay.setText(captcha);
-            verifyViewModel.getState().setCaptchaCode(captcha);
         }
         else {
             throw new IllegalStateException("VerifyController not set. Unable to refresh captcha.");
@@ -103,12 +108,10 @@ public class VerifyView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("captcha".equals(evt.getPropertyName())) {
-            // Update captcha display when captcha changes
             String newCaptcha = (String) evt.getNewValue();
             captchaDisplay.setText(newCaptcha);
         }
         else if ("captchaValidation".equals(evt.getPropertyName())) {
-            // Handle captcha validation result
             boolean isValid = (boolean) evt.getNewValue();
             if (isValid) {
                 JOptionPane.showMessageDialog(this, "Captcha verified successfully!");

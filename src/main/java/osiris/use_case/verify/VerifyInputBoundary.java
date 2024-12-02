@@ -27,4 +27,8 @@ public interface VerifyInputBoundary {
      * @return true if the CAPTCHA is valid, false otherwise.
      */
     boolean validateCaptcha(String captchaCode, String sessionId);
+
+    void switchToDashboardView();
+
 }
+

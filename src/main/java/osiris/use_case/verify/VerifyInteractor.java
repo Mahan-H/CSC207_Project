@@ -55,5 +55,12 @@ public class VerifyInteractor implements VerifyInputBoundary {
 
         return code.toString();
     }
+
+    /**
+     * Method to switch to the Dashboard view after successful CAPTCHA verification.
+     */
+    public void switchToDashboardView() {
+        outputBoundary.switchToDashboardView();
+    }
 }
 
