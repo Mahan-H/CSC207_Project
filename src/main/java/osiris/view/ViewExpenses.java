@@ -6,14 +6,12 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.plaid.client.model.Transaction;
 import lombok.Getter;
 import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesController;
@@ -75,15 +73,10 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
                 });
 
         // expensesButton.addActionListener(
-        // This creates an anonymous subclass of ActionListener and instantiates it.
         // new ActionListener() {
-        //     public void actionPerformed(ActionEvent evt) {
-        //         final ViewExpensesState currentState = viewExpensesViewModel.getState();
-        //         PieChartUtility.displayPieChart(
-        //             currentState.getEssential(),
-        //             currentState.getNonEssential()
-        //         );
-        //     }
+        // public void actionPerformed(ActionEvent evt) {
+        // PieChartUtility.displayPieChart(200.9, 300.45);
+        // }
         // });
 
         goBack.addActionListener(evt -> controller.switchToHomeView());

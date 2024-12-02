@@ -50,7 +50,6 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
                     break;
                 }
             }
-
             if (isEssential) {
                 essentialTotal += amount;
             }
@@ -58,7 +57,6 @@ public class ViewExpensesInteractor implements ViewExpensesInputBoundary {
                 nonEssentialTotal += amount;
             }
         }
-
         final ViewExpensesOutputData outputData = new ViewExpensesOutputData(essentialTotal, nonEssentialTotal);
         presenter.prepareChart(outputData);
     }

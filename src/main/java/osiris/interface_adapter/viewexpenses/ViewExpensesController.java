@@ -1,8 +1,5 @@
 package osiris.interface_adapter.viewexpenses;
 
-import java.util.List;
-
-import com.plaid.client.model.Transaction;
 import osiris.use_case.viewexpenses.ViewExpensesInputBoundary;
 import osiris.use_case.viewexpenses.ViewExpensesInputData;
 

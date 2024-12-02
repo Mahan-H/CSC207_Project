@@ -18,5 +18,8 @@ public interface VerifyOutputBoundary {
 
     void prepareFailView(String errorMessage);
 
+    /**
+     * Prepares the switch to signup view for the Verify Email Use Case.
+     */
     void switchToSignUpView();
 }
