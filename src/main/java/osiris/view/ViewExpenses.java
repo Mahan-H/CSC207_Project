@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-// import java.io.IOException;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,12 +15,11 @@ import javax.swing.JPanel;
 import lombok.Getter;
 import osiris.interface_adapter.grabtransaction.GrabTransactionController;
 import osiris.interface_adapter.viewexpenses.ViewExpensesController;
+import osiris.interface_adapter.viewexpenses.ViewExpensesState;
 import osiris.interface_adapter.viewexpenses.ViewExpensesViewModel;
+import osiris.use_case.grabtransactions.GrabTransactionOutputData;
+import osiris.utility.exceptions.PlaidUseCaseException;
 import osiris.utility.jfreechart.PieChartUtility;
-
-// import osiris.interface_adapter.viewexpenses.ViewExpensesState;
-// import osiris.use_case.grabtransactions.GrabTransactionOutputData;
-// import osiris.utility.exceptions.PlaidUseCaseException;
 // import osiris.use_case.viewexpenses.ViewExpensesInteractor;
 
 /**
@@ -36,8 +35,6 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
     private final JButton goBack;
     private final JButton expensesButton;
     private GrabTransactionController grabTransactionController;
-    private final double ess = 92.65;
-    private final double noness = 114.27;
 
     public ViewExpenses(ViewExpensesViewModel viewExpensesViewModel) {
         this.viewExpensesViewModel = viewExpensesViewModel;
@@ -54,33 +51,33 @@ public class ViewExpenses extends JPanel implements PropertyChangeListener {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        expensesButton.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        try {
+                            final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
+                                     "q");
+                            controller.execute(String.valueOf(transactions));
+                            final ViewExpensesState currentState = viewExpensesViewModel.getState();
+                            PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
+                            );
+                        }
+                        catch (PlaidUseCaseException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+
         // expensesButton.addActionListener(
-        // This creates an anonymous subclass of ActionListener and instantiates it.
         // new ActionListener() {
         // public void actionPerformed(ActionEvent evt) {
-        // try {
-        // final GrabTransactionOutputData transactions = grabTransactionController.createTransactions(
-        // "q");
-        // controller.execute(String.valueOf(transactions));
-        // final ViewExpensesState currentState = viewExpensesViewModel.getState();
-        // PieChartUtility.displayPieChart(currentState.getEssential(), currentState.getNonEssential()
-        // );
-        // }
-        // catch (PlaidUseCaseException ex) {
-        // throw new RuntimeException(ex);
-        // }
-        // catch (IOException ex) {
-        // throw new RuntimeException(ex);
-        // }
+        // PieChartUtility.displayPieChart(200.9, 300.45);
         // }
         // });
-
-        expensesButton.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    PieChartUtility.displayPieChart(ess, noness);
-                }
-            });
 
         goBack.addActionListener(evt -> controller.switchToHomeView());
 
