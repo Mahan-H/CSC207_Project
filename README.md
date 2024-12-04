@@ -316,13 +316,19 @@ Once you have installed and configured the MySQL database, you need to create a 
 
 Now you are ready to run the program. You can look at usage guide for instructions on how to run the program.
 ```
-## Usage Guide
+```
+Usage Guide
 
-## Section for feedback (how to give feedback on the project):
-#### Email: mahan.hooshmandkhayat@mail.utoronto.ca or divnoor.chatha@mail.utoronto.ca
-# YOU MAY NOT ADD ANY CONTRIBUTIONS TO THIS PROJECT!!!
+https://github.com/user-attachments/assets/a5e58d2c-e7f3-462d-96e6-3ee55de9a289
+
+```
+```
+Section for feedback (how to give feedback on the project):
+Email: mahan.hooshmandkhayat@mail.utoronto.ca or divnoor.chatha@mail.utoronto.ca
+YOU MAY NOT ADD ANY CONTRIBUTIONS TO THIS PROJECT!!!
+```
 
 
-* * *
-
-##### Licensing can be seen in LICENSE.txt
+```
+Licensing can be seen in LICENSE.txt
+```
