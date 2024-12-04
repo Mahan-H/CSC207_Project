@@ -321,6 +321,7 @@ Usage Guide
 
 https://github.com/user-attachments/assets/a5e58d2c-e7f3-462d-96e6-3ee55de9a289
 
+note: The create account feature is not working at the time of upload due to the verification system not working as expected
 ```
 ```
 Section for feedback (how to give feedback on the project):
