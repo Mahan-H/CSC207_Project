@@ -34,6 +34,9 @@ import osiris.interface_adapter.verify.VerifyViewModel;
 import osiris.interface_adapter.dashboard.DashboardController;
 import osiris.interface_adapter.dashboard.DashboardPresenter;
 import osiris.interface_adapter.dashboard.DashboardViewModel;
+import osiris.interface_adapter.budget.BudgetController;
+import osiris.interface_adapter.budget.BudgetPresenter;
+import osiris.interface_adapter.budget.BudgetViewModel;
 import osiris.use_case.grabtransactions.GrabTransactionsInputBoundary;
 import osiris.use_case.grabtransactions.GrabTransactionsInputData;
 import osiris.use_case.grabtransactions.GrabTransactionsInteractor;
@@ -58,6 +61,9 @@ import osiris.use_case.welcome.WelcomeOutputBoundary;
 import osiris.use_case.dashboard.DashboardInputBoundary;
 import osiris.use_case.dashboard.DashboardInteractor;
 import osiris.use_case.dashboard.DashboardOutputBoundary;
+import osiris.use_case.budget.BudgetInputBoundary;
+import osiris.use_case.budget.BudgetInteractor;
+import osiris.use_case.budget.BudgetOutputBoundary;
 import osiris.view.*;
 
 
@@ -98,6 +104,8 @@ public class AppBuilder {
     private DashboardViewModel dashboardViewModel;
     private ViewExpenses viewExpenses;
     private ViewExpensesViewModel viewExpensesViewModel;
+    private BudgetView budgetView;
+    private BudgetViewModel budgetViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -126,6 +134,17 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Budget View to the application.
+     * @return this builder
+     */
+    public AppBuilder addBudgetView() {
+        budgetViewModel = new BudgetViewModel();
+        budgetView = new BudgetView(budgetViewModel);
+        cardPanel.add(budgetView, budgetView.getViewName());
+        return this;
+    }
+
     public AppBuilder addWelcomeView() {
         welcomeViewModel = new WelcomeViewModel();
         welcomeView = new WelcomeView(welcomeViewModel);
@@ -150,7 +169,7 @@ public class AppBuilder {
      */
     public AppBuilder addDashboardUseCase() {
         final DashboardOutputBoundary dashboardOutputBoundary = new DashboardPresenter(viewManagerModel,
-                dashboardViewModel, viewExpensesViewModel);
+                dashboardViewModel, viewExpensesViewModel, budgetViewModel);
         final DashboardInputBoundary userDashboardInteractor = new DashboardInteractor(dashboardOutputBoundary,
                 userFactory);
 
@@ -229,6 +248,29 @@ public class AppBuilder {
 
         viewExpenses.setViewExpensesController(controller);
         viewExpenses.setGrabTransactionController(grabTransactionController);
+
+        return this;
+    }
+
+    /**
+     * Adds the Budget View to the application.
+     * @return this builder
+     */
+    public AppBuilder addBudgetUseCase() {
+        final BudgetOutputBoundary budgetOutputBoundary = new BudgetPresenter(budgetViewModel,
+                viewManagerModel);
+
+        final BudgetInputBoundary userBudgetInteractor = new BudgetInteractor(
+                budgetOutputBoundary);
+
+        final GrabTransactionsInputBoundary userBudgetGrab = new GrabTransactionsInteractor(userDataAccessObject,
+                plaidDataAccessObject);
+
+        final BudgetController controller = new BudgetController(userBudgetInteractor);
+        final GrabTransactionController grabTransactionController = new GrabTransactionController(userBudgetGrab);
+
+        budgetView.setBudgetController(controller);
+        budgetView.setGrabTransactionController(grabTransactionController);
 
         return this;
     }

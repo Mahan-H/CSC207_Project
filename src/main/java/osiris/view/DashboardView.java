@@ -80,7 +80,7 @@ public class DashboardView extends JPanel implements ActionListener {
         viewBudget.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        dashboardController.switchToLoginView();
+                        dashboardController.switchToBudgetView();
                     }
                 }
         );

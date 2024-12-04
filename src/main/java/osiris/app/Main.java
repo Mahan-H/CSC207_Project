@@ -23,6 +23,8 @@ public class Main {
                 .addSignupUseCase()
                 .addWelcomeUseCase()
                 .addLoginUseCase()
+                .addBudgetView()
+                .addBudgetUseCase()
 
                 .addDashboardUseCase()
 //                .addVerifyUseCase()

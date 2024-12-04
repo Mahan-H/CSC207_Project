@@ -14,4 +14,9 @@ public interface DashboardInputBoundary {
      * Executes the switch to ViewExpenses view use case.
      */
     void switchToViewExpenses();
+
+    /**
+     * Executes the switch to budget view use case.
+     */
+    void switchToBudgetView();
 }

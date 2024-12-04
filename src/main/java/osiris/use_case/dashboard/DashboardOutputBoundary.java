@@ -10,6 +10,13 @@ public interface DashboardOutputBoundary {
      */
     void switchToAddBankAccountView();
 
-
+    /**
+     * Switches to the viewExpenses view.
+     */
     void switchToViewExpenses();
+
+    /**
+     * Switches to the budget View.
+     */
+    void switchToBudgetView();
 }

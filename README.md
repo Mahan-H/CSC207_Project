@@ -8,7 +8,7 @@
 ### Shah Jalalul Kabir:
 ###### CAPTCHA Signup Verification System for Team Use Case, Generate Assets Report UseCase
 ### Christopher Han Roy:
-#####
+##### Dashboard view for Team Use Case, Buget for personal use case
 
 ## Preamble
 
@@ -31,7 +31,8 @@ verfication system, which done by the Brevo API. All the servers are made using 
 logged in, the user can add a bank account using the bank account button on the home page. This is where the Plaid API 
 is called and allows you to add a bank account. Once Bank account is added, the user can navigate to the various pages 
 in the homepage to view various analysis regarding thier bank account. Features like looking at a graph of your 
-Non-Essential vs Essential spending over the last 30 days. Or ...
+Non-Essential vs Essential spending over the last 30 days or viewing your spending habits broken down into how much 
+money you spend each month.
 
 ## Installation Instructions
 You should currently be viewing this README in the GitHub repository: https://github.com/Mahan-H/CSC207_Project.

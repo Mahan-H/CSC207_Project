@@ -26,4 +26,9 @@ public class DashboardController {
     public void switchToViewExpenses() {
         userDashboardUseCaseInteractor.switchToViewExpenses();
     }
+
+    /**
+     * Executes the "switch to BudgetView" Use Case.
+     */
+    public void switchToBudgetView() { userDashboardUseCaseInteractor.switchToBudgetView(); }
 }
